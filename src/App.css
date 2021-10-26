@@ -3,7 +3,7 @@
 }
 
 .App-logo {
-  height: 40vmin;
+  height: 5vmin;
   pointer-events: none;
 }
 
@@ -35,4 +35,86 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+
+nav {
+  display: flex;
+  justify-content: space-between;
+
+}
+
+nav ul {
+ float: none;
+ list-style-type: none;
+ display: flex;
+ justify-content: start;
+ padding: 0;
+}
+
+nav ul li {
+  margin: 10px;
+}
+
+#lognav{
+  margin-right: 20px;
+}
+
+#gennav{
+  margin-left: 20px;
+}
+
+header caption {
+  width: 400px;
+  font-size: 30px;
+}
+
+main {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  grid-template-areas:
+  "balance balance actions actions"
+  "balance balance actions actions"
+  "recent recent recent recent"
+  "recent recent recent recent";
+}
+
+#balance {
+  grid-area: balance;
+}
+
+#actions {
+  grid-area: actions;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-areas:
+  "send request"
+  "link withdraw"
+  "deposit deposit" ;
+}
+
+#recentActivity {
+  grid-area: recent;
+}
+
+#send {
+  grid-area: send;
+}
+
+#request {
+  grid-area: request;
+}
+
+#link{
+  grid-area: link;
+}
+
+#withdraw {
+  grid-area: withdraw;
+}
+
+#deposit {
+  grid-area: deposit;
 }
