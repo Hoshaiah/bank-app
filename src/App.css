@@ -1,3 +1,19 @@
+html {
+  height: 100%;
+}
+
+body {
+  background-color: #f8f3e4 ;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100%;
+}
+
+#root {
+  width: 100%;
+}
+
 .App {
   text-align: center;
   /* padding-left: 20px;
@@ -42,7 +58,7 @@
   }
 }
 
-
+/* Dashboard */
 nav {
   margin: 0;
   padding: 0;
@@ -304,4 +320,157 @@ main {
   justify-content: flex-start;
   align-items: flex-start;
   margin-bottom: 30px;
+}
+
+/* Login */
+
+#logindiv {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  color: black;
+  height: 500px;
+  width: 430px;
+  background-color: white;
+  border-radius: 1em ;
+  box-shadow: 0px 1px 5px #b3b3b3;
+  justify-content: flex-start;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+
+  left: 0;
+  right: 0;
+  top:0;
+  text-align: center;
+
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+#loginCaption {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 2em;
+  /* position: absolute;
+  top: 0px;
+  text-align: center;
+  left: 50%;
+  transform: translateX(-59%); */
+}
+
+#userInput{
+  margin-top: 50px;
+}
+#logindiv input{
+  margin-bottom: 10px;
+  width: 300px;
+  height: 50px;
+  padding-left: 10px;
+}
+
+#loginForgot {
+  width: 300px;
+  height: 20px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 9px;
+  margin-bottom: 25px;
+  color: #0d48a8f8;
+}
+
+
+#loginButtons button{
+  height: 50px;
+  width: 154px;
+  border: none;
+  border-radius: 0.2em;
+  color: white;
+  margin-bottom: 40px;
+  margin-left: 5px;  
+  margin-right: 5px;
+}
+#loginButton {
+  background-color: #0d3ea8f8;
+}
+
+#signupButton{
+  background-color: #2ca80df8;
+
+}
+
+/* Signup */
+
+#signupdiv {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  color: black;
+  height: 600px;
+  width: 500px;
+  background-color: white;
+  border-radius: 1em ;
+  box-shadow: 0px 1px 5px #b3b3b3;
+  justify-content: flex-start;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+
+  left: 0;
+  right: 0;
+  top:0;
+  text-align: center;
+
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+#signupCaption {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 2em;
+}
+
+/* #newNameInput{
+  margin-top: 10px;
+} */
+
+#signupdiv input{
+  width: 300px;
+  height: 50px;
+  padding-left: 10px;
+  margin-top: 15px;
+}
+
+#newNameInput {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#signupdiv #newNameInput input {
+  width: 137px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+#signupReminder {
+  width: 315px;
+  font-size: 10px;
+  text-align: left;
+}
+
+#createAccount button{
+  height: 50px;
+  width: 320px;
+  border: none;
+  border-radius: 0.2em;
+  color: white;
+  margin-bottom: 40px;
+  margin-left: 5px;  
+  margin-right: 5px;
+  background-color: #0d3ea8f8;
 }
