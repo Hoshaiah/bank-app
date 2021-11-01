@@ -1,3 +1,4 @@
+import { useState } from 'react/cjs/react.development';
 import './App.css';
 import Dashboard from './js/Dashboard'
 import Login from './js/Login';
@@ -5,12 +6,39 @@ import Signup from './js/Signup';
 
 
 function App() {
+  const [users, setUsers] = useState({})
+  const [currentUser, setCurrentUser] = useState({})
 
+  const [isLoginPage, setIsLoginPage] = useState(false)
+  const [isSignupPage, setIsSignupPage] = useState(true)
+  const [isDashboardPage, setIsDashboardPage] = useState(false)
+
+  console.log(users)
   return (
     <>
-      {/* <Dashboard/> */}
-      {/* <Login/> */}
-      <Signup/>
+      <Dashboard
+        isDashboardPage = {isDashboardPage}
+        setIsDashboardPage = {setIsDashboardPage}
+        currentUser = {currentUser}
+        setCurrentUser = {setCurrentUser}
+        setIsLoginPage = {setIsLoginPage}
+        
+      />
+      <Login
+        isLoginPage = {isLoginPage}
+        users = {users}
+        setCurrentUser = {setCurrentUser}
+        setIsLoginPage = {setIsLoginPage}
+        setIsDashboardPage = {setIsDashboardPage}
+        setIsSignupPage = {setIsSignupPage}
+      />
+      <Signup
+        isSignupPage = {isSignupPage}
+        setIsSignupPage = {setIsSignupPage}
+        setIsLoginPage = {setIsLoginPage}
+        users = {users}
+        setUsers = {setUsers}
+      />
     </>
   );
 }
