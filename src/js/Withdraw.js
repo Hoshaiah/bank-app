@@ -6,12 +6,14 @@ function Withdraw(props){
     const withdrawAmountData = useRef(0)
     const [withdrawalReminder, setWithdrawalReminder] = useState("")
 
-    const onWithdrawCancel = () => {
+    const onWithdrawCancel = (event) => {
+        event.preventDefault()
         setOverlayVisibility("hidden")
         setWithdrawalReminder("")
     }
 
-    const onWithdrawSubmit = () => {
+    const onWithdrawSubmit = (event) => {
+        event.preventDefault()
         let withdrawalAmount = Number(withdrawAmountData.current.value);
         let currentBalance = currentUser.wallet
 
@@ -30,7 +32,7 @@ function Withdraw(props){
 
 
     return(
-        <div className="popup"> 
+        <form className="popup"> 
             <h1>{popupName}</h1>
             <div id="popupInputs">
                 <div>
@@ -59,7 +61,7 @@ function Withdraw(props){
                 <button id="cancelButton" onClick={onWithdrawCancel}>Cancel</button>
                 <button id="submitButton" onClick={onWithdrawSubmit}>Submit</button>
             </div>
-        </div>
+        </form>
     )
 }
 

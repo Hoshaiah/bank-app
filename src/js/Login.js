@@ -2,7 +2,7 @@ import { useState } from 'react';
 import logo from '../logo.svg';
 
 function Login(props){
-    const {isLoginPage, users, setCurrentUser, setIsLoginPage, setIsDashboardPage, setIsSignupPage} = props
+    const {isLoginPage, users, setCurrentUser, setIsLoginPage, setIsDashboardPage, setIsSignupPage, currentUser} = props
     const usernameObject = useState("")
     const passwordObject = useState("")
     const [loginReminder, setLoginReminder] = useState("")

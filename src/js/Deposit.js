@@ -5,25 +5,28 @@ function Deposit(props){
     const DepositAmountData = useRef(0)
     const [DepositReminder, setDepositReminder] = useState("")
 
-    const onDepositCancel = () => {
+    const onDepositCancel = (event) => {
+        event.preventDefault()
         setOverlayVisibility("hidden")
         setDepositReminder("")
+
     }
 
-    const onDepositSubmit = () => {
+    const onDepositSubmit = (event) => {
+        event.preventDefault()
         let DepositalAmount = Number(DepositAmountData.current.value);
         let currentBalance = currentUser.wallet
         setOverlayVisibility("hidden")
         setCurrentUser ({
             ...currentUser,
             wallet: currentBalance + DepositalAmount
-        }) 
+        })
 
     }
 
 
     return(
-        <div className="popup"> 
+        <form className="popup"> 
             <h1>{popupName}</h1>
             <div id="popupInputs">
                 <div>
@@ -46,7 +49,7 @@ function Deposit(props){
                 <button id="cancelButton" onClick={onDepositCancel}>Cancel</button>
                 <button id="submitButton" onClick={onDepositSubmit}>Submit</button>
             </div>
-        </div>
+        </form>
     )
 }
 

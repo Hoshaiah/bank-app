@@ -12,8 +12,6 @@ function App() {
   const [isLoginPage, setIsLoginPage] = useState(false)
   const [isSignupPage, setIsSignupPage] = useState(false)
   const [isDashboardPage, setIsDashboardPage] = useState(true)
-
-  console.log(users)
   return (
     <>
       <Dashboard
@@ -22,6 +20,8 @@ function App() {
         currentUser = {currentUser}
         setCurrentUser = {setCurrentUser}
         setIsLoginPage = {setIsLoginPage}
+        setUsers = {setUsers}
+        users = {users}
         
       />
       <Login
@@ -31,6 +31,7 @@ function App() {
         setIsLoginPage = {setIsLoginPage}
         setIsDashboardPage = {setIsDashboardPage}
         setIsSignupPage = {setIsSignupPage}
+        currentUser = {currentUser}
       />
       <Signup
         isSignupPage = {isSignupPage}

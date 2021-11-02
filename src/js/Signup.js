@@ -43,6 +43,7 @@ function Signup(props){
         } else {
             setSignupReminder("")
             let userData = {
+                username: username,
                 firstName: firstName,
                 lastName: lastName,
                 password: password,

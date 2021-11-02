@@ -3,12 +3,12 @@ import '../App.css';
 import settings from '../img/settings.png';
 import notification from '../img/notification.png';
 import Popup from '../js/Popup';
-import {useState} from "react"
+import {useEffect, useState} from "react"
 import Actions from '../js/Actions'
 
 
 function Dashboard(props) {
-    const {isDashboardPage, setIsDashboardPage, currentUser, setCurrentUser, setIsLoginPage } = props
+    const {isDashboardPage, setIsDashboardPage, currentUser, setCurrentUser, setIsLoginPage, users, setUsers } = props
 
     let balance = currentUser.wallet
     let user = currentUser.firstName + " " + currentUser.lastName
@@ -26,10 +26,30 @@ function Dashboard(props) {
     }
     
     const onLogout = () => {
-        setIsDashboardPage(false)
-        setCurrentUser({})
-        setIsLoginPage(true)
+      setIsDashboardPage(false)
+      setCurrentUser({})
+      setIsLoginPage(true)
     }
+
+    const onSettings = () => {
+
+      console.log(currentUser)
+    }
+
+    const onNotif = () => {
+      let username = currentUser.username
+      setUsers({
+        ...users,
+      Hoshaiah14: currentUser})
+      console.log(users[username])
+    }
+    // useEffect(()=>{
+    //   let username = currentUser.username
+    //   setUsers({
+    //     ...users,
+    //     username: currentUser
+    //   })
+    // })
 
     if (isDashboardPage){
         return (
@@ -44,8 +64,8 @@ function Dashboard(props) {
                 <li>Help</li>
               </ul>
               <ul id="lognav">
-                <li><img id="notification" src={notification} alt=""></img></li>
-                <li><img id="settings" src= {settings} alt="" ></img></li>
+                <li onClick={onNotif}><img id="notification" src={notification} alt=""></img></li>
+                <li onClick={onSettings}><img id="settings" src= {settings} alt="" ></img></li>
                 <li onClick={onLogout} id="logout">Log Out</li>
               </ul>
             </nav>
