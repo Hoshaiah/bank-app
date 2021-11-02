@@ -15,9 +15,8 @@ function Dashboard(props) {
   
     const [overlayVisiblity, setOverlayVisibility] = useState("hidden")
     const [popupName, setPopupName] = useState("")
-    const [popupInputs, setPopupInputs] = useState([])
-  
-  
+    const [popupAction, setPopupAction] = useState("")
+
     const onCancelClick = () => {
       setOverlayVisibility("hidden")
     }
@@ -62,8 +61,8 @@ function Dashboard(props) {
       
               <Actions
                 setOverlayVisibility = {setOverlayVisibility}
-                setPopupInputs = {setPopupInputs}
                 setPopupName = {setPopupName}
+                setPopupAction = {setPopupAction}
               />
       
               <div id="recentActivity">
@@ -73,10 +72,12 @@ function Dashboard(props) {
       
               <div className={overlayVisiblity} id="overlay" >
                 <Popup
-                onCancelClick = {onCancelClick}
-                onSubmitClick = {onSubmitClick}
-                popupName = {popupName}
-                popupInputs = {popupInputs}/>
+                  popupAction = {popupAction}
+                  popupName = {popupName}
+                  setOverlayVisibility = {setOverlayVisibility}
+                  setCurrentUser = {setCurrentUser}
+                  currentUser = {currentUser}
+                />
               </div>
             </main>
           </div>

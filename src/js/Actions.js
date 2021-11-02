@@ -5,55 +5,36 @@ import withdraw from '../img/withdraw.png';
 import request from '../img/request.png';
 
 function Actions(props) {
-    const {setOverlayVisibility, setPopupInputs,setPopupName } = props
+    const {setOverlayVisibility, setPopupName, setPopupAction } = props
 
     const onSendClick = () =>  {
         setPopupName("Send Money")
         setOverlayVisibility("visible")
-        setPopupInputs([
-            ["Send to Account","text","0917 999 999"],
-            ["Amount","number","P100.00"],
-            ["Notes","text","e.g for Payment to John Doe"]
-        ])
+        setPopupAction("Send")
       }
     
     const onWithdrawClick = () => {
         setPopupName("Withdraw from Wallet")
         setOverlayVisibility("visible")
-        setPopupInputs([
-            ["From Bank Account","text","BPI"],
-            ["Move to Account","text","0000 0000 0000"],
-            ["Amount","number","P100.00"],
-        ])
+        setPopupAction("Withdraw")
     }
     
     const onRequestClick = () =>  {
         setPopupName("Request from Another Account")
         setOverlayVisibility("visible")
-        setPopupInputs([
-            ["Request from","text","0999 999 9999"],
-            ["Amount","number","P100.00"],
-            ["Notes","text","e.g. for refund of item"]
-        ])
+        setPopupAction("Request")
     }
     
     const onLinkclick = () =>  {
         setPopupName("Link Bank Account")
         setOverlayVisibility("visible")
-        setPopupInputs([
-            ["Bank","text","BPI"],
-            ["Account Number","number","0000 0000 0000"],
-        ])
+        setPopupAction("Link")
     }
     
     const onDepositClick = () =>  {
         setPopupName("Deposit to Wallet")
         setOverlayVisibility("visible")
-        setPopupInputs([
-            ["From Bank Account","text","BPI"],
-            ["Move to Account","text","0000 0000 0000"],
-            ["Amount","number","P100.00"],
-        ])
+        setPopupAction("Deposit")
     }
     
 

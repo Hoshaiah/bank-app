@@ -1,30 +1,33 @@
-function Popup (props){
-    const {onCancelClick, onSubmitClick, popupName, popupInputs} = props
+import Deposit from "./Deposit";
+import Withdraw from "./Withdraw";
 
-    // let inputs = []
-    // for (let i = 0; i< popupInputs.length; i ++){
-    //     inputs.push(
-    //         <label for=""> {popupInputs[i][0]}</label>
-    //         <input type="text" id="accnumber"></input>
-    //     )
-    // } 
-    return(
-        <div className="popup"> 
-            <h1>{popupName}</h1>
-            <div id="popupInputs">
-                {popupInputs.map((element, index) => (
-                    <div key={index}>
-                        <label for="accnumber">{element[0]}</label>
-                        <input type={element[1]} id="accnumber" placeholder={element[2]}></input>
-                    </div>
-                ))}
-            </div>
-            <div id="popupButtons">
-                <button id="cancelButton" onClick={onCancelClick}>Cancel</button>
-                <button id="submitButton" onClick={onSubmitClick}>Submit</button>
-            </div>
-        </div>
-    )
+
+function Popup (props){
+    const {popupName, popupAction, setOverlayVisibility, setCurrentUser, currentUser} = props
+
+    if (popupAction==="Withdraw"){
+        return(
+            <Withdraw
+                popupName = {popupName}
+                setOverlayVisibility = {setOverlayVisibility}
+                setCurrentUser = {setCurrentUser}
+                currentUser = {currentUser}
+            />
+        )
+    } else if (popupAction === "Deposit") {
+        return(
+            <Deposit
+                popupName = {popupName}
+                setOverlayVisibility = {setOverlayVisibility}
+                setCurrentUser = {setCurrentUser}
+                currentUser = {currentUser}
+            />
+        )
+    } else {
+        return <></>
+    }
+
+
 }
 
 export default Popup;

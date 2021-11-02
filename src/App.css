@@ -360,8 +360,22 @@ main {
   transform: translateX(-59%); */
 }
 
+#missingLoginReminder {
+  color: red;
+  font-size: 13px;
+  width: 310px;
+  height: 15px;
+  margin-top: 15px;
+}
+
+#missingLoginReminder p {
+  margin: 0;
+  text-align: left;
+}
+
+
 #userInput{
-  margin-top: 50px;
+  margin-top: 15px;
 }
 #logindiv input{
   margin-bottom: 10px;
@@ -432,6 +446,18 @@ main {
   justify-content: center;
   align-items: center;
   margin-right: 2em;
+}
+
+#missingSignupReminder {
+  color: red;
+  font-size: 13px;
+  width: 360px;
+  height: 15px;
+}
+
+#missingSignupReminder p {
+  margin: 0;
+  text-align: left;
 }
 
 #signupdiv input{
