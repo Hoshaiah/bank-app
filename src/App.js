@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useState } from 'react/cjs/react.development';
 import './App.css';
 import Dashboard from './js/Dashboard'
@@ -6,12 +7,25 @@ import Signup from './js/Signup';
 
 
 function App() {
-  const [users, setUsers] = useState({})
+
+  const localStorageUsers = localStorage.getItem("users")
+  let userData = {}
+  if(localStorageUsers) {
+    userData = JSON.parse(localStorageUsers)
+  }
+
+  const [users, setUsers] = useState(userData)
   const [currentUser, setCurrentUser] = useState({})
 
   const [isLoginPage, setIsLoginPage] = useState(true)
   const [isSignupPage, setIsSignupPage] = useState(false)
   const [isDashboardPage, setIsDashboardPage] = useState(false)
+
+
+  useEffect(()=>{
+    console.log(users)
+    localStorage.setItem("users",JSON.stringify(users))
+  },[users])
   return (
     <>
       <Dashboard
