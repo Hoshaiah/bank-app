@@ -12,11 +12,11 @@ function Dashboard(props) {
 
     let balance = currentUser.wallet
     let user = currentUser.firstName + " " + currentUser.lastName
-  
     const [overlayVisiblity, setOverlayVisibility] = useState("hidden")
     const [popupName, setPopupName] = useState("")
     const [popupAction, setPopupAction] = useState("")
     const [transaction, setTransaction] = useState([])
+    console.log(transaction)
 
     useEffect(()=>{
       setCurrentUser({
@@ -36,6 +36,7 @@ function Dashboard(props) {
     const onLogout = () => {
       setIsDashboardPage(false)
       setCurrentUser({})
+      setTransaction([])
       setIsLoginPage(true)
     }
 
@@ -51,13 +52,6 @@ function Dashboard(props) {
       Hoshaiah14: currentUser})
       console.log(users[username])
     }
-    // useEffect(()=>{
-    //   let username = currentUser.username
-    //   setUsers({
-    //     ...users,
-    //     username: currentUser
-    //   })
-    // })
 
     if (isDashboardPage){
         return (
