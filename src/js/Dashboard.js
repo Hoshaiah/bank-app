@@ -16,6 +16,14 @@ function Dashboard(props) {
     const [overlayVisiblity, setOverlayVisibility] = useState("hidden")
     const [popupName, setPopupName] = useState("")
     const [popupAction, setPopupAction] = useState("")
+    const [transaction, setTransaction] = useState([])
+
+    useEffect(()=>{
+      setCurrentUser({
+        ...currentUser,
+        transactions: transaction
+      })
+    },[transaction])
 
     const onCancelClick = () => {
       setOverlayVisibility("hidden")
@@ -97,6 +105,8 @@ function Dashboard(props) {
                   setOverlayVisibility = {setOverlayVisibility}
                   setCurrentUser = {setCurrentUser}
                   currentUser = {currentUser}
+                  transaction = {transaction}
+                  setTransaction = {setTransaction}
                 />
               </div>
             </main>

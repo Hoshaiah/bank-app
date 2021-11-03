@@ -4,7 +4,7 @@ import Withdraw from "./Withdraw";
 
 
 function Popup (props){
-    const {popupName, popupAction, setOverlayVisibility, setCurrentUser, currentUser} = props
+    const {popupName, popupAction, setOverlayVisibility, setCurrentUser, currentUser, transaction, setTransaction} = props
 
     if (popupAction==="Withdraw"){
         return(
@@ -13,6 +13,8 @@ function Popup (props){
                 setOverlayVisibility = {setOverlayVisibility}
                 setCurrentUser = {setCurrentUser}
                 currentUser = {currentUser}
+                transaction = {transaction}
+                setTransaction = {setTransaction}
             />
         )
     } else if (popupAction === "Deposit") {

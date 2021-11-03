@@ -47,7 +47,8 @@ function Signup(props){
                 firstName: firstName,
                 lastName: lastName,
                 password: password,
-                wallet: Number(0)
+                wallet: Number(0),
+                transactions: []
             }
     
     
