@@ -45,7 +45,7 @@ function Withdraw(props){
                     </div>
                 ))} */}
                 <div>
-                    <label for="accnumber">Send to Account</label>
+                    <label for="accnumber">Transfer to Own Account</label>
                     <input type="text" placeholder="0999 999 999"></input>
                 </div>
                 <div>

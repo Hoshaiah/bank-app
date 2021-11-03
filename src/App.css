@@ -126,11 +126,10 @@ main {
   grid-area: actions;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
   grid-template-areas:
-  "send request"
-  "link withdraw"
-  "deposit deposit" ;
+  "send deposit"
+  "link withdraw";
 }
 
 #recentActivity {
@@ -161,14 +160,6 @@ main {
 }
 
 #senddiv img {
-  height: 20px;
-}
-
-#request {
-  grid-area: request;
-}
-
-#requestdiv img {
   height: 20px;
 }
 
