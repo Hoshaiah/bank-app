@@ -24,6 +24,8 @@ function Popup (props){
                 setOverlayVisibility = {setOverlayVisibility}
                 setCurrentUser = {setCurrentUser}
                 currentUser = {currentUser}
+                transaction = {transaction}
+                setTransaction = {setTransaction}
             />
         )
     } else if (popupAction === "Send") {
@@ -33,6 +35,8 @@ function Popup (props){
                 setOverlayVisibility = {setOverlayVisibility}
                 setCurrentUser = {setCurrentUser}
                 currentUser = {currentUser}
+                transaction = {transaction}
+                setTransaction = {setTransaction}
             />
         )
     } else {

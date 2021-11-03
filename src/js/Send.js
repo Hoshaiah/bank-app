@@ -2,7 +2,7 @@ import { useRef, useState } from "react/cjs/react.development"
 
 
 function Send(props){
-    const {popupName, setOverlayVisibility, setCurrentUser, currentUser} = props
+    const {popupName, setOverlayVisibility, setCurrentUser, currentUser, transaction, setTransaction} = props
     const withdrawAmountData = useRef(0)
     const [sendReminder, setsendReminder] = useState("")
 
@@ -24,6 +24,13 @@ function Send(props){
                 wallet: currentBalance-sendAmount
             })
             setsendReminder("")
+            let record = {
+                runningBalance: currentBalance-sendAmount,
+                transactionType: "send",
+                Amount: sendAmount 
+            }
+            setTransaction([...transaction, record])
+
         } else {
             setsendReminder("*Insufficient Balance")
         }
