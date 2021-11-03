@@ -9,9 +9,9 @@ function App() {
   const [users, setUsers] = useState({})
   const [currentUser, setCurrentUser] = useState({})
 
-  const [isLoginPage, setIsLoginPage] = useState(false)
+  const [isLoginPage, setIsLoginPage] = useState(true)
   const [isSignupPage, setIsSignupPage] = useState(false)
-  const [isDashboardPage, setIsDashboardPage] = useState(true)
+  const [isDashboardPage, setIsDashboardPage] = useState(false)
   return (
     <>
       <Dashboard
