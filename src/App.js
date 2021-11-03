@@ -26,6 +26,14 @@ function App() {
     console.log(users)
     localStorage.setItem("users",JSON.stringify(users))
   },[users])
+
+  useEffect(()=>{
+    let username = currentUser.username
+    setUsers({
+      ...users,
+      [username] : currentUser
+    })
+  },[currentUser])
   return (
     <>
       <Dashboard
