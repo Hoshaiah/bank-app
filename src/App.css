@@ -132,10 +132,26 @@ main {
   "link withdraw";
 }
 
+/* recentActivity */
 #recentActivity {
   grid-area: recent;
 }
 
+#recentActivites{
+  display: flex;
+  flex-direction: column-reverse;
+}
+ 
+.transactionRecord {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  border: solid;
+  margin: 10px;
+  padding: 10px;
+}
+
+/* actions */
 
 #actions div{
   display: flex;

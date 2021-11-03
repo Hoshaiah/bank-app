@@ -95,7 +95,15 @@ function Dashboard(props) {
       
               <div id="recentActivity">
                 <h1>Recent Activity</h1>
-                <div id ="recentActivites"></div>
+                <div id ="recentActivites">
+                  {currentUser.transactions.map((element,index)=>(
+                    <div class="transactionRecord" key={index}>
+                      <p class ="transactionRunningBalance">Running Balance: {element.runningBalance}</p>
+                      <p class ="transactionType">Transaction: {element.transactionType}</p>
+                      <p class ="transactionAmount" >Amount: {element.Amount}</p>
+                    </div>
+                  ))}
+                </div>
               </div>
       
               <div className={overlayVisiblity} id="overlay" >
