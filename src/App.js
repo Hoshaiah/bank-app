@@ -78,6 +78,8 @@ function App() {
     })
   },[currentUser])
 
+  console.log(Date.now())
+
 
 
   return (

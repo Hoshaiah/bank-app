@@ -5,6 +5,7 @@ import notification from '../img/notification.png';
 import Popup from '../js/Popup';
 import {useEffect, useState} from "react"
 import Actions from '../js/Actions'
+import RecentActivities from './RecentAcitivities';
 
 
 function Dashboard(props) {
@@ -15,7 +16,6 @@ function Dashboard(props) {
     const [overlayVisiblity, setOverlayVisibility] = useState("hidden")
     const [popupName, setPopupName] = useState("")
     const [popupAction, setPopupAction] = useState("")
-    
     
     const onLogout = () => {
       setIsDashboardPage(false)
@@ -36,6 +36,7 @@ function Dashboard(props) {
       Hoshaiah14: currentUser})
       console.log(users[username])
     }
+
 
     if (isDashboardPage){
         return (
@@ -70,19 +71,10 @@ function Dashboard(props) {
                 setPopupName = {setPopupName}
                 setPopupAction = {setPopupAction}
               />
-      
-              <div id="recentActivity">
-                <h1>Recent Activity</h1>
-                <div id ="recentActivites">
-                  {currentUser.transactions.map((element,index)=>(
-                    <div class="transactionRecord" key={index}>
-                      <p class ="transactionRunningBalance">Running Balance: {element.runningBalance}</p>
-                      <p class ="transactionType">Transaction: {element.transactionType}</p>
-                      <p class ="transactionAmount" >Amount: {element.Amount}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
+
+              <RecentActivities
+                currentUser = {currentUser}
+              />
       
               <div className={overlayVisiblity} id="overlay" >
                 <Popup
