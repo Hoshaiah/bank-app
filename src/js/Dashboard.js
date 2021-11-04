@@ -8,30 +8,14 @@ import Actions from '../js/Actions'
 
 
 function Dashboard(props) {
-    const {isDashboardPage, setIsDashboardPage, currentUser, setCurrentUser, setIsLoginPage, users, setUsers } = props
+    const {isDashboardPage, setIsDashboardPage, currentUser, setCurrentUser, setIsLoginPage, users, setUsers, transaction, setTransaction } = props
 
     let balance = currentUser.wallet
     let user = currentUser.firstName + " " + currentUser.lastName
     const [overlayVisiblity, setOverlayVisibility] = useState("hidden")
     const [popupName, setPopupName] = useState("")
     const [popupAction, setPopupAction] = useState("")
-    const [transaction, setTransaction] = useState([])
-    console.log(transaction)
-
-    useEffect(()=>{
-      setCurrentUser({
-        ...currentUser,
-        transactions: transaction
-      })
-    },[transaction])
-
-    const onCancelClick = () => {
-      setOverlayVisibility("hidden")
-    }
-  
-    const onSubmitClick = () => {
-      setOverlayVisibility("hidden")
-    }
+    
     
     const onLogout = () => {
       setIsDashboardPage(false)

@@ -14,17 +14,61 @@ function App() {
     userData = JSON.parse(localStorageUsers)
   }
 
-  const [users, setUsers] = useState(userData)
-  const [currentUser, setCurrentUser] = useState({})
+  const localStorageCurrentUser = localStorage.getItem("currentUser")
+  let currentUserData = {}
+  if(localStorageCurrentUser) {
+    currentUserData = JSON.parse(localStorageCurrentUser)
+  }
 
-  const [isLoginPage, setIsLoginPage] = useState(true)
-  const [isSignupPage, setIsSignupPage] = useState(false)
-  const [isDashboardPage, setIsDashboardPage] = useState(false)
+  const isPageData = sessionStorage.getItem("isPageData")
+  let pagesStatus = {
+    isLoginPage: true,
+    isSignupPage:false,
+    isDashboardPage: false
+  }
+  if(isPageData) {
+    const pageData = JSON.parse(isPageData)
+    pagesStatus.isLoginPage = pageData.isLoginPage
+    pagesStatus.isDashboardPage = pageData.isDashboardPage
+    pagesStatus.isSignupPage = pageData.isSignupPage
+  }
+
+
+
+
+  const [users, setUsers] = useState(userData)
+  const [currentUser, setCurrentUser] = useState(currentUserData)
+  const [transaction, setTransaction] = useState(currentUserData.transactions)
+
+  const [isLoginPage, setIsLoginPage] = useState(pagesStatus.isLoginPage)
+  const [isSignupPage, setIsSignupPage] = useState(pagesStatus.isSignupPage)
+  const [isDashboardPage, setIsDashboardPage] = useState(pagesStatus.isDashboardPage)
 
 
   useEffect(()=>{
     localStorage.setItem("users",JSON.stringify(users))
   },[users])
+
+  useEffect(()=>{
+    localStorage.setItem("currentUser",JSON.stringify(currentUser))
+  },[currentUser])
+
+  useEffect(()=>{
+    setCurrentUser({
+      ...currentUser,
+      transactions: transaction
+    })
+  },[transaction])
+
+  useEffect(()=>{
+    let data = {
+      isLoginPage: isLoginPage,
+      isSignupPage: isSignupPage,
+      isDashboardPage: isDashboardPage
+    }
+    sessionStorage.setItem("isPageData", JSON.stringify(data))
+  },[isSignupPage, isLoginPage, isDashboardPage])
+
 
   useEffect(()=>{
     let username = currentUser.username
@@ -33,6 +77,9 @@ function App() {
       [username] : currentUser
     })
   },[currentUser])
+
+
+
   return (
     <>
       <Dashboard
@@ -43,6 +90,8 @@ function App() {
         setIsLoginPage = {setIsLoginPage}
         setUsers = {setUsers}
         users = {users}
+        transaction = {transaction}
+        setTransaction = {setTransaction}
         
       />
       <Login
