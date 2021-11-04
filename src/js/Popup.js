@@ -1,9 +1,10 @@
 import Deposit from "./Deposit";
+import Send from "./Send";
 import Withdraw from "./Withdraw";
 
 
 function Popup (props){
-    const {popupName, popupAction, setOverlayVisibility, setCurrentUser, currentUser} = props
+    const {popupName, popupAction, setOverlayVisibility, setCurrentUser, currentUser, transaction, setTransaction} = props
 
     if (popupAction==="Withdraw"){
         return(
@@ -12,6 +13,8 @@ function Popup (props){
                 setOverlayVisibility = {setOverlayVisibility}
                 setCurrentUser = {setCurrentUser}
                 currentUser = {currentUser}
+                transaction = {transaction}
+                setTransaction = {setTransaction}
             />
         )
     } else if (popupAction === "Deposit") {
@@ -21,6 +24,19 @@ function Popup (props){
                 setOverlayVisibility = {setOverlayVisibility}
                 setCurrentUser = {setCurrentUser}
                 currentUser = {currentUser}
+                transaction = {transaction}
+                setTransaction = {setTransaction}
+            />
+        )
+    } else if (popupAction === "Send") {
+        return(
+            <Send
+                popupName = {popupName}
+                setOverlayVisibility = {setOverlayVisibility}
+                setCurrentUser = {setCurrentUser}
+                currentUser = {currentUser}
+                transaction = {transaction}
+                setTransaction = {setTransaction}
             />
         )
     } else {

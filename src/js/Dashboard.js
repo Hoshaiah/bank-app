@@ -12,10 +12,18 @@ function Dashboard(props) {
 
     let balance = currentUser.wallet
     let user = currentUser.firstName + " " + currentUser.lastName
-  
     const [overlayVisiblity, setOverlayVisibility] = useState("hidden")
     const [popupName, setPopupName] = useState("")
     const [popupAction, setPopupAction] = useState("")
+    const [transaction, setTransaction] = useState([])
+    console.log(transaction)
+
+    useEffect(()=>{
+      setCurrentUser({
+        ...currentUser,
+        transactions: transaction
+      })
+    },[transaction])
 
     const onCancelClick = () => {
       setOverlayVisibility("hidden")
@@ -28,6 +36,7 @@ function Dashboard(props) {
     const onLogout = () => {
       setIsDashboardPage(false)
       setCurrentUser({})
+      setTransaction([])
       setIsLoginPage(true)
     }
 
@@ -43,13 +52,6 @@ function Dashboard(props) {
       Hoshaiah14: currentUser})
       console.log(users[username])
     }
-    // useEffect(()=>{
-    //   let username = currentUser.username
-    //   setUsers({
-    //     ...users,
-    //     username: currentUser
-    //   })
-    // })
 
     if (isDashboardPage){
         return (
@@ -87,7 +89,15 @@ function Dashboard(props) {
       
               <div id="recentActivity">
                 <h1>Recent Activity</h1>
-                <div id ="recentActivites"></div>
+                <div id ="recentActivites">
+                  {currentUser.transactions.map((element,index)=>(
+                    <div class="transactionRecord" key={index}>
+                      <p class ="transactionRunningBalance">Running Balance: {element.runningBalance}</p>
+                      <p class ="transactionType">Transaction: {element.transactionType}</p>
+                      <p class ="transactionAmount" >Amount: {element.Amount}</p>
+                    </div>
+                  ))}
+                </div>
               </div>
       
               <div className={overlayVisiblity} id="overlay" >
@@ -97,6 +107,8 @@ function Dashboard(props) {
                   setOverlayVisibility = {setOverlayVisibility}
                   setCurrentUser = {setCurrentUser}
                   currentUser = {currentUser}
+                  transaction = {transaction}
+                  setTransaction = {setTransaction}
                 />
               </div>
             </main>

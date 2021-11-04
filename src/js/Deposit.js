@@ -1,7 +1,7 @@
 import { useRef, useState } from "react/cjs/react.development"
 
 function Deposit(props){
-    const {popupName, setOverlayVisibility, setCurrentUser, currentUser} = props
+    const {popupName, setOverlayVisibility, setCurrentUser, currentUser, transaction, setTransaction} = props
     const DepositAmountData = useRef(0)
     const [DepositReminder, setDepositReminder] = useState("")
 
@@ -21,6 +21,12 @@ function Deposit(props){
             ...currentUser,
             wallet: currentBalance + DepositalAmount
         })
+        let record = {
+            runningBalance: currentBalance+ DepositalAmount,
+            transactionType: "deposit",
+            Amount: DepositalAmount 
+        }
+        setTransaction([...transaction, record])
 
     }
 

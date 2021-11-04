@@ -2,7 +2,7 @@ import { useRef, useState } from "react/cjs/react.development"
 
 
 function Withdraw(props){
-    const {popupName, setOverlayVisibility, setCurrentUser, currentUser} = props
+    const {popupName, setOverlayVisibility, setCurrentUser, currentUser, transaction, setTransaction} = props
     const withdrawAmountData = useRef(0)
     const [withdrawalReminder, setWithdrawalReminder] = useState("")
 
@@ -24,6 +24,13 @@ function Withdraw(props){
                 wallet: currentBalance-withdrawalAmount
             })
             setWithdrawalReminder("")
+            let record = {
+                runningBalance: currentBalance-withdrawalAmount,
+                transactionType: "withdrawal",
+                Amount: withdrawalAmount 
+            }
+            setTransaction([...transaction, record])
+
         } else {
             setWithdrawalReminder("*Insufficient Balance")
         }
@@ -45,7 +52,7 @@ function Withdraw(props){
                     </div>
                 ))} */}
                 <div>
-                    <label for="accnumber">Send to Account</label>
+                    <label for="accnumber">Transfer to Own Account</label>
                     <input type="text" placeholder="0999 999 999"></input>
                 </div>
                 <div>

@@ -126,17 +126,32 @@ main {
   grid-area: actions;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
   grid-template-areas:
-  "send request"
-  "link withdraw"
-  "deposit deposit" ;
+  "send deposit"
+  "link withdraw";
 }
 
+/* recentActivity */
 #recentActivity {
   grid-area: recent;
 }
 
+#recentActivites{
+  display: flex;
+  flex-direction: column-reverse;
+}
+ 
+.transactionRecord {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  border: solid;
+  margin: 10px;
+  padding: 10px;
+}
+
+/* actions */
 
 #actions div{
   display: flex;
@@ -161,14 +176,6 @@ main {
 }
 
 #senddiv img {
-  height: 20px;
-}
-
-#request {
-  grid-area: request;
-}
-
-#requestdiv img {
   height: 20px;
 }
 
