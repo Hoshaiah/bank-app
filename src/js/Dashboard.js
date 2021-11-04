@@ -9,7 +9,7 @@ import RecentActivities from './RecentAcitivities';
 
 
 function Dashboard(props) {
-    const {isDashboardPage, setIsDashboardPage, currentUser, setCurrentUser, setIsLoginPage, users, setUsers, transaction, setTransaction } = props
+    const {isDashboardPage, setIsDashboardPage, currentUser, setCurrentUser, setIsLoginPage, users, setUsers, transaction, setTransaction, linkedAccounts, setLinkedAccounts } = props
 
     let balance = currentUser.wallet
     let user = currentUser.firstName + " " + currentUser.lastName
@@ -21,6 +21,7 @@ function Dashboard(props) {
       setIsDashboardPage(false)
       setCurrentUser({})
       setTransaction([])
+      setLinkedAccounts([])
       setIsLoginPage(true)
     }
 
@@ -30,11 +31,7 @@ function Dashboard(props) {
     }
 
     const onNotif = () => {
-      let username = currentUser.username
-      setUsers({
-        ...users,
-      Hoshaiah14: currentUser})
-      console.log(users[username])
+      console.log(linkedAccounts)
     }
 
 
@@ -85,6 +82,8 @@ function Dashboard(props) {
                   currentUser = {currentUser}
                   transaction = {transaction}
                   setTransaction = {setTransaction}
+                  linkedAccounts = {linkedAccounts}
+                  setLinkedAccounts = {setLinkedAccounts}
                 />
               </div>
             </main>

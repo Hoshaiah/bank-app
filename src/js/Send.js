@@ -3,7 +3,7 @@ import { useRef, useState } from "react/cjs/react.development"
 
 function Send(props){
     const {popupName, setOverlayVisibility, setCurrentUser, currentUser, transaction, setTransaction} = props
-    const withdrawAmountData = useRef(0)
+    const sendAmountData = useRef(0)
     const [sendReminder, setsendReminder] = useState("")
 
     const onSendCancel = (event) => {
@@ -14,7 +14,7 @@ function Send(props){
 
     const onSendSubmit = (event) => {
         event.preventDefault()
-        let sendAmount = Number(withdrawAmountData.current.value);
+        let sendAmount = Number(sendAmountData.current.value);
         let currentBalance = currentUser.wallet
 
         if(sendAmount <= currentBalance){
@@ -57,7 +57,7 @@ function Send(props){
                 </div>
                 <div>
                     <label for="accnumber">Amount (₱)</label>
-                    <input ref={withdrawAmountData} type="number" placeholder="100.00"></input>
+                    <input ref={sendAmountData} type="number" placeholder="100.00"></input>
                 </div>
                 <div>
                     <label for="accnumber">Notes</label>

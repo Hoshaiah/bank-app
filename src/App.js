@@ -39,6 +39,7 @@ function App() {
   const [users, setUsers] = useState(userData)
   const [currentUser, setCurrentUser] = useState(currentUserData)
   const [transaction, setTransaction] = useState(currentUserData.transactions)
+  const [linkedAccounts, setLinkedAccounts] = useState(currentUserData.linkedAccounts)
 
   const [isLoginPage, setIsLoginPage] = useState(pagesStatus.isLoginPage)
   const [isSignupPage, setIsSignupPage] = useState(pagesStatus.isSignupPage)
@@ -60,6 +61,17 @@ function App() {
     })
   },[transaction])
 
+
+  useEffect(()=>{
+    setCurrentUser({
+      ...currentUser,
+    linkedAccounts: linkedAccounts
+    })
+  },[linkedAccounts])
+
+
+
+
   useEffect(()=>{
     let data = {
       isLoginPage: isLoginPage,
@@ -78,8 +90,7 @@ function App() {
     })
   },[currentUser])
 
-  console.log(Date.now())
-
+  
 
 
   return (
@@ -94,6 +105,8 @@ function App() {
         users = {users}
         transaction = {transaction}
         setTransaction = {setTransaction}
+        linkedAccounts = {linkedAccounts}
+        setLinkedAccounts = {setLinkedAccounts}
         
       />
       <Login
@@ -104,6 +117,8 @@ function App() {
         setIsDashboardPage = {setIsDashboardPage}
         setIsSignupPage = {setIsSignupPage}
         currentUser = {currentUser}
+        linkedAccounts = {linkedAccounts}
+        setLinkedAccounts = {setLinkedAccounts}
       />
       <Signup
         isSignupPage = {isSignupPage}

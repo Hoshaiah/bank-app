@@ -48,7 +48,8 @@ function Signup(props){
                 lastName: lastName,
                 password: password,
                 wallet: Number(0),
-                transactions: []
+                transactions: [],
+                linkedAccounts: []
             }
     
     
