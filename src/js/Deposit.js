@@ -1,10 +1,21 @@
-import { useRef, useState } from "react/cjs/react.development"
+import { useEffect, useRef, useState } from "react/cjs/react.development"
 
 function Deposit(props){
     const {popupName, setOverlayVisibility, setCurrentUser, currentUser, transaction, setTransaction, linkedAccounts, setLinkedAccounts} = props
     const DepositAmountData = useRef(0)
     const [DepositReminder, setDepositReminder] = useState("")
     const [linkedAccountsToDisplayDeposit, setLinkedAccountsToDisplayDeposit] = useState(currentUser.linkedAccounts)
+
+
+    let depositDefault = ""
+    if (currentUser.linkedAccounts.length > 0){
+        depositDefault = currentUser.linkedAccounts[0]
+    }
+    const [depositRecipient, setDepositAccount] = useState(depositDefault)
+
+    useEffect ( () => {
+        setLinkedAccountsToDisplayDeposit(currentUser.linkedAccounts)
+    },[currentUser])
 
     const onDepositCancel = (event) => {
         event.preventDefault()
@@ -27,15 +38,20 @@ function Deposit(props){
             let record = {
                 runningBalance: currentBalance+ DepositalAmount,
                 transactionType: "deposit",
-                Amount: DepositalAmount 
+                Amount: DepositalAmount,
+                otherAccount: depositRecipient
             }
             setTransaction([...transaction, record])
+            console.log(depositRecipient)
         } else {
             setDepositReminder("*Link account first")
         }
 
     }
 
+    const onDepositSelect = (event) => {
+        setDepositAccount(currentUser.linkedAccounts[event.target.value])
+    }
 
     return(
         <form className="popup"> 
@@ -46,13 +62,13 @@ function Deposit(props){
                 </div>
                 <div>
                     <label for="account">Choose account to transfer money to:</label>
-                    <select id="account" name="acount">
+                    <select id="account" name="acount" onChange={(event=> onDepositSelect(event))}>
                         {/* <option value="volvo">Volvo</option>
                         <option value="saab">Saab</option>
                         <option value="fiat">Fiat</option>
                         <option value="audi">Audi</option> */}
                         {linkedAccountsToDisplayDeposit.map((element, index) => (
-                            <option key={index} value={element.accountNumber}>{element.bank}: {element.accountNumber}</option>
+                            <option key={index} value={index}>{element.bank}: {element.accountNumber}</option>
                         ))}
                     </select>
                 </div>
