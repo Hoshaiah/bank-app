@@ -6,13 +6,12 @@ function Withdraw(props){
     const withdrawAmountData = useRef(0)
     const [withdrawalReminder, setWithdrawalReminder] = useState("")
     const [withdrawAccountChosen, setWithdrawAccountChosen] = useState(0)
+    const [linkedAccountsToDisplay, setLinkedAccountsToDisplay] = useState(currentUser.linkedAccounts)
 
     const onWithdrawCancel = (event) => {
         event.preventDefault()
         setOverlayVisibility("hidden")
         setWithdrawalReminder("")
-        console.log(withdrawAccountChosen)
-
     }
 
     const onWithdrawSubmit = (event) => {
@@ -41,6 +40,8 @@ function Withdraw(props){
         }
 
     }
+    
+    
 
     return(
         <form className="popup"> 
@@ -57,12 +58,12 @@ function Withdraw(props){
                 ))} */}
                 <div>
                     <label for="account">Choose account to transfer money to:</label>
-                    <select id="account" name="acount" selected={withdrawAccountChosen} onSelectedChange={setWithdrawAccountChosen}>
+                    <select id="account" name="acount" >
                         {/* <option value="volvo">Volvo</option>
                         <option value="saab">Saab</option>
                         <option value="fiat">Fiat</option>
                         <option value="audi">Audi</option> */}
-                        {linkedAccounts.map((element, index) => (
+                        {linkedAccountsToDisplay.map((element, index) => (
                             <option key={index} value={element.accountNumber}>{element.bank}: {element.accountNumber}</option>
                         ))}
                     </select>

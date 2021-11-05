@@ -28,12 +28,12 @@ function Dashboard(props) {
     const onSettings = () => {
 
       console.log(currentUser)
-    }
-
-    const onNotif = () => {
+      console.log(transaction)
       console.log(linkedAccounts)
     }
 
+    const onNotif = () => {
+    }
 
     if (isDashboardPage){
         return (
@@ -71,6 +71,8 @@ function Dashboard(props) {
 
               <RecentActivities
                 currentUser = {currentUser}
+                linkedAccounts = {linkedAccounts}
+                setLinkedAccounts = {setLinkedAccounts}
               />
       
               <div className={overlayVisiblity} id="overlay" >

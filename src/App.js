@@ -20,6 +20,7 @@ function App() {
     currentUserData = JSON.parse(localStorageCurrentUser)
   }
 
+
   const isPageData = sessionStorage.getItem("isPageData")
   let pagesStatus = {
     isLoginPage: true,
@@ -38,8 +39,8 @@ function App() {
 
   const [users, setUsers] = useState(userData)
   const [currentUser, setCurrentUser] = useState(currentUserData)
-  const [transaction, setTransaction] = useState(currentUserData.transactions)
-  const [linkedAccounts, setLinkedAccounts] = useState(currentUserData.linkedAccounts)
+  const [transaction, setTransaction] = useState(currentUser.transactions)
+  const [linkedAccounts, setLinkedAccounts] = useState(currentUser.linkedAccounts)
 
   const [isLoginPage, setIsLoginPage] = useState(pagesStatus.isLoginPage)
   const [isSignupPage, setIsSignupPage] = useState(pagesStatus.isSignupPage)
@@ -117,8 +118,7 @@ function App() {
         setIsDashboardPage = {setIsDashboardPage}
         setIsSignupPage = {setIsSignupPage}
         currentUser = {currentUser}
-        linkedAccounts = {linkedAccounts}
-        setLinkedAccounts = {setLinkedAccounts}
+
       />
       <Signup
         isSignupPage = {isSignupPage}

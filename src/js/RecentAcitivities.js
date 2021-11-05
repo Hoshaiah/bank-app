@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react"
 
 function RecentActivities(props) {
-    const {currentUser} = props
+    const {currentUser, linkedAccounts, setLinkedAccounts} = props
     const [showState, setShowState] = useState("Show More")
 
     function getLastTransactions(quantity){
