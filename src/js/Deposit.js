@@ -4,6 +4,7 @@ function Deposit(props){
     const {popupName, setOverlayVisibility, setCurrentUser, currentUser, transaction, setTransaction, linkedAccounts, setLinkedAccounts} = props
     const DepositAmountData = useRef(0)
     const [DepositReminder, setDepositReminder] = useState("")
+    const [linkedAccountsToDisplayDeposit, setLinkedAccountsToDisplayDeposit] = useState(currentUser.linkedAccounts)
 
     const onDepositCancel = (event) => {
         event.preventDefault()
@@ -50,7 +51,7 @@ function Deposit(props){
                         <option value="saab">Saab</option>
                         <option value="fiat">Fiat</option>
                         <option value="audi">Audi</option> */}
-                        {linkedAccounts.map((element, index) => (
+                        {linkedAccountsToDisplayDeposit.map((element, index) => (
                             <option key={index} value={element.accountNumber}>{element.bank}: {element.accountNumber}</option>
                         ))}
                     </select>
