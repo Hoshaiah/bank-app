@@ -20,6 +20,8 @@ function Send(props){
         let sendAccount = sendAccountData.current.value;
         let sendBank = sendBankData.current.value;
         let currentBalance = currentUser.wallet
+        let newDate = new Date()
+        let dateOfTransaction = `${newDate.getDay()} ${newDate.toLocaleString('default', { month: 'short' })}`
 
         if(sendAmount <= currentBalance){
             setOverlayVisibility("hidden")
@@ -30,12 +32,13 @@ function Send(props){
             setsendReminder("")
             let record = {
                 runningBalance: currentBalance-sendAmount,
-                transactionType: "send",
-                Amount: sendAmount,
+                transactionType: "Send",
+                Amount: `₱ -${sendAmount}`,
                 otherAccount: {
                     bank: sendBank,
                     accountNumber: sendAccount
-                }
+                },
+                dateOfTransaction: dateOfTransaction
             }
             setTransaction([...transaction, record])
 

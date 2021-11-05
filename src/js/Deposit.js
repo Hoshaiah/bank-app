@@ -28,6 +28,9 @@ function Deposit(props){
         event.preventDefault()
         let DepositalAmount = Number(DepositAmountData.current.value);
         let currentBalance = currentUser.wallet
+        let newDate = new Date()
+        let dateOfTransaction = `${newDate.getDay()} ${newDate.toLocaleString('default', { month: 'short' })}`
+
 
         if (linkedAccounts.length !== 0) {
             setOverlayVisibility("hidden")
@@ -37,9 +40,10 @@ function Deposit(props){
             })
             let record = {
                 runningBalance: currentBalance+ DepositalAmount,
-                transactionType: "deposit",
-                Amount: DepositalAmount,
-                otherAccount: depositRecipient
+                transactionType: "Deposit",
+                Amount: `₱ ${DepositalAmount}`,
+                otherAccount: depositRecipient,
+                dateOfTransaction: dateOfTransaction
             }
             setTransaction([...transaction, record])
         } else {

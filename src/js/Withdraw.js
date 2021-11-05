@@ -26,6 +26,8 @@ function Withdraw(props){
         event.preventDefault()
         let withdrawalAmount = Number(withdrawAmountData.current.value);
         let currentBalance = currentUser.wallet
+        let newDate = new Date()
+        let dateOfTransaction = `${newDate.getDay()} ${newDate.toLocaleString('default', { month: 'short' })}`
 
         if(withdrawalAmount <= currentBalance && linkedAccounts.length !== 0){
             setOverlayVisibility("hidden")
@@ -36,9 +38,10 @@ function Withdraw(props){
             setWithdrawalReminder("")
             let record = {
                 runningBalance: currentBalance-withdrawalAmount,
-                transactionType: "withdrawal",
-                Amount: withdrawalAmount,
-                otherAccount: withdrawalAccount
+                transactionType: "Withdrawal",
+                Amount: `₱ -${withdrawalAmount}`,
+                otherAccount: withdrawalAccount,
+                dateOfTransaction: dateOfTransaction
             }
             setTransaction([...transaction, record])
 

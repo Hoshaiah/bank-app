@@ -153,6 +153,23 @@ main {
   width: 900px;
 }
 
+.transactionAccount {
+  font-weight: bold;
+}
+
+.transactionRunningBalance{
+  font-style: italic;
+}
+
+.transactionBottom {
+  display: flex;
+  justify-content: space-between;
+}
+
+.transactionAmount {
+  font-weight: bold;
+}
+
 /* actions */
 
 #actions div{

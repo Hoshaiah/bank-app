@@ -36,10 +36,15 @@ function RecentActivities(props) {
             <div id ="recentActivites">
                 {toDisplay.map((element,index)=>(
                 <div class="transactionRecord" key={index}>
-                    <p class ="transactionRunningBalance">Account{element.otherAccount.accountNumber}</p>
-                    <p class ="transactionRunningBalance">Running Balance: {element.runningBalance}</p>
-                    <p class ="transactionType">Transaction: {element.transactionType}</p>
-                    <p class ="transactionAmount" >Amount: {element.Amount}</p>
+                    <div class="transactionTop">
+                        <p class ="transactionAccount">{`${element.otherAccount.bank} ${element.otherAccount.accountNumber}`}</p>
+                        <p class ="transactionDate">{element.dateOfTransaction}</p>
+                        <p class ="transactionType">{element.transactionType}</p>
+                    </div>
+                    <div class="transactionBottom">
+                        <p class ="transactionRunningBalance">Running Balance: ₱ {element.runningBalance}</p>
+                        <p class ="transactionAmount" >{element.Amount}</p>
+                    </div>
                 </div>
                 ))}
             </div>
