@@ -4,6 +4,8 @@ import { useRef, useState } from "react/cjs/react.development"
 function Send(props){
     const {popupName, setOverlayVisibility, setCurrentUser, currentUser, transaction, setTransaction} = props
     const sendAmountData = useRef(0)
+    const sendAccountData = useRef(0)
+    const sendBankData = useRef(0)
     const [sendReminder, setsendReminder] = useState("")
 
     const onSendCancel = (event) => {
@@ -15,6 +17,8 @@ function Send(props){
     const onSendSubmit = (event) => {
         event.preventDefault()
         let sendAmount = Number(sendAmountData.current.value);
+        let sendAccount = sendAccountData.current.value;
+        let sendBank = sendBankData.current.value;
         let currentBalance = currentUser.wallet
 
         if(sendAmount <= currentBalance){
@@ -27,7 +31,11 @@ function Send(props){
             let record = {
                 runningBalance: currentBalance-sendAmount,
                 transactionType: "send",
-                Amount: sendAmount 
+                Amount: sendAmount,
+                otherAccount: {
+                    bank: sendBank,
+                    accountNumber: sendAccount
+                }
             }
             setTransaction([...transaction, record])
 
@@ -52,8 +60,12 @@ function Send(props){
                     </div>
                 ))} */}
                 <div>
+                    <label for="accnumber">Recipient Bank</label>
+                    <input ref={sendBankData} type="text" placeholder="BDO"></input>
+                </div>
+                <div>
                     <label for="accnumber">Send to Account</label>
-                    <input type="text" placeholder="0999 999 999"></input>
+                    <input ref={sendAccountData} type="number" placeholder="0999 999 999"></input>
                 </div>
                 <div>
                     <label for="accnumber">Amount (₱)</label>
