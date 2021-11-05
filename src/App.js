@@ -40,7 +40,7 @@ function App() {
   const [users, setUsers] = useState(userData)
   const [currentUser, setCurrentUser] = useState(currentUserData)
   const [transaction, setTransaction] = useState(currentUser.transactions)
-  const [linkedAccounts, setLinkedAccounts] = useState([currentUser.linkedAccounts])
+  const [linkedAccounts, setLinkedAccounts] = useState(currentUserData["linkedAccounts"])
 
   const [isLoginPage, setIsLoginPage] = useState(pagesStatus.isLoginPage)
   const [isSignupPage, setIsSignupPage] = useState(pagesStatus.isSignupPage)
