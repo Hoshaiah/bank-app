@@ -7,7 +7,7 @@ function Deposit(props){
     const [linkedAccountsToDisplayDeposit, setLinkedAccountsToDisplayDeposit] = useState(currentUser.linkedAccounts)
 
 
-    let depositDefault = ""
+    let depositDefault = {}
     if (currentUser.linkedAccounts.length > 0){
         depositDefault = currentUser.linkedAccounts[0]
     }
