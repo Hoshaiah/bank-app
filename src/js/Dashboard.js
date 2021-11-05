@@ -67,28 +67,28 @@ function Dashboard(props) {
                 setOverlayVisibility = {setOverlayVisibility}
                 setPopupName = {setPopupName}
                 setPopupAction = {setPopupAction}
-              />
+                />
+            </main>
 
-              <RecentActivities
+            <RecentActivities
+              currentUser = {currentUser}
+              linkedAccounts = {linkedAccounts}
+              setLinkedAccounts = {setLinkedAccounts}
+            />
+      
+            <div className={overlayVisiblity} id="overlay" >
+              <Popup
+                popupAction = {popupAction}
+                popupName = {popupName}
+                setOverlayVisibility = {setOverlayVisibility}
+                setCurrentUser = {setCurrentUser}
                 currentUser = {currentUser}
+                transaction = {transaction}
+                setTransaction = {setTransaction}
                 linkedAccounts = {linkedAccounts}
                 setLinkedAccounts = {setLinkedAccounts}
               />
-      
-              <div className={overlayVisiblity} id="overlay" >
-                <Popup
-                  popupAction = {popupAction}
-                  popupName = {popupName}
-                  setOverlayVisibility = {setOverlayVisibility}
-                  setCurrentUser = {setCurrentUser}
-                  currentUser = {currentUser}
-                  transaction = {transaction}
-                  setTransaction = {setTransaction}
-                  linkedAccounts = {linkedAccounts}
-                  setLinkedAccounts = {setLinkedAccounts}
-                />
-              </div>
-            </main>
+            </div>
           </div>
         );
     } else {
