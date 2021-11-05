@@ -39,7 +39,7 @@ function Withdraw(props){
             let record = {
                 runningBalance: currentBalance-withdrawalAmount,
                 transactionType: "Withdrawal",
-                Amount: `₱ -${withdrawalAmount}`,
+                Amount: withdrawalAmount,
                 otherAccount: withdrawalAccount,
                 dateOfTransaction: dateOfTransaction
             }

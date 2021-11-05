@@ -41,7 +41,7 @@ function Deposit(props){
             let record = {
                 runningBalance: currentBalance+ DepositalAmount,
                 transactionType: "Deposit",
-                Amount: `₱ ${DepositalAmount}`,
+                Amount: DepositalAmount,
                 otherAccount: depositRecipient,
                 dateOfTransaction: dateOfTransaction
             }

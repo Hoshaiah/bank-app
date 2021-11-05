@@ -33,7 +33,7 @@ function Send(props){
             let record = {
                 runningBalance: currentBalance-sendAmount,
                 transactionType: "Send",
-                Amount: `₱ -${sendAmount}`,
+                Amount: sendAmount,
                 otherAccount: {
                     bank: sendBank,
                     accountNumber: sendAccount

@@ -60,7 +60,7 @@ function Dashboard(props) {
             <main>
               <div id="balance">
                 <h1>Balance</h1>
-                <p>₱ {balance}</p>
+                <p>₱ {Number(balance).toLocaleString()}</p>
               </div>
       
               <Actions

@@ -42,8 +42,8 @@ function RecentActivities(props) {
                         <p class ="transactionType">{element.transactionType}</p>
                     </div>
                     <div class="transactionBottom">
-                        <p class ="transactionRunningBalance">Running Balance: ₱ {element.runningBalance}</p>
-                        <p class ="transactionAmount" >{element.Amount}</p>
+                        <p class ="transactionRunningBalance">{`Running Balance: ₱ ${Number(element.runningBalance).toLocaleString()}`}</p>
+                        <p class ="transactionAmount" >{`₱ ${element.transactionType==="Deposit" ? "" : "-"} ${Number(element.Amount).toLocaleString()}`}</p>
                     </div>
                 </div>
                 ))}
