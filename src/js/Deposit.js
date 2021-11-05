@@ -42,7 +42,6 @@ function Deposit(props){
                 otherAccount: depositRecipient
             }
             setTransaction([...transaction, record])
-            console.log(depositRecipient)
         } else {
             setDepositReminder("*Link account first")
         }

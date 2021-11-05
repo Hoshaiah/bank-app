@@ -1,12 +1,20 @@
-import { useRef, useState } from "react/cjs/react.development"
-
+import { useRef, useState, useEffect } from "react/cjs/react.development"
 
 function Withdraw(props){
     const {popupName, setOverlayVisibility, setCurrentUser, currentUser, transaction, setTransaction, linkedAccounts, setLinkedAccounts} = props
     const withdrawAmountData = useRef(0)
     const [withdrawalReminder, setWithdrawalReminder] = useState("")
-    const [withdrawAccountChosen, setWithdrawAccountChosen] = useState(0)
     const [linkedAccountsToDisplay, setLinkedAccountsToDisplay] = useState(currentUser.linkedAccounts)
+
+    let widthdrawAccountDefault = ""
+    if (currentUser.linkedAccounts.length>0){
+        widthdrawAccountDefault = currentUser.linkedAccounts[0]
+    }
+    const [withdrawalAccount, setWithdrawalAccount] = useState(widthdrawAccountDefault)
+
+    useEffect (() => {
+        setLinkedAccountsToDisplay(currentUser.linkedAccounts)
+    },[currentUser])
 
     const onWithdrawCancel = (event) => {
         event.preventDefault()
@@ -29,7 +37,8 @@ function Withdraw(props){
             let record = {
                 runningBalance: currentBalance-withdrawalAmount,
                 transactionType: "withdrawal",
-                Amount: withdrawalAmount 
+                Amount: withdrawalAmount,
+                otherAccount: withdrawalAccount
             }
             setTransaction([...transaction, record])
 
@@ -39,6 +48,10 @@ function Withdraw(props){
             setWithdrawalReminder("*Insufficient Balance")
         }
 
+    }
+
+    const onWithdrawSelect = (event) => {
+        setWithdrawalAccount(currentUser.linkedAccounts[event.target.value])
     }
     
     
@@ -50,21 +63,11 @@ function Withdraw(props){
                 <div>
                     <p>{withdrawalReminder}</p>
                 </div>
-                {/* {popupInputs.map((element, index) => (
-                    <div key={index}>
-                        <label for="accnumber">{element[0]}</label>
-                        <input type={element[1]} placeholder={element[2]}></input>
-                    </div>
-                ))} */}
                 <div>
                     <label for="account">Choose account to transfer money to:</label>
-                    <select id="account" name="acount" >
-                        {/* <option value="volvo">Volvo</option>
-                        <option value="saab">Saab</option>
-                        <option value="fiat">Fiat</option>
-                        <option value="audi">Audi</option> */}
+                    <select id="account" name="acount" onChange={event => onWithdrawSelect(event)} >
                         {linkedAccountsToDisplay.map((element, index) => (
-                            <option key={index} value={element.accountNumber}>{element.bank}: {element.accountNumber}</option>
+                            <option key={index} value={index}>{element.bank}: {element.accountNumber}</option>
                         ))}
                     </select>
                 </div>
