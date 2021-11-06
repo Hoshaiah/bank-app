@@ -64,7 +64,9 @@ function Signup(props){
             setSignupReminder("")
 
             let newAccountNumber = createAccountNumber()
-            setUsedAccountNumbers([...usedAccountNumbers,newAccountNumber])
+            setUsedAccountNumbers({
+                ...usedAccountNumbers,
+                [newAccountNumber]: username})
             let userData = {
                 username: username,
                 firstName: firstName,

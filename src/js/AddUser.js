@@ -38,7 +38,10 @@ function AddUser(props){
         e.preventDefault()
         let username = newUsername.current.value
         let newAccountNumber = createAccountNumber()
-        setUsedAccountNumbers([...usedAccountNumbers,newAccountNumber])
+        setUsedAccountNumbers({
+            ...usedAccountNumbers,
+            [newAccountNumber] : username
+        })
         let newUser = {
             username: username,
             firstName: newFirstName.current.value,
@@ -57,7 +60,7 @@ function AddUser(props){
         newFirstName.current.value = ""
         newLastName.current.value = ""
         newPassword.current.value = ""
-        newInitialBalance.current.value = 0
+        newInitialBalance.current.value = ""
     }
 
     return(

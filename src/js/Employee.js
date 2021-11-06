@@ -15,9 +15,9 @@ function Employee(props){
         let usersCopy = {...users}
         delete usersCopy[user]
         setUsers(usersCopy)
-        console.log(usersCopy)
-        console.log(users)
-        console.log(user)
+        let usedAccountNumbersCopy = {...usedAccountNumbers}
+        delete usedAccountNumbersCopy[users[user].accountNumber]
+        setUsedAccountNumbers(usedAccountNumbersCopy)
     }
     if (isEmployeePage){
         return (
