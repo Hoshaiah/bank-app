@@ -31,7 +31,7 @@ function LinkBank(props){
         <form className="popup"> 
             <h1>{popupName}</h1>
             <div id="popupInputs">
-                <div>
+                <div id ="linkBankReminder">
                     <p>{LinkReminder}</p>
                 </div>
                 {/* {popupInputs.map((element, index) => (

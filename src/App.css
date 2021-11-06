@@ -289,7 +289,7 @@ main {
 .popup {
   z-index: 10;
   color: black;
-  height: 600px;
+  height: 650px;
   width: 500px;
   background-color: white;
   border-radius:1em ;
@@ -346,6 +346,11 @@ main {
   justify-content: flex-start;
   align-items: flex-start;
   margin-bottom: 30px;
+}
+
+div#linkBankReminder {
+  height: 20px;
+  margin-bottom: 20px;
 }
 
 /* Login */
