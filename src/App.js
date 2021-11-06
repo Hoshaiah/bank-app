@@ -4,6 +4,7 @@ import './App.css';
 import Dashboard from './js/Dashboard'
 import Login from './js/Login';
 import Signup from './js/Signup';
+import Employee from './js/Employee';
 
 
 function App() {
@@ -23,9 +24,10 @@ function App() {
 
   const isPageData = sessionStorage.getItem("isPageData")
   let pagesStatus = {
-    isLoginPage: true,
+    isLoginPage: false,
     isSignupPage:false,
-    isDashboardPage: false
+    isDashboardPage: false,
+    isEmployeePage: true
   }
   if(isPageData) {
     const pageData = JSON.parse(isPageData)
@@ -45,6 +47,7 @@ function App() {
   const [isLoginPage, setIsLoginPage] = useState(pagesStatus.isLoginPage)
   const [isSignupPage, setIsSignupPage] = useState(pagesStatus.isSignupPage)
   const [isDashboardPage, setIsDashboardPage] = useState(pagesStatus.isDashboardPage)
+  const [isEmployeePage, setIsEmployeePage] = useState(pagesStatus.isEmployeePage)
 
 
   useEffect(()=>{
@@ -96,6 +99,15 @@ function App() {
 
   return (
     <>
+      <Employee
+        isEmployeePage = {isEmployeePage}
+        setIsEmployeePage = {setIsEmployeePage}
+        currentUser = {currentUser}
+        setCurrentUser = {setCurrentUser}
+        setUsers = {setUsers}
+        users = {users}
+      />
+
       <Dashboard
         isDashboardPage = {isDashboardPage}
         setIsDashboardPage = {setIsDashboardPage}
