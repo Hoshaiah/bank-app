@@ -3,16 +3,6 @@
 function Employee(props){
     const {isEmployeePage, setIsEmployeePage, currentUser, setCurrentUser, setUsers, users, setIsLoginPage} = props
 
-    let user = [{
-        username: "hoshaiah",
-        firstName: "Hosh",
-        lastName: "Domingo",
-        password: "123",
-        wallet: Number(0),
-        transactions: [],
-        linkedAccounts: []
-    }]
-
     const onExit = () => {
         setIsEmployeePage(false)
         setIsLoginPage(true)
@@ -43,6 +33,7 @@ function Employee(props){
                         <row>{users[key].username}</row>
                         <row>{users[key].firstName}</row>
                         <row>{users[key].lastName}</row>
+                        <row>{users[key].wallet}</row>
                     </div>
                 ))}
             </div>
