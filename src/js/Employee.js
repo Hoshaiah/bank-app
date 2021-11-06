@@ -1,5 +1,5 @@
 import AddUser from "./AddUser"
-
+import EmployeeWithdraw from "./EmployeeWithdraw"
 
 function Employee(props){
     const {isEmployeePage, setIsEmployeePage, currentUser, setCurrentUser, setUsers, users, setIsLoginPage, usedAccountNumbers, setUsedAccountNumbers} = props
@@ -24,11 +24,14 @@ function Employee(props){
             <div id="employeeAccountActions">
                 <h1>Main</h1>
                 <h1>Add User</h1>
-                <h1>Delete User</h1>
             </div>
             <div id="employeeMoneyActions">
                 <div id="employeeWithdraw">
-                    Withdraw
+                    <h2>Withdraw</h2>
+                    <EmployeeWithdraw
+                        users = {users}
+                        setUsers = {setUsers}
+                    />
                 </div>
                 <div id="employeeDeposit">
                     Deposit
