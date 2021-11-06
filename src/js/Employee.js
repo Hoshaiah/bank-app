@@ -1,3 +1,4 @@
+import AddUser from "./AddUser"
 
 
 function Employee(props){
@@ -37,6 +38,10 @@ function Employee(props){
                     </div>
                 ))}
             </div>
+            <AddUser
+                users = {users}
+                setUsers = {setUsers}
+            />
             </>
         ) 
     } else {
