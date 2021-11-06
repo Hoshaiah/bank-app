@@ -8,6 +8,7 @@ function AddUser(props){
     const newFirstName = useRef("")
     const newLastName = useRef("")
     const newPassword = useRef("")
+    const newInitialBalance = useRef(0)
 
 
     
@@ -43,7 +44,7 @@ function AddUser(props){
             firstName: newFirstName.current.value,
             lastName: newLastName.current.value,
             password: newPassword.current.value,
-            wallet: Number(0),
+            wallet: Number(newInitialBalance.current.value),
             transactions: [],
             linkedAccounts: [],
             accountNumber: newAccountNumber
@@ -56,6 +57,7 @@ function AddUser(props){
         newFirstName.current.value = ""
         newLastName.current.value = ""
         newPassword.current.value = ""
+        newInitialBalance.current.value = 0
     }
 
     return(
@@ -70,6 +72,8 @@ function AddUser(props){
                 <input ref = {newLastName} type="text" id="newLastName" placeholder="Last Name"></input>
                 <label for="newPassword"></label>
                 <input ref = {newPassword} type="text" id="newPassword" placeholder="Password"></input>
+                <label for="newInitialBalance"></label>
+                <input ref = {newInitialBalance} type="number" id="newInitialBalance" placeholder="Initial Balance"></input>
             </div>
             <div id="addUserButtons">
                 <button onClick={e => onSubmit(e)}type="submit">Submit</button>
