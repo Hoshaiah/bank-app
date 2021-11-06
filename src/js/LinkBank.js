@@ -22,6 +22,7 @@ function LinkBank(props){
             bank: linkedBank.current.value,
             accountNumber: linkedAccountNumber.current.value
         }
+        console.log(linkedAccounts)
         setLinkedAccounts([...linkedAccounts, record])
     }
 

@@ -15,7 +15,7 @@ function App() {
   }
 
   const localStorageCurrentUser = localStorage.getItem("currentUser")
-  let currentUserData = {}
+  let currentUserData = []
   if(localStorageCurrentUser) {
     currentUserData = JSON.parse(localStorageCurrentUser)
   }
@@ -39,9 +39,9 @@ function App() {
 
   const [users, setUsers] = useState(userData)
   const [currentUser, setCurrentUser] = useState(currentUserData)
-  const [transaction, setTransaction] = useState(currentUser.transactions)
-  const [linkedAccounts, setLinkedAccounts] = useState(currentUserData["linkedAccounts"])
-
+  const [transaction, setTransaction] = useState(currentUserData?.["transactions"] || [])
+  const [linkedAccounts, setLinkedAccounts] = useState(currentUserData?.["linkedAccounts"] || [])
+  
   const [isLoginPage, setIsLoginPage] = useState(pagesStatus.isLoginPage)
   const [isSignupPage, setIsSignupPage] = useState(pagesStatus.isSignupPage)
   const [isDashboardPage, setIsDashboardPage] = useState(pagesStatus.isDashboardPage)
