@@ -40,6 +40,7 @@ function App() {
     pagesStatus.isLoginPage = pageData.isLoginPage
     pagesStatus.isDashboardPage = pageData.isDashboardPage
     pagesStatus.isSignupPage = pageData.isSignupPage
+    pagesStatus.isEmployeePage = pageData.isEmployeePage
   }
 
 
@@ -93,10 +94,11 @@ function App() {
     let data = {
       isLoginPage: isLoginPage,
       isSignupPage: isSignupPage,
-      isDashboardPage: isDashboardPage
+      isDashboardPage: isDashboardPage,
+      isEmployeePage: isEmployeePage
     }
     sessionStorage.setItem("isPageData", JSON.stringify(data))
-  },[isSignupPage, isLoginPage, isDashboardPage])
+  },[isSignupPage, isLoginPage, isDashboardPage, isEmployeePage])
 
 
   useEffect(()=>{

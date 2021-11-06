@@ -25,7 +25,6 @@ function AddUser(props){
             let c = getRandomInt(1,9)
             let d = getRandomInt(1,9)
             accountNumber = `00${a}${b}${c}${d}`
-            console.log(usedAccountNumbers)
             if(!(accountNumber in usedAccountNumbers)){
                 proceed = false
             }
@@ -36,10 +35,11 @@ function AddUser(props){
 
     const onSubmit = (e) => {
         e.preventDefault()
+        let username = newUsername.current.value
         let newAccountNumber = createAccountNumber()
         setUsedAccountNumbers([...usedAccountNumbers,newAccountNumber])
         let newUser = {
-            username: newUsername.current.value,
+            username: username,
             firstName: newFirstName.current.value,
             lastName: newLastName.current.value,
             password: newPassword.current.value,
@@ -50,7 +50,7 @@ function AddUser(props){
         }
         setUsers({
             ...users,
-            newUser
+            [username]: newUser
         })
         newUsername.current.value = ""
         newFirstName.current.value = ""

@@ -8,6 +8,15 @@ function Employee(props){
         setIsEmployeePage(false)
         setIsLoginPage(true)
     }
+
+    const onDeleteUser = (user) =>{
+        let usersCopy = {...users}
+        delete usersCopy[user]
+        setUsers(usersCopy)
+        console.log(usersCopy)
+        console.log(users)
+        console.log(user)
+    }
     if (isEmployeePage){
         return (
             <>
@@ -29,13 +38,14 @@ function Employee(props){
                 </div>
             </div>
             <div id ="allUserAccounts">
-                {Object.keys(users).map((key, index) => ( users[key]=== undefined ? "" :
+                {Object.keys(users).map((key, index) => ( key=== "undefined" ? "" :
                     <div class="userRow">
                         <row>{users[key].accountNumber}</row>
                         <row>{users[key].username}</row>
                         <row>{users[key].firstName}</row>
                         <row>{users[key].lastName}</row>
                         <row>{users[key].wallet}</row>
+                        <row onClick={()=> onDeleteUser(key)}>Delete</row>
                     </div>
                 ))}
             </div>
