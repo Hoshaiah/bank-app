@@ -1,7 +1,7 @@
 
 
 function Employee(props){
-    const {isEmployeePage, setIsEmployeePage, currentUser, setCurrentUser, setUsers, users} = props
+    const {isEmployeePage, setIsEmployeePage, currentUser, setCurrentUser, setUsers, users, setIsLoginPage} = props
 
     let user = [{
         username: "hoshaiah",
@@ -12,11 +12,16 @@ function Employee(props){
         transactions: [],
         linkedAccounts: []
     }]
+
+    const onExit = () => {
+        setIsEmployeePage(false)
+        setIsLoginPage(true)
+    }
     if (isEmployeePage){
         return (
             <>
+            <h1 onClick={onExit}>Exit</h1>
             <div id="employeeAccountActions">
-
                 <h1>Main</h1>
                 <h1>Add User</h1>
                 <h1>Delete User</h1>
@@ -33,15 +38,19 @@ function Employee(props){
                 </div>
             </div>
             <div id ="allUserAccounts">
-                {user.map((element,index) => (
+                {Object.keys(users).map((key, index) => ( users[key]=== undefined ? "" :
                     <div class="userRow">
-                        <row>{element.username}</row>
-                        <row>{element.firstName}</row>
-                        <row>{element.lastName}</row>
+                        <row>{users[key].username}</row>
+                        <row>{users[key].firstName}</row>
+                        <row>{users[key].lastName}</row>
                     </div>
                 ))}
             </div>
             </>
+        ) 
+    } else {
+        return (
+            null
         )
     }
 }

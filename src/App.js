@@ -24,10 +24,10 @@ function App() {
 
   const isPageData = sessionStorage.getItem("isPageData")
   let pagesStatus = {
-    isLoginPage: false,
+    isLoginPage: true,
     isSignupPage:false,
     isDashboardPage: false,
-    isEmployeePage: true
+    isEmployeePage: false
   }
   if(isPageData) {
     const pageData = JSON.parse(isPageData)
@@ -106,6 +106,7 @@ function App() {
         setCurrentUser = {setCurrentUser}
         setUsers = {setUsers}
         users = {users}
+        setIsLoginPage = {setIsLoginPage}
       />
 
       <Dashboard
@@ -130,6 +131,7 @@ function App() {
         setIsDashboardPage = {setIsDashboardPage}
         setIsSignupPage = {setIsSignupPage}
         currentUser = {currentUser}
+        setIsEmployeePage = {setIsEmployeePage}
 
       />
       <Signup

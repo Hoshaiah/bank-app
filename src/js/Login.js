@@ -2,7 +2,7 @@ import { useState } from 'react';
 import logo from '../logo.svg';
 
 function Login(props){
-    const {isLoginPage, users, setCurrentUser, setIsLoginPage, setIsDashboardPage, setIsSignupPage} = props
+    const {isLoginPage, users, setCurrentUser, setIsLoginPage, setIsDashboardPage, setIsSignupPage, setIsEmployeePage} = props
     const usernameObject = useState("")
     const passwordObject = useState("")
     const [loginReminder, setLoginReminder] = useState("")
@@ -38,9 +38,16 @@ function Login(props){
         setIsSignupPage(true)
     }
 
+    const onEmployeePage = (event) => {
+        event.preventDefault()
+        setIsLoginPage(false)
+        setIsEmployeePage(true)
+    }
+
     if (isLoginPage){
         return (
             <form id="logindiv">
+                <h1 onClick={onEmployeePage}>Employee's</h1>
                 <div id="loginCaption">
                     <img src={logo} className="App-logo" alt="logo" />
                     <h1>Hwallet</h1>
