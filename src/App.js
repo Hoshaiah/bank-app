@@ -21,6 +21,12 @@ function App() {
     currentUserData = JSON.parse(localStorageCurrentUser)
   }
 
+  const localStorageUsedAccountNumbers = localStorage.getItem("usedAccountNumbers")
+  let usedAccountNumbersData = []
+  if(localStorageUsedAccountNumbers) {
+    usedAccountNumbersData = JSON.parse(localStorageUsedAccountNumbers)
+  }
+
 
   const isPageData = sessionStorage.getItem("isPageData")
   let pagesStatus = {
@@ -43,6 +49,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState(currentUserData)
   const [transaction, setTransaction] = useState(currentUserData?.["transactions"] || [])
   const [linkedAccounts, setLinkedAccounts] = useState(currentUserData?.["linkedAccounts"] || [])
+  const [usedAccountNumbers, setUsedAccountNumbers] = useState(usedAccountNumbersData)
 
   const [isLoginPage, setIsLoginPage] = useState(pagesStatus.isLoginPage)
   const [isSignupPage, setIsSignupPage] = useState(pagesStatus.isSignupPage)
@@ -58,6 +65,11 @@ function App() {
     localStorage.setItem("currentUser",JSON.stringify(currentUser))
   },[currentUser])
 
+  
+  useEffect(()=>{
+    localStorage.setItem("usedAccountNumbers",JSON.stringify(usedAccountNumbers))
+  },[usedAccountNumbers])
+
   useEffect(()=>{
     setCurrentUser({
       ...currentUser,
@@ -72,6 +84,7 @@ function App() {
     linkedAccounts: linkedAccounts
     })
   },[linkedAccounts])
+
 
 
 
@@ -140,6 +153,8 @@ function App() {
         setIsLoginPage = {setIsLoginPage}
         users = {users}
         setUsers = {setUsers}
+        usedAccountNumbers = {usedAccountNumbers}
+        setUsedAccountNumbers = {setUsedAccountNumbers}
       />
     </>
   );

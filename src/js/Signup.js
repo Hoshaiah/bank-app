@@ -3,7 +3,7 @@ import logo from '../logo.svg';
 
 function Signup(props){
 
-    const {setIsSignupPage, isSignupPage, setIsLoginPage, users, setUsers} = props
+    const {setIsSignupPage, isSignupPage, setIsLoginPage, users, setUsers, usedAccountNumbers, setUsedAccountNumbers} = props
 
     const inputFirstName = useRef("")
     const inputLastName = useRef("")
@@ -12,6 +12,26 @@ function Signup(props){
     const inputConfirmPassword = useRef("")
     const [signupReminder, setSignupReminder] = useState("")
 
+    const createAccountNumber = () => {
+        function getRandomInt(min, max) {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+        let proceed = true;
+        let accountNumber = ""
+        for (let i=0; proceed; i++){
+            let a = getRandomInt(1,9)
+            let b = getRandomInt(1,9)
+            let c = getRandomInt(1,9)
+            let d = getRandomInt(1,9)
+            accountNumber = `00${a}${b}${c}${d}`
+            if(!(accountNumber in usedAccountNumbers)){
+                proceed = false
+            }
+        }
+        return accountNumber
+    }
     const onCreateAccount = (event) => {
         let username = inputNewUserName.current.value
         let confirmPassword = inputConfirmPassword.current.value
@@ -42,6 +62,9 @@ function Signup(props){
             event.preventDefault()
         } else {
             setSignupReminder("")
+
+            let newAccountNumber = createAccountNumber()
+            setUsedAccountNumbers([...usedAccountNumbers,newAccountNumber])
             let userData = {
                 username: username,
                 firstName: firstName,
@@ -49,7 +72,8 @@ function Signup(props){
                 password: password,
                 wallet: Number(0),
                 transactions: [],
-                linkedAccounts: []
+                linkedAccounts: [],
+                accountNumber: newAccountNumber
             }
     
     

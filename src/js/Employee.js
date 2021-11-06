@@ -31,6 +31,7 @@ function Employee(props){
             <div id ="allUserAccounts">
                 {Object.keys(users).map((key, index) => ( users[key]=== undefined ? "" :
                     <div class="userRow">
+                        <row>{users[key].accountNumber}</row>
                         <row>{users[key].username}</row>
                         <row>{users[key].firstName}</row>
                         <row>{users[key].lastName}</row>
