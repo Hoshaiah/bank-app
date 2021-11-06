@@ -1,13 +1,8 @@
-import { getDefaultNormalizer } from "@testing-library/dom"
 import { useState } from "react"
-import { unstable_renderSubtreeIntoContainer } from "react-dom"
-import { __SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED } from "react-dom/cjs/react-dom.development"
-import { Component, useEffect, useRef } from "react/cjs/react.development"
-
+import { useRef } from "react/cjs/react.development"
 
 function EmployeeWithdraw(props) {
     const {users, setUsers} = props
-    const [withdrawAccountNumber, setWithdrawAccountNumber] = useState("")
     const withdrawLastName = useRef("")
     const withdrawFirstName = useRef("")
     const withdrawUsername = useRef("")
