@@ -2,7 +2,7 @@ import { useState } from "react"
 import { useRef } from "react/cjs/react.development"
 
 function AddUser(props){
-    const {users, setUsers} = props
+    const {users, setUsers, usedAccountNumbers, setUsedAccountNumbers} = props
 
     const newUsername = useRef("")
     const newFirstName = useRef("")
@@ -10,10 +10,34 @@ function AddUser(props){
     const newPassword = useRef("")
 
 
+    
+    const createAccountNumber = () => {
+        function getRandomInt(min, max) {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+        let proceed = true;
+        let accountNumber = ""
+        for (let i=0; proceed; i++){
+            let a = getRandomInt(1,9)
+            let b = getRandomInt(1,9)
+            let c = getRandomInt(1,9)
+            let d = getRandomInt(1,9)
+            accountNumber = `00${a}${b}${c}${d}`
+            console.log(usedAccountNumbers)
+            if(!(accountNumber in usedAccountNumbers)){
+                proceed = false
+            }
+        }
+        return accountNumber
+    }
 
 
     const onSubmit = (e) => {
         e.preventDefault()
+        let newAccountNumber = createAccountNumber()
+        setUsedAccountNumbers([...usedAccountNumbers,newAccountNumber])
         let newUser = {
             username: newUsername.current.value,
             firstName: newFirstName.current.value,
@@ -21,7 +45,8 @@ function AddUser(props){
             password: newPassword.current.value,
             wallet: Number(0),
             transactions: [],
-            linkedAccounts: []
+            linkedAccounts: [],
+            accountNumber: newAccountNumber
         }
         setUsers({
             ...users,

@@ -120,6 +120,8 @@ function App() {
         setUsers = {setUsers}
         users = {users}
         setIsLoginPage = {setIsLoginPage}
+        usedAccountNumbers = {usedAccountNumbers}
+        setUsedAccountNumbers = {setUsedAccountNumbers}
       />
 
       <Dashboard

@@ -2,7 +2,7 @@ import AddUser from "./AddUser"
 
 
 function Employee(props){
-    const {isEmployeePage, setIsEmployeePage, currentUser, setCurrentUser, setUsers, users, setIsLoginPage} = props
+    const {isEmployeePage, setIsEmployeePage, currentUser, setCurrentUser, setUsers, users, setIsLoginPage, usedAccountNumbers, setUsedAccountNumbers} = props
 
     const onExit = () => {
         setIsEmployeePage(false)
@@ -42,6 +42,8 @@ function Employee(props){
             <AddUser
                 users = {users}
                 setUsers = {setUsers}
+                usedAccountNumbers = {usedAccountNumbers}
+                setUsedAccountNumbers = {setUsedAccountNumbers}
             />
             </>
         ) 
