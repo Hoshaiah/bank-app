@@ -15,7 +15,6 @@ function Send(props){
     }
 
     const onSendSubmit = (event) => {
-        event.preventDefault()
         let sendAmount = Number(sendAmountData.current.value);
         let sendAccount = sendAccountData.current.value;
         let sendBank = sendBankData.current.value;
