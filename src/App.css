@@ -96,14 +96,8 @@ header caption {
 }
 
 main {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr 1fr;
-  grid-template-areas:
-  "balance balance actions actions"
-  "balance balance actions actions"
-  "recent recent recent recent"
-  "recent recent recent recent";
+  display: flex;
+  justify-content: center;
   margin-left: 50px;
   margin-right: 50px;
 
@@ -141,12 +135,13 @@ main {
 
 /* recentActivity */
 #recentActivity {
-  grid-area: recent;
+  margin: 30px;
 }
 
 #recentActivites{
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
  
 .transactionRecord {
@@ -155,6 +150,24 @@ main {
   text-align: left;
   border-top: transparent;
   border-bottom:  0.5px solid #282c347e;
+  width: 900px;
+}
+
+.transactionAccount {
+  font-weight: bold;
+}
+
+.transactionRunningBalance{
+  font-style: italic;
+}
+
+.transactionBottom {
+  display: flex;
+  justify-content: space-between;
+}
+
+.transactionAmount {
+  font-weight: bold;
 }
 
 /* actions */

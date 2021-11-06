@@ -60,35 +60,35 @@ function Dashboard(props) {
             <main>
               <div id="balance">
                 <h1>Balance</h1>
-                <p>₱ {balance}</p>
+                <p>₱ {Number(balance).toLocaleString()}</p>
               </div>
       
               <Actions
                 setOverlayVisibility = {setOverlayVisibility}
                 setPopupName = {setPopupName}
                 setPopupAction = {setPopupAction}
-              />
+                />
+            </main>
 
-              <RecentActivities
+            <RecentActivities
+              currentUser = {currentUser}
+              linkedAccounts = {linkedAccounts}
+              setLinkedAccounts = {setLinkedAccounts}
+            />
+      
+            <div className={overlayVisiblity} id="overlay" >
+              <Popup
+                popupAction = {popupAction}
+                popupName = {popupName}
+                setOverlayVisibility = {setOverlayVisibility}
+                setCurrentUser = {setCurrentUser}
                 currentUser = {currentUser}
+                transaction = {transaction}
+                setTransaction = {setTransaction}
                 linkedAccounts = {linkedAccounts}
                 setLinkedAccounts = {setLinkedAccounts}
               />
-      
-              <div className={overlayVisiblity} id="overlay" >
-                <Popup
-                  popupAction = {popupAction}
-                  popupName = {popupName}
-                  setOverlayVisibility = {setOverlayVisibility}
-                  setCurrentUser = {setCurrentUser}
-                  currentUser = {currentUser}
-                  transaction = {transaction}
-                  setTransaction = {setTransaction}
-                  linkedAccounts = {linkedAccounts}
-                  setLinkedAccounts = {setLinkedAccounts}
-                />
-              </div>
-            </main>
+            </div>
           </div>
         );
     } else {

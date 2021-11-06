@@ -22,6 +22,7 @@ function LinkBank(props){
             bank: linkedBank.current.value,
             accountNumber: linkedAccountNumber.current.value
         }
+        console.log(linkedAccounts)
         setLinkedAccounts([...linkedAccounts, record])
     }
 
@@ -40,12 +41,20 @@ function LinkBank(props){
                     </div>
                 ))} */}
                 <div>
-                    <label for="accnumber">Bank</label>
-                    <input ref={linkedBank} type="text" placeholder="100.00"></input>
+                    <label for="linkBank">Bank</label>
+                    <input ref={linkedBank} id="linkBank" type="text" placeholder="BDO"></input>
                 </div>
                 <div>
-                    <label for="accnumber">Link to Account</label>
-                    <input ref={linkedAccountNumber} type="number" placeholder="0999 999 999"></input>
+                    <label for="linkAccount">Link to Account</label>
+                    <input ref={linkedAccountNumber} id="linkAccount" type="number" placeholder="0999 999 999"></input>
+                </div>
+                <div>
+                    <label for="linkUsername">Account Username</label>
+                    <input type="number" id="linkUsername" placeholder="JohnDoe321"></input>
+                </div>
+                <div>
+                    <label for="linkPassword">Account Password</label>
+                    <input type="password" id="linkPassword" placeholder="******"></input>
                 </div>
             </div>
             <div id="popupButtons">

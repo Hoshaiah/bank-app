@@ -4,6 +4,7 @@ import './App.css';
 import Dashboard from './js/Dashboard'
 import Login from './js/Login';
 import Signup from './js/Signup';
+import Employee from './js/Employee';
 
 
 function App() {
@@ -20,18 +21,26 @@ function App() {
     currentUserData = JSON.parse(localStorageCurrentUser)
   }
 
+  const localStorageUsedAccountNumbers = localStorage.getItem("usedAccountNumbers")
+  let usedAccountNumbersData = []
+  if(localStorageUsedAccountNumbers) {
+    usedAccountNumbersData = JSON.parse(localStorageUsedAccountNumbers)
+  }
+
 
   const isPageData = sessionStorage.getItem("isPageData")
   let pagesStatus = {
     isLoginPage: true,
     isSignupPage:false,
-    isDashboardPage: false
+    isDashboardPage: false,
+    isEmployeePage: false
   }
   if(isPageData) {
     const pageData = JSON.parse(isPageData)
     pagesStatus.isLoginPage = pageData.isLoginPage
     pagesStatus.isDashboardPage = pageData.isDashboardPage
     pagesStatus.isSignupPage = pageData.isSignupPage
+    pagesStatus.isEmployeePage = pageData.isEmployeePage
   }
 
 
@@ -39,12 +48,14 @@ function App() {
 
   const [users, setUsers] = useState(userData)
   const [currentUser, setCurrentUser] = useState(currentUserData)
-  const [transaction, setTransaction] = useState(currentUser.transactions)
-  const [linkedAccounts, setLinkedAccounts] = useState(currentUser.linkedAccounts)
+  const [transaction, setTransaction] = useState(currentUserData?.["transactions"] || [])
+  const [linkedAccounts, setLinkedAccounts] = useState(currentUserData?.["linkedAccounts"] || [])
+  const [usedAccountNumbers, setUsedAccountNumbers] = useState(usedAccountNumbersData)
 
   const [isLoginPage, setIsLoginPage] = useState(pagesStatus.isLoginPage)
   const [isSignupPage, setIsSignupPage] = useState(pagesStatus.isSignupPage)
   const [isDashboardPage, setIsDashboardPage] = useState(pagesStatus.isDashboardPage)
+  const [isEmployeePage, setIsEmployeePage] = useState(pagesStatus.isEmployeePage)
 
 
   useEffect(()=>{
@@ -54,6 +65,11 @@ function App() {
   useEffect(()=>{
     localStorage.setItem("currentUser",JSON.stringify(currentUser))
   },[currentUser])
+
+  
+  useEffect(()=>{
+    localStorage.setItem("usedAccountNumbers",JSON.stringify(usedAccountNumbers))
+  },[usedAccountNumbers])
 
   useEffect(()=>{
     setCurrentUser({
@@ -73,14 +89,16 @@ function App() {
 
 
 
+
   useEffect(()=>{
     let data = {
       isLoginPage: isLoginPage,
       isSignupPage: isSignupPage,
-      isDashboardPage: isDashboardPage
+      isDashboardPage: isDashboardPage,
+      isEmployeePage: isEmployeePage
     }
     sessionStorage.setItem("isPageData", JSON.stringify(data))
-  },[isSignupPage, isLoginPage, isDashboardPage])
+  },[isSignupPage, isLoginPage, isDashboardPage, isEmployeePage])
 
 
   useEffect(()=>{
@@ -96,6 +114,18 @@ function App() {
 
   return (
     <>
+      <Employee
+        isEmployeePage = {isEmployeePage}
+        setIsEmployeePage = {setIsEmployeePage}
+        currentUser = {currentUser}
+        setCurrentUser = {setCurrentUser}
+        setUsers = {setUsers}
+        users = {users}
+        setIsLoginPage = {setIsLoginPage}
+        usedAccountNumbers = {usedAccountNumbers}
+        setUsedAccountNumbers = {setUsedAccountNumbers}
+      />
+
       <Dashboard
         isDashboardPage = {isDashboardPage}
         setIsDashboardPage = {setIsDashboardPage}
@@ -118,6 +148,7 @@ function App() {
         setIsDashboardPage = {setIsDashboardPage}
         setIsSignupPage = {setIsSignupPage}
         currentUser = {currentUser}
+        setIsEmployeePage = {setIsEmployeePage}
 
       />
       <Signup
@@ -126,6 +157,8 @@ function App() {
         setIsLoginPage = {setIsLoginPage}
         users = {users}
         setUsers = {setUsers}
+        usedAccountNumbers = {usedAccountNumbers}
+        setUsedAccountNumbers = {setUsedAccountNumbers}
       />
     </>
   );
