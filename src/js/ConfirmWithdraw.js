@@ -24,6 +24,8 @@ function ConfirmWithdaw (props) {
         }
         setTransaction([...transaction, record])
         setStepTwoWithdraw("hidden")
+        withdrawAmountData.current.value = ""
+
     }
     if(stepTwoWithdraw ==="visible"){
         return (

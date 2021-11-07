@@ -24,6 +24,7 @@ function ConfirmDeposit (props) {
         }
         setTransaction([...transaction, record])
         setStepTwoDeposit("hidden")
+        depositAmountData.current.value = ""
     }
     if(stepTwoDeposit ==="visible"){
         return (

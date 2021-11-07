@@ -55,6 +55,8 @@ function ConfirmSend (props) {
             }
         })
         setStepTwoSend("hidden")
+        sendAccountData.current.value = ""
+        sendAmountData.current.value = ""
     }
     if(stepTwoSend === "visible"){
         return (
