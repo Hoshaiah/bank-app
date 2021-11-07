@@ -81,7 +81,7 @@ function EmployeeDeposit(props) {
     }
 
     return (
-        <form>
+        <form class="popup">
             <h1> Deposit header</h1>
             <div id="addUserInputs">
                 <label for="depositAccountNumber"></label>

@@ -2,7 +2,7 @@ import { useState } from "react"
 import { useRef } from "react/cjs/react.development"
 
 function EmployeeWithdraw(props) {
-    const {users, setUsers} = props
+    const {users, setUsers, usedAccountNumbers} = props
     const withdrawLastName = useRef("")
     const withdrawFirstName = useRef("")
     const withdrawUsername = useRef("")
@@ -19,20 +19,9 @@ function EmployeeWithdraw(props) {
         }
 
         if(accountNumber.length ===6){
-            let usersInversedCopy = {}
-            let usernames = Object.keys(users)
-            for (let i = 0; i< usernames.length; i++){
-                let object = users[usernames[i]]
-                let accNumber = object["accountNumber"]
-                let username = object["username"]
-                usersInversedCopy = {
-                    ...usersInversedCopy,
-                    [accNumber] : username
-                }
-            }
-            if(accountNumber in usersInversedCopy) {
-                let username = usersInversedCopy[accountNumber]
-                console.log(users[username])
+            if(accountNumber in usedAccountNumbers) {
+                let username = usedAccountNumbers[accountNumber]
+                console.log({withdrawFirstName,withdrawLastName,username,users})
                 withdrawLastName.current.value = users[username].lastName
                 withdrawFirstName.current.value = users[username].firstName
                 withdrawUsername.current.value = users[username].username
@@ -80,7 +69,7 @@ function EmployeeWithdraw(props) {
     }
 
     return (
-        <form>
+        <form class="popup">
             <h1> Withdraw header</h1>
             <div id="addUserInputs">
                 <label for="withdrawAccountNumber"></label>

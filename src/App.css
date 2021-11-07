@@ -576,3 +576,23 @@ div#linkBankReminder {
   border: none;
   background-color: transparent;
 }
+
+/* employee */
+#employeeOverlay {
+  position: fixed;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#overlay.visible {
+  visibility: visible;
+}
+
+#overlay.hidden {
+  visibility: hidden;
+}

@@ -2,9 +2,13 @@ import AddUser from "./AddUser"
 import EmployeeWithdraw from "./EmployeeWithdraw"
 import EmployeeDeposit from "./EmployeeDeposit"
 import EmployeeTransfer from "./EmployeeTransfer"
+import { useState } from "react"
+import EmployeePopup from "./EmployeePopup"
 
 function Employee(props){
     const {isEmployeePage, setIsEmployeePage, currentUser, setCurrentUser, setUsers, users, setIsLoginPage, usedAccountNumbers, setUsedAccountNumbers} = props
+    const [overlayVisiblity, setOverlayVisibility] = useState("hidden")
+    const [popupAction, setPopupAction] = useState("")
 
     const onExit = () => {
         setIsEmployeePage(false)
@@ -19,6 +23,22 @@ function Employee(props){
         delete usedAccountNumbersCopy[users[user].accountNumber]
         setUsedAccountNumbers(usedAccountNumbersCopy)
     }
+
+    const onWithdrawClick = () =>{
+        setOverlayVisibility("visible")
+        setPopupAction("withdraw")
+    }
+
+    const onDepositClick = () => {
+        setOverlayVisibility("visible")
+        setPopupAction("deposit")
+    }
+
+    const onTransferClick = () => {
+        setOverlayVisibility("visible")
+        setPopupAction("transfer")
+    }
+
     if (isEmployeePage){
         return (
             <>
@@ -28,26 +48,14 @@ function Employee(props){
                 <h1>Add User</h1>
             </div>
             <div id="employeeMoneyActions">
-                <div id="employeeWithdraw">
-                    <h2>Withdraw</h2>
-                    <EmployeeWithdraw
-                        users = {users}
-                        setUsers = {setUsers}
-                    />
+                <div id="employeeWithdraw" >
+                    <h2 onClick={onWithdrawClick}>Withdraw</h2>
                 </div>
                 <div id="employeeDeposit">
-                    Deposit
-                    <EmployeeDeposit
-                        users = {users}
-                        setUsers = {setUsers}
-                    />
+                    <h2 onClick={onTransferClick}>Transfer</h2>
                 </div>
                 <div id="employeeTransfer">
-                    Transfer
-                    <EmployeeTransfer
-                        users = {users}
-                        setUsers = {setUsers}
-                    />
+                    <h2 onClick={onDepositClick}>Deposit</h2>
                 </div>
             </div>
             <div id ="allUserAccounts">
@@ -68,6 +76,15 @@ function Employee(props){
                 usedAccountNumbers = {usedAccountNumbers}
                 setUsedAccountNumbers = {setUsedAccountNumbers}
             />
+            <div className={overlayVisiblity} id="employeeOverlay" >
+                <EmployeePopup
+                    setUsers = {setUsers}
+                    users = {users}
+                    popupAction = {popupAction}
+                    setPopupAction = {setPopupAction}
+                    usedAccountNumbers = {usedAccountNumbers}
+                />
+            </div>
             </>
         ) 
     } else {

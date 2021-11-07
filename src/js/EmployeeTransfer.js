@@ -149,7 +149,7 @@ function EmployeeTransfer(props) {
         })
     }
     return (
-        <form>
+        <form class="popup">
             <h1> Transfer header</h1>
             <div id="addUserInputs">
                 <label for="transferFromAccountNumber"></label>
