@@ -29,7 +29,7 @@ function Deposit(props){
         let DepositalAmount = Number(DepositAmountData.current.value);
         let currentBalance = currentUser.wallet
         let newDate = new Date()
-        let dateOfTransaction = `${newDate.getDay()} ${newDate.toLocaleString('default', { month: 'short' })}`
+        let dateOfTransaction = `${newDate.getDate()} ${newDate.toLocaleString('default', { month: 'short' })}`
 
 
         if (linkedAccounts.length !== 0) {

@@ -78,8 +78,8 @@ function Dashboard(props) {
       
             <div className={overlayVisiblity} id="overlay" >
               <Popup
-                popupAction = {popupAction}
                 popupName = {popupName}
+                popupAction = {popupAction}
                 setOverlayVisibility = {setOverlayVisibility}
                 setCurrentUser = {setCurrentUser}
                 currentUser = {currentUser}
@@ -89,6 +89,8 @@ function Dashboard(props) {
                 setLinkedAccounts = {setLinkedAccounts}
                 usedAccountNumbers = {usedAccountNumbers}
                 setUsedAccountNumbers = {setUsedAccountNumbers}
+                users = {users}
+                setUsers = {setUsers}
               />
             </div>
           </div>

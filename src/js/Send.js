@@ -2,7 +2,7 @@ import { useRef, useState } from "react/cjs/react.development"
 
 
 function Send(props){
-    const {popupName, setOverlayVisibility, setCurrentUser, currentUser, transaction, setTransaction, usedAccountNumbers, setUsedAccountNumbers} = props
+    const {popupName, setOverlayVisibility, setCurrentUser, currentUser, transaction, setTransaction, usedAccountNumbers, setUsedAccountNumbers, users, setUsers } = props
     const sendAmountData = useRef(0)
     const sendAccountData = useRef(0)
     const [sendReminder, setsendReminder] = useState("")
@@ -18,7 +18,7 @@ function Send(props){
         let sendAccount = sendAccountData.current.value;
         let currentBalance = currentUser.wallet
         let newDate = new Date()
-        let dateOfTransaction = `${newDate.getDay()} ${newDate.toLocaleString('default', { month: 'short' })}`
+        let dateOfTransaction = `${newDate.getDate()} ${newDate.toLocaleString('default', { month: 'short' })}`
 
         if(sendAmount > currentBalance || sendAmount < 0){
             event.preventDefault()
@@ -33,6 +33,7 @@ function Send(props){
             event.preventDefault()
             setsendReminder("*Amount cannot be 0 or empty")
         } else {
+            event.preventDefault()
             setOverlayVisibility("hidden")
             setCurrentUser ({
                 ...currentUser,
@@ -50,8 +51,33 @@ function Send(props){
                 dateOfTransaction: dateOfTransaction
             }
             setTransaction([...transaction, record])
+            //changing data of recipient
+            let usernameRecipient = usedAccountNumbers[sendAccount]
+            let objectRecipient = users[usernameRecipient]
+            let currentWalletRecipient = objectRecipient.wallet
+            let currentTransactionsRecipient = objectRecipient.transactions
+            let newRecordRecipient = {
+                runningBalance: currentWalletRecipient+sendAmount,
+                transactionType: "Received",
+                Amount: sendAmount,
+                otherAccount: {
+                    bank: "Hwallet",
+                    accountNumber: currentUser.accountNumber
+                },
+                dateOfTransaction: dateOfTransaction
+            }
+            setUsers({
+                ...users,
+                [usernameRecipient] : {
+                    ...objectRecipient,
+                    "wallet": Number(currentWalletRecipient)+Number(sendAmount),
+                    "transactions": [
+                        ...currentTransactionsRecipient,
+                        newRecordRecipient
+                    ]
+                }
+            })
         }
-
     }
 
 

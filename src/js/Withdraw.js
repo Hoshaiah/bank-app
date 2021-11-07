@@ -27,7 +27,7 @@ function Withdraw(props){
         let withdrawalAmount = Number(withdrawAmountData.current.value);
         let currentBalance = currentUser.wallet
         let newDate = new Date()
-        let dateOfTransaction = `${newDate.getDay()} ${newDate.toLocaleString('default', { month: 'short' })}`
+        let dateOfTransaction = `${newDate.getDate()} ${newDate.toLocaleString('default', { month: 'short' })}`
 
         if(withdrawalAmount <= currentBalance && linkedAccounts.length !== 0){
             setOverlayVisibility("hidden")
