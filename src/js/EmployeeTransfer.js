@@ -3,7 +3,7 @@ import { Component, useRef } from "react/cjs/react.development"
 
 
 function EmployeeTransfer(props) {
-    const {users, setUsers} = props
+    const {users, setUsers, setPopupAction, setOverlayVisibility} = props
     const transferFromLastName = useRef("")
     const transferFromFirstName = useRef("")
     const transferFromUsername = useRef("")
@@ -34,7 +34,6 @@ function EmployeeTransfer(props) {
             }
             if(accountNumber in usersInversedCopy) {
                 let username = usersInversedCopy[accountNumber]
-                console.log(users[username])
                 transferFromLastName.current.value = users[username].lastName
                 transferFromFirstName.current.value = users[username].firstName
                 transferFromUsername.current.value = users[username].username
@@ -83,7 +82,11 @@ function EmployeeTransfer(props) {
         }
     }
 
-
+    const onCancel = (event) => {
+        event.preventDefault()
+        setOverlayVisibility("hidden")
+        setPopupAction("")
+    }
 
     const onSubmit = (event) => {
         let amountToTransfer = transferAmount.current.value
@@ -142,11 +145,6 @@ function EmployeeTransfer(props) {
                 }
             }
         )
-        console.log({
-            currentWalletFrom,
-            currentWalletTo,
-            amountToTransfer
-        })
     }
     return (
         <form class="popup">
@@ -175,6 +173,7 @@ function EmployeeTransfer(props) {
             <input ref = {transferAmount} type="text" id="transferAmount" placeholder="Amount"></input>
             <div id="addUserButtons">
                 <button onClick={e => onSubmit(e)}type="submit">Submit</button>
+                <button onClick={e => onCancel(e)}type="submit">Cancel</button>
             </div>
         </form>
     )

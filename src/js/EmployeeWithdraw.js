@@ -2,7 +2,7 @@ import { useState } from "react"
 import { useRef } from "react/cjs/react.development"
 
 function EmployeeWithdraw(props) {
-    const {users, setUsers, usedAccountNumbers} = props
+    const {users, setUsers, usedAccountNumbers, setPopupAction, setOverlayVisibility} = props
     const withdrawLastName = useRef("")
     const withdrawFirstName = useRef("")
     const withdrawUsername = useRef("")
@@ -32,6 +32,12 @@ function EmployeeWithdraw(props) {
         } else{
             emptyInputs()
         }
+    }
+
+    const onCancel = (event) => {
+        event.preventDefault()
+        setOverlayVisibility("hidden")
+        setPopupAction("")
     }
 
     const onSubmit = (event) => {
@@ -85,6 +91,7 @@ function EmployeeWithdraw(props) {
             </div>
             <div id="addUserButtons">
                 <button onClick={e => onSubmit(e)}type="submit">Submit</button>
+                <button onClick={e => onCancel(e)}type="submit">Cancel</button>
             </div>
         </form>
     )

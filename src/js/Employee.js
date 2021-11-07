@@ -82,6 +82,7 @@ function Employee(props){
                     users = {users}
                     popupAction = {popupAction}
                     setPopupAction = {setPopupAction}
+                    setOverlayVisibility = {setOverlayVisibility}
                     usedAccountNumbers = {usedAccountNumbers}
                 />
             </div>

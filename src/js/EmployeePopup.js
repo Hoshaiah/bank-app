@@ -4,7 +4,7 @@ import EmployeeWithdraw from "./EmployeeWithdraw"
 
 
 function EmployeePopup (props){
-    const {setUsers, users, popupAction, setPopupAction, usedAccountNumbers} = props
+    const {setUsers, users, popupAction, setPopupAction, setOverlayVisibility, usedAccountNumbers} = props
 
 
     if(popupAction==="withdraw"){
@@ -13,6 +13,8 @@ function EmployeePopup (props){
                 users = {users}
                 setUsers = {setUsers}
                 usedAccountNumbers = {usedAccountNumbers}
+                setPopupAction = {setPopupAction}
+                setOverlayVisibility = {setOverlayVisibility}
             />
         )
     } else if(popupAction==="deposit"){
@@ -21,6 +23,8 @@ function EmployeePopup (props){
                 users = {users}
                 setUsers = {setUsers}
                 usedAccountNumbers = {usedAccountNumbers}
+                setPopupAction = {setPopupAction}
+                setOverlayVisibility = {setOverlayVisibility}
             />
         )
     } else if(popupAction ==="transfer"){
@@ -28,6 +32,8 @@ function EmployeePopup (props){
                 users = {users}
                 setUsers = {setUsers}
                 usedAccountNumbers = {usedAccountNumbers}
+                setPopupAction = {setPopupAction}
+                setOverlayVisibility = {setOverlayVisibility}
             />
         )
     } else {

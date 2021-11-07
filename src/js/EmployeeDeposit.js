@@ -3,7 +3,7 @@ import { useRef } from "react/cjs/react.development"
 
 
 function EmployeeDeposit(props) {
-    const {users, setUsers} = props
+    const {users, setUsers, setPopupAction, setOverlayVisibility} = props
     const depositLastName = useRef("")
     const depositFirstName = useRef("")
     const depositUsername = useRef("")
@@ -46,6 +46,12 @@ function EmployeeDeposit(props) {
         }
     }
 
+    const onCancel = (event) => {
+        event.preventDefault()
+        setOverlayVisibility("hidden")
+        setPopupAction("")
+    }
+    
     const onSubmit = (event) => {
         let username = depositUsername.current.value
         let amountTodeposit = depositAmount.current.value
@@ -97,6 +103,8 @@ function EmployeeDeposit(props) {
             </div>
             <div id="addUserButtons">
                 <button onClick={e => onSubmit(e)}type="submit">Submit</button>
+                <button onClick={e => onCancel(e)}type="submit">Cancel</button>
+
             </div>
         </form>
     )
