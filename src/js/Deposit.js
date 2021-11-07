@@ -32,7 +32,7 @@ function Deposit(props){
 
         if(depositAmount===0 || depositAmount ===""){
             setDepositReminder("*Amount cannot be zero or unfilled")
-        } else if (linkedAccounts.length === 0) {
+        } else if (currentUser.linkedAccounts.length === 0) {
             setDepositReminder("*Link an account first")
         } else {
             setDepositReminder("")

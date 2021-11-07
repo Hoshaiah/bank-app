@@ -34,7 +34,7 @@ function Withdraw(props){
             setWithdrawalReminder("*Insufficient Balance")
         } else if(withdrawalAmount===0 || withdrawalAmount ===""){
             setWithdrawalReminder("*Amount cannot be zero or unfilled")
-        } else if (linkedAccounts.length === 0) {
+        } else if (currentUser.linkedAccounts.length === 0) {
             setWithdrawalReminder("*Link an account first")
         } else {
             setWithdrawalReminder("")
