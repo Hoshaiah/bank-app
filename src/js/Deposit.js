@@ -1,79 +1,69 @@
-import { useEffect, useRef, useState } from "react/cjs/react.development"
+import { useRef, useState, useEffect } from "react/cjs/react.development"
+import ConfirmDeposit from "./ConfirmDeposit"
 
 function Deposit(props){
     const {popupName, setOverlayVisibility, setCurrentUser, currentUser, transaction, setTransaction, linkedAccounts, setLinkedAccounts} = props
-    const DepositAmountData = useRef(0)
-    const [DepositReminder, setDepositReminder] = useState("")
-    const [linkedAccountsToDisplayDeposit, setLinkedAccountsToDisplayDeposit] = useState(currentUser.linkedAccounts)
+    const depositAmountData = useRef(0)
+    const [depositReminder, setDepositReminder] = useState("")
+    const [linkedAccountsToDisplay, setLinkedAccountsToDisplay] = useState(currentUser.linkedAccounts)
+    const [stepTwoDeposit, setStepTwoDeposit] = useState("hidden")
 
 
-    let depositDefault = ""
-    if (currentUser.linkedAccounts.length > 0){
-        depositDefault = currentUser.linkedAccounts[0]
+    let widthdrawAccountDefault = ""
+    if (currentUser.linkedAccounts.length>0){
+        widthdrawAccountDefault = currentUser.linkedAccounts[0]
     }
-    const [depositRecipient, setDepositAccount] = useState(depositDefault)
+    const [depositAccount, setDepositAccount] = useState(widthdrawAccountDefault)
 
-    useEffect ( () => {
-        setLinkedAccountsToDisplayDeposit(currentUser.linkedAccounts)
+    useEffect (() => {
+        setLinkedAccountsToDisplay(currentUser.linkedAccounts)
     },[currentUser])
 
     const onDepositCancel = (event) => {
         event.preventDefault()
         setOverlayVisibility("hidden")
         setDepositReminder("")
-
     }
 
     const onDepositSubmit = (event) => {
         event.preventDefault()
-        let DepositalAmount = Number(DepositAmountData.current.value);
+        let depositAmount = Number(depositAmountData.current.value);
         let currentBalance = currentUser.wallet
-        let newDate = new Date()
-        let dateOfTransaction = `${newDate.getDate()} ${newDate.toLocaleString('default', { month: 'short' })}`
 
-
-        if (linkedAccounts.length !== 0) {
-            setOverlayVisibility("hidden")
-            setCurrentUser ({
-                ...currentUser,
-                wallet: currentBalance + DepositalAmount
-            })
-            let record = {
-                runningBalance: currentBalance+ DepositalAmount,
-                transactionType: "Deposit",
-                Amount: DepositalAmount,
-                otherAccount: depositRecipient,
-                dateOfTransaction: dateOfTransaction
-            }
-            setTransaction([...transaction, record])
+        if(depositAmount===0 || depositAmount ===""){
+            setDepositReminder("*Amount cannot be zero or unfilled")
+        } else if (linkedAccounts.length === 0) {
+            setDepositReminder("*Link an account first")
         } else {
-            setDepositReminder("*Link account first")
+            setDepositReminder("")
+            setStepTwoDeposit("visible")
         }
-
     }
 
     const onDepositSelect = (event) => {
         setDepositAccount(currentUser.linkedAccounts[event.target.value])
     }
+    console.log(depositAccount)
 
     return(
+    <>
         <form className="popup"> 
             <h1>{popupName}</h1>
             <div id="popupInputs">
                 <div>
-                    <p>{DepositReminder}</p>
+                    <p>{depositReminder}</p>
                 </div>
                 <div>
                     <label for="account">Choose account to transfer money to:</label>
-                    <select id="account" name="acount" onChange={(event=> onDepositSelect(event))}>
-                        {linkedAccountsToDisplayDeposit.map((element, index) => (
+                    <select id="account" name="acount" onChange={event => onDepositSelect(event)} >
+                        {linkedAccountsToDisplay.map((element, index) => (
                             <option key={index} value={index}>{element.bank}: {element.accountNumber}</option>
                         ))}
                     </select>
                 </div>
                 <div>
                     <label for="accnumber">Amount (₱)</label>
-                    <input ref={DepositAmountData} type="number" placeholder="100.00"></input>
+                    <input ref={depositAmountData} type="number" placeholder="100.00"></input>
                 </div>
                 <div>
                     <label for="accnumber">Notes</label>
@@ -85,6 +75,19 @@ function Deposit(props){
                 <button id="submitButton" onClick={onDepositSubmit}>Submit</button>
             </div>
         </form>
+        <ConfirmDeposit
+            setOverlayVisibility = {setOverlayVisibility}
+            setCurrentUser = {setCurrentUser}
+            currentUser = {currentUser}
+            transaction = {transaction}
+            setTransaction = {setTransaction}
+            linkedAccounts = {linkedAccounts}
+            setStepTwoDeposit = {setStepTwoDeposit}
+            stepTwoDeposit = {stepTwoDeposit}
+            depositAmountData = {depositAmountData}
+            depositAccount = {depositAccount}
+        />
+    </>
     )
 }
 
