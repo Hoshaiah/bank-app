@@ -1,8 +1,8 @@
-function ConfirmWithdaw (props) {
-    const {setOverlayVisibility, setCurrentUser, currentUser, transaction, setTransaction, linkedAccounts, setStepTwoWithdraw, stepTwoWithdraw, withdrawAmountData, withdrawalAccount} = props
+function Confirm (props) {
+    const {setOverlayVisibility, setCurrentUser, currentUser, transaction, setTransaction, linkedAccounts, setStepTwo, stepTwo, withdrawAmountData, withdrawalAccount} = props
     
     const onWithdrawStepTwoCancel = () => {
-        setStepTwoWithdraw("hidden")
+        setStepTwo("hidden")
     }
     const onWithdrawStepTwoConfirm = () => {
         let withdrawalAmount = Number(withdrawAmountData.current.value);
@@ -23,11 +23,11 @@ function ConfirmWithdaw (props) {
             dateOfTransaction: dateOfTransaction
         }
         setTransaction([...transaction, record])
-        setStepTwoWithdraw("hidden")
+        setStepTwo("hidden")
     }
 
     return (
-        <div className ={`popupStepTwo ${stepTwoWithdraw}`}>
+        <div className ={`popupStepTwo ${stepTwo}`}>
             <h1>Are these details correct?</h1>
             <div class = "popupStepTwoInfo">
                 <h2>Withdraw Money From</h2>
@@ -46,4 +46,4 @@ function ConfirmWithdaw (props) {
         </div>
     )
 }
-export default ConfirmWithdaw
+export default Confirm

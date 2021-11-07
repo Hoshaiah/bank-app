@@ -1,4 +1,5 @@
 import { useRef, useState, useEffect } from "react/cjs/react.development"
+import ConfirmWithdaw from "./ConfirmWithdraw"
 import Confirm from "./ConfirmWithdraw"
 
 function Withdraw(props){
@@ -6,7 +7,7 @@ function Withdraw(props){
     const withdrawAmountData = useRef(0)
     const [withdrawalReminder, setWithdrawalReminder] = useState("")
     const [linkedAccountsToDisplay, setLinkedAccountsToDisplay] = useState(currentUser.linkedAccounts)
-    const [stepTwo, setStepTwo] = useState("hidden")
+    const [stepTwoWithdraw, setStepTwoWithdraw] = useState("hidden")
 
 
     let widthdrawAccountDefault = ""
@@ -43,7 +44,7 @@ function Withdraw(props){
             setWithdrawalReminder("*Link an account first")
         } else {
             setWithdrawalReminder("")
-            setStepTwo("visible")
+            setStepTwoWithdraw("visible")
         }
     }
 
@@ -82,15 +83,15 @@ function Withdraw(props){
                 <button id="submitButton" onClick={onWithdrawSubmit}>Submit</button>
             </div>
         </form>
-        <Confirm
+        <ConfirmWithdaw
             setOverlayVisibility = {setOverlayVisibility}
             setCurrentUser = {setCurrentUser}
             currentUser = {currentUser}
             transaction = {transaction}
             setTransaction = {setTransaction}
             linkedAccounts = {linkedAccounts}
-            setStepTwo = {setStepTwo}
-            stepTwo = {stepTwo}
+            setStepTwoWithdraw = {setStepTwoWithdraw}
+            stepTwoWithdraw = {stepTwoWithdraw}
             withdrawAmountData = {withdrawAmountData}
             withdrawalAccount = {withdrawalAccount}
         />
