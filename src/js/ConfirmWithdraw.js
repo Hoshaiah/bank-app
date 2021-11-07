@@ -22,7 +22,7 @@ function ConfirmWithdaw (props) {
             otherAccount: withdrawalAccount,
             dateOfTransaction: dateOfTransaction
         }
-        setTransaction([...transaction, record])
+        setTransaction([...currentUser.transactions, record])
         setStepTwoWithdraw("hidden")
         withdrawAmountData.current.value = ""
 

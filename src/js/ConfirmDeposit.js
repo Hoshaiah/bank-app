@@ -22,7 +22,7 @@ function ConfirmDeposit (props) {
             otherAccount: depositAccount,
             dateOfTransaction: dateOfTransaction
         }
-        setTransaction([...transaction, record])
+        setTransaction([...currentUser.transactions, record])
         setStepTwoDeposit("hidden")
         depositAmountData.current.value = ""
     }

@@ -43,7 +43,6 @@ function Deposit(props){
     const onDepositSelect = (event) => {
         setDepositAccount(currentUser.linkedAccounts[event.target.value])
     }
-    console.log(depositAccount)
 
     return(
     <>

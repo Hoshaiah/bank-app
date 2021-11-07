@@ -26,7 +26,7 @@ function RecentActivities(props) {
 
     useEffect(()=>{
         onShowClick()
-    },[currentUser])
+    },[currentUser.transactions])
     
 
 
