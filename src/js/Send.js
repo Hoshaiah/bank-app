@@ -18,9 +18,7 @@ function Send(props){
         let sendAmount = Number(sendAmountData.current.value);
         let sendAccount = sendAccountData.current.value;
         let currentBalance = currentUser.wallet
-        let newDate = new Date()
-        let dateOfTransaction = `${newDate.getDate()} ${newDate.toLocaleString('default', { month: 'short' })}`
-
+        
         if(sendAmount > currentBalance || sendAmount < 0){
             event.preventDefault()
             setsendReminder("*Insufficient Balance")
@@ -81,7 +79,7 @@ function Send(props){
                 usedAccountNumbers = {usedAccountNumbers}
                 users = {users}
                 setUsers = {setUsers}
-                
+
             />
         </>
     )
