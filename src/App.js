@@ -22,7 +22,7 @@ function App() {
   }
 
   const localStorageUsedAccountNumbers = localStorage.getItem("usedAccountNumbers")
-  let usedAccountNumbersData = []
+  let usedAccountNumbersData = {}
   if(localStorageUsedAccountNumbers) {
     usedAccountNumbersData = JSON.parse(localStorageUsedAccountNumbers)
   }
@@ -138,6 +138,8 @@ function App() {
         setTransaction = {setTransaction}
         linkedAccounts = {linkedAccounts}
         setLinkedAccounts = {setLinkedAccounts}
+        usedAccountNumbers = {usedAccountNumbers}
+        setUsedAccountNumbers = {setUsedAccountNumbers}
         
       />
       <Login

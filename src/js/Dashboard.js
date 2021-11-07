@@ -9,7 +9,7 @@ import RecentActivities from './RecentAcitivities';
 
 
 function Dashboard(props) {
-    const {isDashboardPage, setIsDashboardPage, currentUser, setCurrentUser, setIsLoginPage, users, setUsers, transaction, setTransaction, linkedAccounts, setLinkedAccounts } = props
+    const {isDashboardPage, setIsDashboardPage, currentUser, setCurrentUser, setIsLoginPage, users, setUsers, transaction, setTransaction, linkedAccounts, setLinkedAccounts, usedAccountNumbers, setUsedAccountNumbers } = props
 
     let balance = currentUser.wallet
     let user = currentUser.firstName + " " + currentUser.lastName
@@ -87,6 +87,8 @@ function Dashboard(props) {
                 setTransaction = {setTransaction}
                 linkedAccounts = {linkedAccounts}
                 setLinkedAccounts = {setLinkedAccounts}
+                usedAccountNumbers = {usedAccountNumbers}
+                setUsedAccountNumbers = {setUsedAccountNumbers}
               />
             </div>
           </div>

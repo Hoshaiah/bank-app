@@ -2,7 +2,7 @@ import { useRef, useState } from "react/cjs/react.development"
 
 
 function Send(props){
-    const {popupName, setOverlayVisibility, setCurrentUser, currentUser, transaction, setTransaction} = props
+    const {popupName, setOverlayVisibility, setCurrentUser, currentUser, transaction, setTransaction, usedAccountNumbers, setUsedAccountNumbers} = props
     const sendAmountData = useRef(0)
     const sendAccountData = useRef(0)
     const [sendReminder, setsendReminder] = useState("")
@@ -20,7 +20,19 @@ function Send(props){
         let newDate = new Date()
         let dateOfTransaction = `${newDate.getDay()} ${newDate.toLocaleString('default', { month: 'short' })}`
 
-        if(sendAmount <= currentBalance){
+        if(sendAmount > currentBalance || sendAmount < 0){
+            event.preventDefault()
+            setsendReminder("*Insufficient Balance")
+        } else if(!(sendAccount in usedAccountNumbers)) {
+            event.preventDefault()
+            setsendReminder("*Not a valid Hwallet Account")
+        } else if(currentUser.accountNumber.toLocaleString() === sendAccount.toLocaleString()) {
+            event.preventDefault()
+            setsendReminder("*Recipient account cannot be this account")
+        } else if(sendAmount==="" || sendAmount===0) {
+            event.preventDefault()
+            setsendReminder("*Amount cannot be 0 or empty")
+        } else {
             setOverlayVisibility("hidden")
             setCurrentUser ({
                 ...currentUser,
@@ -38,9 +50,6 @@ function Send(props){
                 dateOfTransaction: dateOfTransaction
             }
             setTransaction([...transaction, record])
-
-        } else {
-            setsendReminder("*Insufficient Balance")
         }
 
     }
@@ -54,8 +63,8 @@ function Send(props){
                     <p>{sendReminder}</p>
                 </div>
                 <div>
-                    <label for="accnumber">Send to Account</label>
-                    <input ref={sendAccountData} type="number" placeholder="0999 999 999"></input>
+                    <label for="accnumber">Send to Another Hwallet User</label>
+                    <input ref={sendAccountData} type="number" placeholder="009999"></input>
                 </div>
                 <div>
                     <label for="accnumber">Amount (₱)</label>
