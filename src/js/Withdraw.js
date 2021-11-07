@@ -25,11 +25,6 @@ function Withdraw(props){
         setWithdrawalReminder("")
     }
 
-    // const onWithdrawSubmit = (event) => {
-    //     event.preventDefault()
-    //     setStepTwo(true)
-    // } 
-
     const onWithdrawSubmit = (event) => {
         event.preventDefault()
         let withdrawalAmount = Number(withdrawAmountData.current.value);
