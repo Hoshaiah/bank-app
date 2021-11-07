@@ -66,10 +66,6 @@ function Deposit(props){
                 <div>
                     <label for="account">Choose account to transfer money to:</label>
                     <select id="account" name="acount" onChange={(event=> onDepositSelect(event))}>
-                        {/* <option value="volvo">Volvo</option>
-                        <option value="saab">Saab</option>
-                        <option value="fiat">Fiat</option>
-                        <option value="audi">Audi</option> */}
                         {linkedAccountsToDisplayDeposit.map((element, index) => (
                             <option key={index} value={index}>{element.bank}: {element.accountNumber}</option>
                         ))}

@@ -6,6 +6,8 @@ function LinkBank(props){
     const linkedBank = useRef("")
     const linkedAccountNumber = useRef("")
     const [LinkReminder, setLinkReminder] = useState("")
+    const bankChoices = ["BDO", "BPI" , "ChinaBank"]
+    const [chosenBank, setChosenBank] = useState(bankChoices[0])
 
     const onLinkCancel = (event) => {
         event.preventDefault()
@@ -19,11 +21,15 @@ function LinkBank(props){
         setLinkReminder("")
         console.log(linkedAccounts)
         let record = {
-            bank: linkedBank.current.value,
+            bank: chosenBank,
             accountNumber: linkedAccountNumber.current.value
         }
         console.log(linkedAccounts)
         setLinkedAccounts([...linkedAccounts, record])
+    }
+
+    const onBankSelect = (event) => {
+        setChosenBank(event.target.value)
     }
 
 
@@ -42,7 +48,11 @@ function LinkBank(props){
                 ))} */}
                 <div>
                     <label for="linkBank">Bank</label>
-                    <input ref={linkedBank} id="linkBank" type="text" placeholder="BDO"></input>
+                    <select id="linkBank" name="linkBank" onChange={(event=> onBankSelect(event))}>
+                        {bankChoices.map((element, index) => (
+                            <option key={index} value={element}>{element}</option>
+                        ))}
+                    </select>
                 </div>
                 <div>
                     <label for="linkAccount">Link to Account</label>
