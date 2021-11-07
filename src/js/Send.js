@@ -1,11 +1,12 @@
 import { useRef, useState } from "react/cjs/react.development"
-
+import ConfirmSend from "./ConfirmSend"
 
 function Send(props){
     const {popupName, setOverlayVisibility, setCurrentUser, currentUser, transaction, setTransaction, usedAccountNumbers, setUsedAccountNumbers, users, setUsers } = props
     const sendAmountData = useRef(0)
     const sendAccountData = useRef(0)
     const [sendReminder, setsendReminder] = useState("")
+    const [stepTwoSend, setStepTwoSend] = useState("hidden")
 
     const onSendCancel = (event) => {
         event.preventDefault()
@@ -34,78 +35,55 @@ function Send(props){
             setsendReminder("*Amount cannot be 0 or empty")
         } else {
             event.preventDefault()
-            setOverlayVisibility("hidden")
-            setCurrentUser ({
-                ...currentUser,
-                wallet: currentBalance-sendAmount
-            })
             setsendReminder("")
-            let record = {
-                runningBalance: currentBalance-sendAmount,
-                transactionType: "Send",
-                Amount: sendAmount,
-                otherAccount: {
-                    bank: "Hwallet",
-                    accountNumber: sendAccount
-                },
-                dateOfTransaction: dateOfTransaction
-            }
-            setTransaction([...transaction, record])
-            //changing data of recipient
-            let usernameRecipient = usedAccountNumbers[sendAccount]
-            let objectRecipient = users[usernameRecipient]
-            let currentWalletRecipient = objectRecipient.wallet
-            let currentTransactionsRecipient = objectRecipient.transactions
-            let newRecordRecipient = {
-                runningBalance: currentWalletRecipient+sendAmount,
-                transactionType: "Received",
-                Amount: sendAmount,
-                otherAccount: {
-                    bank: "Hwallet",
-                    accountNumber: currentUser.accountNumber
-                },
-                dateOfTransaction: dateOfTransaction
-            }
-            setUsers({
-                ...users,
-                [usernameRecipient] : {
-                    ...objectRecipient,
-                    "wallet": Number(currentWalletRecipient)+Number(sendAmount),
-                    "transactions": [
-                        ...currentTransactionsRecipient,
-                        newRecordRecipient
-                    ]
-                }
-            })
+            setStepTwoSend("visible")
+            console.log(stepTwoSend)
         }
     }
 
 
     return(
-        <form className="popup"> 
-            <h1>{popupName}</h1>
-            <div id="popupInputs">
-                <div>
-                    <p>{sendReminder}</p>
+        <>
+            <form className="popup"> 
+                <h1>{popupName}</h1>
+                <div id="popupInputs">
+                    <div>
+                        <p>{sendReminder}</p>
+                    </div>
+                    <div>
+                        <label for="accnumber">Send to Another Hwallet User</label>
+                        <input ref={sendAccountData} type="number" placeholder="009999"></input>
+                    </div>
+                    <div>
+                        <label for="accnumber">Amount (₱)</label>
+                        <input ref={sendAmountData} type="number" placeholder="100.00"></input>
+                    </div>
+                    <div>
+                        <label for="accnumber">Notes</label>
+                        <input type="text" placeholder="e.g for Payment to John Doe"></input>
+                    </div>
                 </div>
-                <div>
-                    <label for="accnumber">Send to Another Hwallet User</label>
-                    <input ref={sendAccountData} type="number" placeholder="009999"></input>
+                <div id="popupButtons">
+                    <button id="cancelButton" onClick={onSendCancel}>Cancel</button>
+                    <button id="submitButton" onClick={onSendSubmit}>Submit</button>
                 </div>
-                <div>
-                    <label for="accnumber">Amount (₱)</label>
-                    <input ref={sendAmountData} type="number" placeholder="100.00"></input>
-                </div>
-                <div>
-                    <label for="accnumber">Notes</label>
-                    <input type="text" placeholder="e.g for Payment to John Doe"></input>
-                </div>
-            </div>
-            <div id="popupButtons">
-                <button id="cancelButton" onClick={onSendCancel}>Cancel</button>
-                <button id="submitButton" onClick={onSendSubmit}>Submit</button>
-            </div>
-        </form>
+            </form>
+            <ConfirmSend
+                setOverlayVisibility = {setOverlayVisibility}
+                setCurrentUser = {setCurrentUser}
+                currentUser = {currentUser}
+                transaction = {transaction}
+                setTransaction = {setTransaction}
+                setStepTwoSend = {setStepTwoSend}
+                stepTwoSend = {stepTwoSend}
+                sendAmountData = {sendAmountData}
+                sendAccountData = {sendAccountData}
+                usedAccountNumbers = {usedAccountNumbers}
+                users = {users}
+                setUsers = {setUsers}
+                
+            />
+        </>
     )
 }
 

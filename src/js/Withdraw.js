@@ -1,6 +1,5 @@
 import { useRef, useState, useEffect } from "react/cjs/react.development"
 import ConfirmWithdaw from "./ConfirmWithdraw"
-import Confirm from "./ConfirmWithdraw"
 
 function Withdraw(props){
     const {popupName, setOverlayVisibility, setCurrentUser, currentUser, transaction, setTransaction, linkedAccounts, setLinkedAccounts} = props
