@@ -50,13 +50,30 @@ function EmployeeWithdraw(props) {
         let amountToWithdraw = withdrawAmount.current.value
         let userObject = users[username]
         let currentWallet = userObject.wallet
+        let currentTransaction = userObject.transactions
+        let newDate = new Date()
+        let dateOfTransaction = `${newDate.getDate()} ${newDate.toLocaleString('default', { month: 'short' })}`
+        let newTransaction = {
+            runningBalance: Number(currentWallet)-Number(amountToWithdraw),
+            transactionType: "Withdrawal",
+            Amount: amountToWithdraw,
+            otherAccount: {
+                bank: "Hwallet",
+                accountNumber: "Admin"
+            },
+            dateOfTransaction: dateOfTransaction
+        }
         setUsers(
             {
                 ...users,
                 [username] : {
                     ...userObject,
                     // "wallet": Number(1000)
-                    "wallet": Number(currentWallet)-Number(amountToWithdraw)
+                    "wallet": Number(currentWallet)-Number(amountToWithdraw),
+                    "transactions":[
+                        ...currentTransaction,
+                        newTransaction
+                    ]
                 }
             }
         )
