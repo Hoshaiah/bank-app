@@ -3,7 +3,7 @@ import { useRef } from "react/cjs/react.development"
 
 
 function EmployeeDeposit(props) {
-    const {users, setUsers, setPopupAction, setOverlayVisibility} = props
+    const {users, setUsers, usedAccountNumbers, setPopupAction, setOverlayVisibility} = props
     const depositLastName = useRef("")
     const depositFirstName = useRef("")
     const depositUsername = useRef("")
@@ -20,19 +20,8 @@ function EmployeeDeposit(props) {
         }
 
         if(accountNumber.length ===6){
-            let usersInversedCopy = {}
-            let usernames = Object.keys(users)
-            for (let i = 0; i< usernames.length; i++){
-                let object = users[usernames[i]]
-                let accNumber = object["accountNumber"]
-                let username = object["username"]
-                usersInversedCopy = {
-                    ...usersInversedCopy,
-                    [accNumber] : username
-                }
-            }
-            if(accountNumber in usersInversedCopy) {
-                let username = usersInversedCopy[accountNumber]
+            if(accountNumber in usedAccountNumbers) {
+                let username = usedAccountNumbers[accountNumber]
                 console.log(users[username])
                 depositLastName.current.value = users[username].lastName
                 depositFirstName.current.value = users[username].firstName

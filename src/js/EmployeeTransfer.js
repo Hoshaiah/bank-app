@@ -3,7 +3,7 @@ import { Component, useRef } from "react/cjs/react.development"
 
 
 function EmployeeTransfer(props) {
-    const {users, setUsers, setPopupAction, setOverlayVisibility} = props
+    const {users, setUsers, usedAccountNumbers, setPopupAction, setOverlayVisibility} = props
     const transferFromLastName = useRef("")
     const transferFromFirstName = useRef("")
     const transferFromUsername = useRef("")
@@ -21,19 +21,8 @@ function EmployeeTransfer(props) {
         }
 
         if(accountNumber.length ===6){
-            let usersInversedCopy = {}
-            let usernames = Object.keys(users)
-            for (let i = 0; i< usernames.length; i++){
-                let object = users[usernames[i]]
-                let accNumber = object["accountNumber"]
-                let username = object["username"]
-                usersInversedCopy = {
-                    ...usersInversedCopy,
-                    [accNumber] : username
-                }
-            }
-            if(accountNumber in usersInversedCopy) {
-                let username = usersInversedCopy[accountNumber]
+            if(accountNumber in usedAccountNumbers) {
+                let username = usedAccountNumbers[accountNumber]
                 transferFromLastName.current.value = users[username].lastName
                 transferFromFirstName.current.value = users[username].firstName
                 transferFromUsername.current.value = users[username].username
@@ -55,20 +44,8 @@ function EmployeeTransfer(props) {
         }
 
         if(accountNumber.length ===6){
-            let usersInversedCopy = {}
-            let usernames = Object.keys(users)
-            for (let i = 0; i< usernames.length; i++){
-                let object = users[usernames[i]]
-                let accNumber = object["accountNumber"]
-                let username = object["username"]
-                usersInversedCopy = {
-                    ...usersInversedCopy,
-                    [accNumber] : username
-                }
-            }
-            if(accountNumber in usersInversedCopy) {
-                let username = usersInversedCopy[accountNumber]
-                console.log(users[username])
+            if(accountNumber in usedAccountNumbers) {
+                let username = usedAccountNumbers[accountNumber]
                 transferToLastName.current.value = users[username].lastName
                 transferToFirstName.current.value = users[username].firstName
                 transferToUsername.current.value = users[username].username
