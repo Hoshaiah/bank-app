@@ -353,6 +353,40 @@ div#linkBankReminder {
   margin-bottom: 20px;
 }
 
+.popupStepTwo {
+  z-index: 11;
+  color: black;
+  height: 650px;
+  width: 500px;
+  background-color: white;
+  border-radius:1em ;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  position: absolute;
+}
+
+.popupStepTwo h1{
+  text-align: center;
+}
+
+.popupStepTwoInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  font-size: 13px;
+  margin-left: 50px;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.visible {
+  visibility: visible;
+}
+
 /* Login */
 
 #logindiv {

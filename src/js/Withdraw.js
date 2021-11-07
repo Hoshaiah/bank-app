@@ -1,10 +1,13 @@
 import { useRef, useState, useEffect } from "react/cjs/react.development"
+import Confirm from "./ConfirmWithdraw"
 
 function Withdraw(props){
     const {popupName, setOverlayVisibility, setCurrentUser, currentUser, transaction, setTransaction, linkedAccounts, setLinkedAccounts} = props
     const withdrawAmountData = useRef(0)
     const [withdrawalReminder, setWithdrawalReminder] = useState("")
     const [linkedAccountsToDisplay, setLinkedAccountsToDisplay] = useState(currentUser.linkedAccounts)
+    const [stepTwo, setStepTwo] = useState("hidden")
+
 
     let widthdrawAccountDefault = ""
     if (currentUser.linkedAccounts.length>0){
@@ -22,44 +25,35 @@ function Withdraw(props){
         setWithdrawalReminder("")
     }
 
+    // const onWithdrawSubmit = (event) => {
+    //     event.preventDefault()
+    //     setStepTwo(true)
+    // } 
+
     const onWithdrawSubmit = (event) => {
         event.preventDefault()
         let withdrawalAmount = Number(withdrawAmountData.current.value);
         let currentBalance = currentUser.wallet
-        let newDate = new Date()
-        let dateOfTransaction = `${newDate.getDate()} ${newDate.toLocaleString('default', { month: 'short' })}`
 
-        if(withdrawalAmount <= currentBalance && linkedAccounts.length !== 0){
-            setOverlayVisibility("hidden")
-            setCurrentUser ({
-                ...currentUser,
-                wallet: currentBalance-withdrawalAmount
-            })
-            setWithdrawalReminder("")
-            let record = {
-                runningBalance: currentBalance-withdrawalAmount,
-                transactionType: "Withdrawal",
-                Amount: withdrawalAmount,
-                otherAccount: withdrawalAccount,
-                dateOfTransaction: dateOfTransaction
-            }
-            setTransaction([...transaction, record])
-
+        if(withdrawalAmount > currentBalance){
+            setWithdrawalReminder("*Insufficient Balance")
+        } else if(withdrawalAmount===0 || withdrawalAmount ===""){
+            setWithdrawalReminder("*Amount cannot be zero or unfilled")
         } else if (linkedAccounts.length === 0) {
             setWithdrawalReminder("*Link an account first")
         } else {
-            setWithdrawalReminder("*Insufficient Balance")
+            setWithdrawalReminder("")
+            setStepTwo("visible")
         }
-
     }
 
     const onWithdrawSelect = (event) => {
         setWithdrawalAccount(currentUser.linkedAccounts[event.target.value])
     }
-    
-    
+    console.log(withdrawalAccount)
 
     return(
+    <>
         <form className="popup"> 
             <h1>{popupName}</h1>
             <div id="popupInputs">
@@ -88,6 +82,19 @@ function Withdraw(props){
                 <button id="submitButton" onClick={onWithdrawSubmit}>Submit</button>
             </div>
         </form>
+        <Confirm
+            setOverlayVisibility = {setOverlayVisibility}
+            setCurrentUser = {setCurrentUser}
+            currentUser = {currentUser}
+            transaction = {transaction}
+            setTransaction = {setTransaction}
+            linkedAccounts = {linkedAccounts}
+            setStepTwo = {setStepTwo}
+            stepTwo = {stepTwo}
+            withdrawAmountData = {withdrawAmountData}
+            withdrawalAccount = {withdrawalAccount}
+        />
+    </>
     )
 }
 
