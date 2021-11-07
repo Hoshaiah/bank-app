@@ -11,7 +11,16 @@ function RecentActivities(props) {
         }
         return lastTransactions
     }
-    const [toDisplay, setToDisplay] = useState(getLastTransactions(5))
+
+    function updateToDisplay() {
+        if (showState ==="Show Less") {
+            return getLastTransactions(10)
+
+        } else {
+            return getLastTransactions(5)
+        }
+    }
+    const [toDisplay, setToDisplay] = useState(() => updateToDisplay())
 
     const onShowClick  = () => {
         if (showState ==="Show More") {
@@ -25,8 +34,12 @@ function RecentActivities(props) {
         }
 
     useEffect(()=>{
-        onShowClick()
-    },[currentUser.transactions])
+        if (showState ==="Show Less") {
+            setToDisplay(getLastTransactions(10))
+        } else {
+            setToDisplay(getLastTransactions(5))
+        }}
+        ,[currentUser.transactions])
     
 
 
