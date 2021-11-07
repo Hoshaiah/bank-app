@@ -87,26 +87,58 @@ function EmployeeTransfer(props) {
 
     const onSubmit = (event) => {
         let amountToTransfer = transferAmount.current.value
+        let newDate = new Date()
+        let dateOfTransaction = `${newDate.getDate()} ${newDate.toLocaleString('default', { month: 'short' })}`
 
         let usernameFrom = transferFromUsername.current.value
         let userObjectFrom = users[usernameFrom]
         let currentWalletFrom = userObjectFrom.wallet
+        let accountNumberFrom = userObjectFrom.accountNumber
+        let currentTransactionsFrom = userObjectFrom.transactions
+        let newTransactionFrom = {
+            runningBalance: Number(currentWalletFrom)-Number(amountToTransfer),
+            transactionType: "Send",
+            Amount: amountToTransfer,
+            otherAccount: {
+                bank: "Hwallet (Admin)",
+                accountNumber: accountNumberFrom
+            },
+            dateOfTransaction: dateOfTransaction
+        }
 
         let usernameTo = transferToUsername.current.value
         let userObjectTo = users[usernameTo]
         let currentWalletTo = userObjectTo.wallet
+        let accountNumberTo = userObjectTo.accountNumber
+        let currentTransactionsTo = userObjectTo.transactions
+        let newTransactionTo = {
+            runningBalance: Number(currentWalletTo)+Number(amountToTransfer),
+            transactionType: "Received",
+            Amount: amountToTransfer,
+            otherAccount: {
+                bank: "Hwallet (Admin)",
+                accountNumber: accountNumberTo
+            },
+            dateOfTransaction: dateOfTransaction
+        }
         setUsers(
             {
                 ...users,
                 [usernameFrom] : {
                     ...userObjectFrom,
-                    // "wallet": Number(1000)
-                    "wallet": Number(currentWalletFrom)-Number(amountToTransfer)
+                    "wallet": Number(currentWalletFrom)-Number(amountToTransfer),
+                    "transactions": [
+                        ...currentTransactionsFrom,
+                        newTransactionFrom
+                    ]
                 },
                 [usernameTo] : {
                     ...userObjectTo,
-                    // "wallet": Number(1000)
-                    "wallet": Number(currentWalletTo)+Number(amountToTransfer)
+                    "wallet": Number(currentWalletTo)+Number(amountToTransfer),
+                    "transactions": [
+                        ...currentTransactionsTo,
+                        newTransactionTo
+                    ]
                 }
             }
         )
