@@ -2,7 +2,7 @@ import { useState } from "react"
 import { useRef } from "react/cjs/react.development"
 
 function AddUser(props){
-    const {users, setUsers, usedAccountNumbers, setUsedAccountNumbers, usedEmails, setUsedEmails} = props
+    const {users, setUsers, usedAccountNumbers, setUsedAccountNumbers, usedEmails, setUsedEmails, adminRecords, setAdminRecords} = props
 
     const newUsername = useRef("")
     const newEmail = useRef("")
@@ -101,6 +101,24 @@ function AddUser(props){
             newPassword.current.value = ""
             newInitialBalance.current.value = ""
             newEmail.current.value = ""
+
+            let previousLog = []
+            let newDate = new Date()
+            if (adminRecords.managementLog) {
+                previousLog = adminRecords.managementLog
+            }
+            setAdminRecords({
+                ...adminRecords,
+                managementLog : [
+                    ...previousLog,
+                    {  
+                        action: "Created User",
+                        username: username,
+                        accountNumber: newAccountNumber,
+                        date: `${newDate.getDate()} ${newDate.toLocaleString('default', { month: 'short' })}`
+                    }
+                ]
+            })
         }
 
     }

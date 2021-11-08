@@ -5,6 +5,7 @@ import EmployeeTransfer from "./EmployeeTransfer"
 import { useState } from "react"
 import EmployeePopup from "./EmployeePopup"
 import EmployeeTransactions from "./EmployeTransactions"
+import EmployeeManagementLog from "./EmployeeManagementLog"
 
 function Employee(props){
     const {isEmployeePage, setIsEmployeePage, currentUser, setCurrentUser, setUsers, users, setIsLoginPage, usedAccountNumbers, setUsedAccountNumbers, usedEmails, setUsedEmails, adminRecords, setAdminRecords} = props
@@ -23,6 +24,25 @@ function Employee(props){
         let usedAccountNumbersCopy = {...usedAccountNumbers}
         delete usedAccountNumbersCopy[users[user].accountNumber]
         setUsedAccountNumbers(usedAccountNumbersCopy)
+
+        let previousLog = []
+        let newDate = new Date()
+        if (adminRecords.managementLog) {
+            previousLog = adminRecords.managementLog
+        }
+        setAdminRecords({
+            ...adminRecords,
+            managementLog : [
+                ...previousLog,
+                {  
+                    action: "Deleted User",
+                    username: user,
+                    accountNumber: users[user].accountNumber,
+                    date: `${newDate.getDate()} ${newDate.toLocaleString('default', { month: 'short' })}`
+                }
+            ]
+        })
+
     }
 
     const onWithdrawClick = () =>{
@@ -79,11 +99,22 @@ function Employee(props){
                 setUsedAccountNumbers = {setUsedAccountNumbers}
                 usedEmails = {usedEmails}
                 setUsedEmails = {setUsedEmails}
+                adminRecords = {adminRecords}
+                setAdminRecords = {setAdminRecords}
             />
             <EmployeeTransactions
                 adminRecords = {adminRecords}
                 setAdminRecords = {setAdminRecords}
             />
+
+            <div>
+                <h1>User Management Log</h1>
+                <EmployeeManagementLog
+                    adminRecords = {adminRecords}
+                    setAdminRecords = {setAdminRecords}
+                />
+
+            </div>
             <div className={overlayVisiblity} id="employeeOverlay" >
                 <EmployeePopup
                     setUsers = {setUsers}
