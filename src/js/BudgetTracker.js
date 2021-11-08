@@ -27,7 +27,7 @@ function BudgetTracker(props) {
                 ...previousExpenses,
                 [counter]: {
                     expense: "",
-                    amount: 0,
+                    amount: "",
                 }
             }
         })
