@@ -895,3 +895,40 @@ div#linkBankReminder {
 #auX{
   grid-area: aux;
 }
+
+
+#allUserAccounts{
+  min-width: 700px;
+  overflow-x: scroll;
+}
+
+#userDataHeader {
+  width: 100%;
+  display: flex;
+
+}
+
+#userDataHeader div{
+  display: flex;
+  padding: 3px;
+  border: 1px solid;
+  padding: 5px;
+  width: 180px;
+  font-weight: bolder;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.userRow {
+  width: 100%;
+}
+
+.userRowData {
+  display: block;
+  padding: 5px;
+  border: 1px solid;
+  width: 180px;
+  text-align: center;
+  overflow: hidden;
+}

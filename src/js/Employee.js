@@ -103,20 +103,30 @@ function Employee(props){
                         /> */}
                     </div>
                     <div id ="allUserAccounts">
+                        <h1>Users</h1>
+                        <div id="userDataHeader">
+                            <div>Account Number</div>
+                            <div>Username</div>
+                            <div>First name</div>
+                            <div>Last name</div>
+                            <div>Email address</div>
+                            <div>Balance</div>
+                            <div>Delete</div>
+                        </div>
                         {Object.keys(users).map((key, index) => ( key=== "undefined" ? "" :
                             <div class="userRow">
-                                <row>{users[key].accountNumber}</row>
-                                <row>{users[key].username}</row>
-                                <row>{users[key].firstName}</row>
-                                <row>{users[key].lastName}</row>
-                                <row>{users[key].email}</row>
-                                <row>{users[key].wallet}</row>
-                                <row onClick={()=> onDeleteUser(key)}>Delete</row>
+                                <div class="userRowData">{users[key].accountNumber}</div>
+                                <div class="userRowData">{users[key].username}</div>
+                                <div class="userRowData">{users[key].firstName}</div>
+                                <div class="userRowData">{users[key].lastName}</div>
+                                <div class="userRowData">{users[key].email}</div>
+                                <div class="userRowData">{users[key].wallet}</div>
+                                <div class="userRowData" onClick={()=> onDeleteUser(key)}>Delete</div>
                             </div>
                         ))}
                     </div>
 
-                    <EmployeeTransactions
+                    {/* <EmployeeTransactions
                         adminRecords = {adminRecords}
                         setAdminRecords = {setAdminRecords}
                     />
@@ -128,7 +138,7 @@ function Employee(props){
                             setAdminRecords = {setAdminRecords}
                         />
 
-                    </div>
+                    </div> */}
                 </main>
             </div>
         ) 
