@@ -27,6 +27,12 @@ function App() {
     usedAccountNumbersData = JSON.parse(localStorageUsedAccountNumbers)
   }
 
+  const localStorageUsedEmails = localStorage.getItem("usedEmails")
+  let usedEmailsData = {}
+  if(localStorageUsedEmails) {
+    usedEmailsData = JSON.parse(localStorageUsedEmails)
+  }
+
 
   const isPageData = sessionStorage.getItem("isPageData")
   let pagesStatus = {
@@ -51,6 +57,8 @@ function App() {
   const [transaction, setTransaction] = useState(currentUserData?.["transactions"] || [])
   const [linkedAccounts, setLinkedAccounts] = useState(currentUserData?.["linkedAccounts"] || [])
   const [usedAccountNumbers, setUsedAccountNumbers] = useState(usedAccountNumbersData)
+  const [usedEmails, setUsedEmails] = useState(usedEmailsData)
+
 
   const [isLoginPage, setIsLoginPage] = useState(pagesStatus.isLoginPage)
   const [isSignupPage, setIsSignupPage] = useState(pagesStatus.isSignupPage)
@@ -70,6 +78,10 @@ function App() {
   useEffect(()=>{
     localStorage.setItem("usedAccountNumbers",JSON.stringify(usedAccountNumbers))
   },[usedAccountNumbers])
+
+  useEffect(()=>{
+    localStorage.setItem("usedEmails",JSON.stringify(usedEmails))
+  },[usedEmails])
 
   useEffect(()=>{
     setCurrentUser({
@@ -124,6 +136,8 @@ function App() {
         setIsLoginPage = {setIsLoginPage}
         usedAccountNumbers = {usedAccountNumbers}
         setUsedAccountNumbers = {setUsedAccountNumbers}
+        usedEmails = {usedEmails}
+        setUsedEmails = {setUsedEmails}
       />
 
       <Dashboard
@@ -161,6 +175,8 @@ function App() {
         setUsers = {setUsers}
         usedAccountNumbers = {usedAccountNumbers}
         setUsedAccountNumbers = {setUsedAccountNumbers}
+        usedEmails = {usedEmails}
+        setUsedEmails = {setUsedEmails}
       />
     </>
   );

@@ -3,13 +3,14 @@ import logo from '../logo.svg';
 
 function Signup(props){
 
-    const {setIsSignupPage, isSignupPage, setIsLoginPage, users, setUsers, usedAccountNumbers, setUsedAccountNumbers} = props
+    const {setIsSignupPage, isSignupPage, setIsLoginPage, users, setUsers, usedAccountNumbers, setUsedAccountNumbers, usedEmails, setUsedEmails} = props
 
     const inputFirstName = useRef("")
     const inputLastName = useRef("")
     const inputNewUserName = useRef("")
     const inputNewPassword = useRef("")
     const inputConfirmPassword = useRef("")
+    const inputNewEmail = useRef("")
     const [signupReminder, setSignupReminder] = useState("")
 
     const createAccountNumber = () => {
@@ -38,6 +39,7 @@ function Signup(props){
         let password = inputNewPassword.current.value
         let firstName = inputFirstName.current.value
         let lastName = inputLastName.current.value
+        let email = inputNewEmail.current.value
 
         if (username === "") {
             setSignupReminder("*Username is required")
@@ -60,15 +62,22 @@ function Signup(props){
         } else if (username in users) {
             setSignupReminder("*Username is already taken")
             event.preventDefault()
+        } else if (email in usedEmails) {
+            setSignupReminder("*Email is already taken")
+            event.preventDefault()
         } else {
             setSignupReminder("")
-
             let newAccountNumber = createAccountNumber()
             setUsedAccountNumbers({
                 ...usedAccountNumbers,
                 [newAccountNumber]: username})
+            setUsedEmails({
+                ...usedEmails,
+                [email]: username})
+                
             let userData = {
                 username: username,
+                email: email,
                 firstName: firstName,
                 lastName: lastName,
                 password: password,
@@ -118,6 +127,12 @@ function Signup(props){
                         <label for="newUsername"></label>
                         <input ref={inputNewUserName} type="text" id="newUsername" name="username" placeholder="Username" required></input>
                     </div>
+
+                    <div id="newEmail">
+                        <label for="newEmail"></label>
+                        <input ref={inputNewEmail} type="email" id="newEmail" name="email" placeholder="Email Address" required></input>
+                    </div>
+
                     <div id="newpasswordInput">
                         <label for="newPassword"></label>
                         <input ref={inputNewPassword} type="password" id="newPassword" name="newPassword" placeholder="Password" required></input>
