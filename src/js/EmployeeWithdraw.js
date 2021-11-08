@@ -86,23 +86,23 @@ function EmployeeWithdraw(props) {
             )
             setWithdrawReminder("")
             
-            // let previousTransactions = []
-            // if (adminRecords.transactions) {
-            //     previousTransactions = adminRecords.transactions
-            // }
-            // setAdminRecords({
-            //     ...adminRecords,
-            //     transactions : [
-            //         ...previousTransactions,
-            //         {  
-            //             from: users[username].accountNumber,
-            //             to: "Hwallet",
-            //             transactionType: "Withdrawal",
-            //             Amount: amountToWithdraw,
-            //             dateOfTransaction: dateOfTransaction
-            //         }
-            //     ]
-            // })
+            let previousTransactions = []
+            if (adminRecords.transactions) {
+                previousTransactions = adminRecords.transactions
+            }
+            setAdminRecords({
+                ...adminRecords,
+                transactions : [
+                    ...previousTransactions,
+                    {  
+                        from: users[username].accountNumber,
+                        to: "Hwallet",
+                        transactionType: "Withdrawal",
+                        Amount: amountToWithdraw,
+                        dateOfTransaction: dateOfTransaction
+                    }
+                ]
+            })
 
         }
     }
