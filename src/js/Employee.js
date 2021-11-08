@@ -65,6 +65,7 @@ function Employee(props){
                         <row>{users[key].username}</row>
                         <row>{users[key].firstName}</row>
                         <row>{users[key].lastName}</row>
+                        <row>{users[key].email}</row>
                         <row>{users[key].wallet}</row>
                         <row onClick={()=> onDeleteUser(key)}>Delete</row>
                     </div>
