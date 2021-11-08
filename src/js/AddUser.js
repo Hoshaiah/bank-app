@@ -87,7 +87,8 @@ function AddUser(props){
                 wallet: Number(initialBalance),
                 transactions: [],
                 linkedAccounts: [],
-                accountNumber: newAccountNumber
+                accountNumber: newAccountNumber,
+                expenses: {}
             }
             setUsers({
                 ...users,
