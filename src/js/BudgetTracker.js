@@ -7,13 +7,16 @@ function BudgetTracker(props) {
     const [expectedCash, setExpectedCash] = useState(currentUser.wallet)
 
 
-
-    useEffect(()=>{
+    function updateExpectedCash(){
         let expensesTotal = 0
         Object.keys(currentUser.expenses).forEach(key=>(
             expensesTotal += Number(currentUser.expenses[key]["amount"])
         ))
         setExpectedCash(currentUser.wallet - expensesTotal)
+    }
+
+    useEffect(()=>{
+        updateExpectedCash()
     },[currentUser.expenses, currentUser.wallet])
 
     const onAddExpense = () => {
@@ -57,6 +60,7 @@ function BudgetTracker(props) {
             ...currentUser,
             expenses: expensesCopy
         })
+        updateExpectedCash()
     }
 
     const onShowExpenses = () => {
