@@ -1,7 +1,4 @@
 import AddUser from "./AddUser"
-import EmployeeWithdraw from "./EmployeeWithdraw"
-import EmployeeDeposit from "./EmployeeDeposit"
-import EmployeeTransfer from "./EmployeeTransfer"
 import { useState } from "react"
 import EmployeePopup from "./EmployeePopup"
 import EmployeeTransactions from "./EmployeTransactions"
@@ -62,72 +59,75 @@ function Employee(props){
 
     if (isEmployeePage){
         return (
-            <>
-            <h1 onClick={onExit}>Exit</h1>
-            <div id="employeeAccountActions">
-                <h1>Main</h1>
-                <h1>Add User</h1>
-            </div>
-            <div id="employeeMoneyActions">
-                <div id="employeeWithdraw" >
-                    <h2 onClick={onWithdrawClick}>Withdraw</h2>
-                </div>
-                <div id="employeeDeposit">
-                    <h2 onClick={onTransferClick}>Transfer</h2>
-                </div>
-                <div id="employeeTransfer">
-                    <h2 onClick={onDepositClick}>Deposit</h2>
-                </div>
-            </div>
-            <div id ="allUserAccounts">
-                {Object.keys(users).map((key, index) => ( key=== "undefined" ? "" :
-                    <div class="userRow">
-                        <row>{users[key].accountNumber}</row>
-                        <row>{users[key].username}</row>
-                        <row>{users[key].firstName}</row>
-                        <row>{users[key].lastName}</row>
-                        <row>{users[key].email}</row>
-                        <row>{users[key].wallet}</row>
-                        <row onClick={()=> onDeleteUser(key)}>Delete</row>
+            <div id="EmployeePage">
+                <nav id="employeeNavigationPane">
+                    <ul>
+                        <li>Main</li>
+                        <li>Transactions Log</li>
+                        <li>User Management Log</li>
+                    </ul>
+                </nav>
+                <main id="employeeMain">
+                    <div id="employeeMainTop">
+                        <h1 onClick={onExit}>DashBoard</h1>
+                        <button id="addUserButton">+ Add User</button>
+                        <div id="moneyActions">
+                                <button onClick={onWithdrawClick}>Withdraw</button>
+                                <button onClick={onTransferClick}>Transfer</button>
+                                <button onClick={onDepositClick}>Deposit</button>
+                        </div>
+                        <div id="employeePopupPane" >
+                            <EmployeePopup
+                                setUsers = {setUsers}
+                                users = {users}
+                                popupAction = {popupAction}
+                                setPopupAction = {setPopupAction}
+                                setOverlayVisibility = {setOverlayVisibility}
+                                usedAccountNumbers = {usedAccountNumbers}
+                                adminRecords = {adminRecords}
+                                setAdminRecords = {setAdminRecords}
+                            />
+                        </div>
+                        <AddUser
+                            users = {users}
+                            setUsers = {setUsers}
+                            usedAccountNumbers = {usedAccountNumbers}
+                            setUsedAccountNumbers = {setUsedAccountNumbers}
+                            usedEmails = {usedEmails}
+                            setUsedEmails = {setUsedEmails}
+                            adminRecords = {adminRecords}
+                            setAdminRecords = {setAdminRecords}
+                        />
                     </div>
-                ))}
-            </div>
-            <AddUser
-                users = {users}
-                setUsers = {setUsers}
-                usedAccountNumbers = {usedAccountNumbers}
-                setUsedAccountNumbers = {setUsedAccountNumbers}
-                usedEmails = {usedEmails}
-                setUsedEmails = {setUsedEmails}
-                adminRecords = {adminRecords}
-                setAdminRecords = {setAdminRecords}
-            />
-            <EmployeeTransactions
-                adminRecords = {adminRecords}
-                setAdminRecords = {setAdminRecords}
-            />
+                    <div id ="allUserAccounts">
+                        {Object.keys(users).map((key, index) => ( key=== "undefined" ? "" :
+                            <div class="userRow">
+                                <row>{users[key].accountNumber}</row>
+                                <row>{users[key].username}</row>
+                                <row>{users[key].firstName}</row>
+                                <row>{users[key].lastName}</row>
+                                <row>{users[key].email}</row>
+                                <row>{users[key].wallet}</row>
+                                <row onClick={()=> onDeleteUser(key)}>Delete</row>
+                            </div>
+                        ))}
+                    </div>
 
-            <div>
-                <h1>User Management Log</h1>
-                <EmployeeManagementLog
-                    adminRecords = {adminRecords}
-                    setAdminRecords = {setAdminRecords}
-                />
+                    <EmployeeTransactions
+                        adminRecords = {adminRecords}
+                        setAdminRecords = {setAdminRecords}
+                    />
 
+                    <div>
+                        <h1>User Management Log</h1>
+                        <EmployeeManagementLog
+                            adminRecords = {adminRecords}
+                            setAdminRecords = {setAdminRecords}
+                        />
+
+                    </div>
+                </main>
             </div>
-            <div className={overlayVisiblity} id="employeeOverlay" >
-                <EmployeePopup
-                    setUsers = {setUsers}
-                    users = {users}
-                    popupAction = {popupAction}
-                    setPopupAction = {setPopupAction}
-                    setOverlayVisibility = {setOverlayVisibility}
-                    usedAccountNumbers = {usedAccountNumbers}
-                    adminRecords = {adminRecords}
-                    setAdminRecords = {setAdminRecords}
-                />
-            </div>
-            </>
         ) 
     } else {
         return (

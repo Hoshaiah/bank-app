@@ -108,24 +108,28 @@ function EmployeeWithdraw(props) {
     }
 
     return (
-        <form class="popup">
-            <h1> Withdraw header</h1>
-            <div><p>{withdrawReminder}</p></div>
-            <div id="addUserInputs">
+        <form id="employeePopupWithdraw">
+            <div id="withdrawHeader">
+                <h1> Withdraw</h1>
+                <div><p>{withdrawReminder}</p></div>
+            </div>
+            <div id="withdrawX">
+                <button onClick={e => onCancel(e)}type="submit">X</button>
+            </div>
+            <div id="withdrawInputDiv">
                 <label for="withdrawAccountNumber"></label>
                 <input onChange={event => onAccountNumberChange(event.target.value)} type="text" id="withdrawAccountNumber" placeholder="Account Number"></input>
-                <label for="withdrawUsername"></label>
-                <input ref = {withdrawUsername} type="text" id="withdrawUsername" placeholder="Username"></input>
-                <label for="withdrawFirstName"></label>
-                <input ref = {withdrawFirstName} type="text" id="withdrawFirstName" placeholder="First Name"></input>
-                <label for="withdrawAmount"></label>
-                <input ref = {withdrawLastName} type="text" id="withdrawAmount" placeholder="Last Name"></input>
-                <label for="withdrawAmount"></label>
                 <input ref = {withdrawAmount} type="text" id="withdrawAmount" placeholder="Amount"></input>
-            </div>
-            <div id="addUserButtons">
                 <button onClick={e => onSubmit(e)}type="submit">Submit</button>
-                <button onClick={e => onCancel(e)}type="submit">Cancel</button>
+            </div>
+            <div id="withdrawUserInfo">
+                <label for="withdrawUsername"></label>
+                <input ref = {withdrawUsername} type="text" id="withdrawUsername" placeholder="Username" readOnly></input>
+                <label for="withdrawFirstName"></label>
+                <input ref = {withdrawFirstName} type="text" id="withdrawFirstName" placeholder="First Name" readOnly></input>
+                <label for="withdrawAmount"></label>
+                <input ref = {withdrawLastName} type="text" id="withdrawAmount" placeholder="Last Name" readOnly></input>
+                <label for="withdrawAmount"></label>
             </div>
         </form>
     )

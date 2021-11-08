@@ -39,7 +39,7 @@ function Dashboard(props) {
     if (isDashboardPage){
         return (
           <div className="App">
-            <nav> 
+            <nav id="dashboardNav"> 
             
               <ul id="gennav">
                 <img src={logo} className="App-logo" alt="logo" />

@@ -59,7 +59,7 @@ body {
 }
 
 /* Dashboard */
-nav {
+#dashboardNav {
   margin: 0;
   padding: 0;
   display: flex;
@@ -68,7 +68,7 @@ nav {
   color: whitesmoke;
 }
 
-nav ul {
+#dashboardNav ul {
  float: none;
  list-style-type: none;
  display: flex;
@@ -77,7 +77,7 @@ nav ul {
  padding: 0;
 }
 
-nav ul li {
+#dashboardNav ul li {
   margin: 10px;
 }
 
@@ -658,3 +658,129 @@ div#linkBankReminder {
   align-items: flex-start;
   margin-bottom: 30px;
 } */
+
+/* Employee */
+
+#EmployeePage {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr ;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-areas: 
+  "nav main main"
+  "nav main main"
+  "nav main main";
+  height: 1500px;
+}
+
+#employeeNavigationPane {
+  grid-area: nav;
+  margin-top: 200px;
+
+}
+
+#employeeNavigationPane ul {
+  list-style-type: none;
+}
+
+#employeeNavigationPane li {
+  margin-top: 30px;
+  font-size: 20px;
+}
+
+#employeeMain {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  grid-area: main;
+  justify-content: flex-start;
+}
+
+#employeeMainTop {
+  width: 100%;
+}
+
+#moneyActions {
+  width: 100%;
+  display: flex;
+}
+
+#moneyActions button {
+  width: 200px;
+  height: 50px;
+  margin: 25px;
+  color:rgb(7, 7, 77);
+  background-color: white;
+  border: 1px solid rgb(7, 7, 77);
+  border-radius: 0.5em;
+  font-weight: bolder;
+}
+
+#addUserButton {
+  width: 200px;
+  height: 50px;
+  color:rgb(7, 7, 77);
+  background-color: white;
+  border: 1px solid rgb(7, 7, 77);
+  border-radius: 0.5em;
+  font-weight: bolder;
+  font-size: 20px;
+}
+
+#employeePopupPane {
+  width: 100%;
+  height: fit-content;
+}
+
+#employeePopupWithdraw{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-areas: 
+  "wheader wheader wheader wx"
+  "wleft wleft wright wright"
+  "wleft wleft wright wright";
+}
+
+#withdrawInputDiv {
+  grid-area: wleft;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: fit-content;
+  margin: 0;
+}
+
+#withdrawInputDiv input{
+  padding-left: 7px;
+  width: 300px;
+  height: 35px;
+  margin: 5px;
+}
+
+#withdrawUserInfo{
+  grid-area: wright;
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+#withdrawUserInfo input{
+  padding-left: 7px;
+  width: 300px;
+  height: 35px;
+  margin: 5px;
+  background-color: rgb(223, 223, 223);
+}
+
+#withdrawHeader{
+  grid-area: wheader;
+  display: flex;
+  justify-content: center;
+  margin-right: 150px;
+}
+
+#withdrawX {
+  grid-area: wx;
+}
