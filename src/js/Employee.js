@@ -43,18 +43,18 @@ function Employee(props){
     }
 
     const onWithdrawClick = () =>{
-        setOverlayVisibility("visible")
         setPopupAction("withdraw")
     }
 
     const onDepositClick = () => {
-        setOverlayVisibility("visible")
         setPopupAction("deposit")
     }
 
     const onTransferClick = () => {
-        setOverlayVisibility("visible")
         setPopupAction("transfer")
+    }
+    const onAddUserClick = () => {
+        setPopupAction("addUser")
     }
 
     if (isEmployeePage){
@@ -70,7 +70,7 @@ function Employee(props){
                 <main id="employeeMain">
                     <div id="employeeMainTop">
                         <h1 onClick={onExit}>DashBoard</h1>
-                        <button id="addUserButton">+ Add User</button>
+                        <button onClick={onAddUserClick} id="addUserButton">+ Add User</button>
                         <div id="moneyActions">
                                 <button onClick={onWithdrawClick}>Withdraw</button>
                                 <button onClick={onTransferClick}>Transfer</button>
@@ -86,9 +86,12 @@ function Employee(props){
                                 usedAccountNumbers = {usedAccountNumbers}
                                 adminRecords = {adminRecords}
                                 setAdminRecords = {setAdminRecords}
+                                setUsedAccountNumbers = {setUsedAccountNumbers}
+                                usedEmails = {usedEmails}
+                                setUsedEmails = {setUsedEmails}
                             />
                         </div>
-                        <AddUser
+                        {/* <AddUser
                             users = {users}
                             setUsers = {setUsers}
                             usedAccountNumbers = {usedAccountNumbers}
@@ -97,7 +100,7 @@ function Employee(props){
                             setUsedEmails = {setUsedEmails}
                             adminRecords = {adminRecords}
                             setAdminRecords = {setAdminRecords}
-                        />
+                        /> */}
                     </div>
                     <div id ="allUserAccounts">
                         {Object.keys(users).map((key, index) => ( key=== "undefined" ? "" :

@@ -807,7 +807,7 @@ div#linkBankReminder {
   margin: 0;
 }
 
-#transferInputs input {
+#transferInputs input  {
   padding-left: 7px;
   width: 300px;
   height: 35px;
@@ -823,7 +823,7 @@ div#linkBankReminder {
   justify-content: flex-start;
   margin-bottom: 20px;
 }
-#transferInfoFrom input {
+#transferInfoFrom input{
   padding-left: 7px;
   width: 300px;
   height: 35px;
@@ -859,4 +859,39 @@ div#linkBankReminder {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+/* adduser */
+
+#addUserForm {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-areas: 
+  ". auheader auheader auheader aux"
+  "aumain aumain aumain aumain aumain"
+  "aumain aumain aumain aumain aumain";
+}
+#addUserInputs {
+  grid-area: aumain;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#addUserInputs input  {
+  padding-left: 7px;
+  width: 300px;
+  height: 35px;
+  margin: 5px;
+}
+
+#addUserHeader {
+  grid-area: auheader;
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+}
+
+#auX{
+  grid-area: aux;
 }

@@ -1,10 +1,10 @@
 import EmployeeDeposit from "./EmployeeDeposit"
 import EmployeeTransfer from "./EmployeeTransfer"
 import EmployeeWithdraw from "./EmployeeWithdraw"
-
+import AddUser from "./AddUser"
 
 function EmployeePopup (props){
-    const {setUsers, users, popupAction, setPopupAction, setOverlayVisibility, usedAccountNumbers, adminRecords, setAdminRecords} = props
+    const {setUsers, users, popupAction, setPopupAction, setOverlayVisibility, usedAccountNumbers, adminRecords, setAdminRecords, setUsedAccountNumbers,usedEmails, setUsedEmails} = props
 
 
     if(popupAction==="withdraw"){
@@ -41,6 +41,20 @@ function EmployeePopup (props){
                 adminRecords = {adminRecords}
                 setAdminRecords = {setAdminRecords}
             />
+        )
+    } else if(popupAction ==="addUser"){
+        return(<AddUser
+            users = {users}
+            setUsers = {setUsers}
+            usedAccountNumbers = {usedAccountNumbers}
+            setUsedAccountNumbers = {setUsedAccountNumbers}
+            usedEmails = {usedEmails}
+            setUsedEmails = {setUsedEmails}
+            adminRecords = {adminRecords}
+            setAdminRecords = {setAdminRecords}
+            setPopupAction = {setPopupAction}
+
+        />
         )
     } else {
         return null

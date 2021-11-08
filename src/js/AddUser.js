@@ -2,7 +2,7 @@ import { useState } from "react"
 import { useRef } from "react/cjs/react.development"
 
 function AddUser(props){
-    const {users, setUsers, usedAccountNumbers, setUsedAccountNumbers, usedEmails, setUsedEmails, adminRecords, setAdminRecords} = props
+    const {users, setUsers, usedAccountNumbers, setUsedAccountNumbers, usedEmails, setUsedEmails, adminRecords, setAdminRecords, setPopupAction} = props
 
     const newUsername = useRef("")
     const newEmail = useRef("")
@@ -120,13 +120,23 @@ function AddUser(props){
                 ]
             })
         }
+    }
 
+    const onCancel =(event) => {
+        event.preventDefault()
+        setPopupAction("")
+        setAddUserReminder("")
     }
 
     return(
-        <form>
-            <h1> Add a User</h1>
-            <div><p>{addUserReminder}</p></div>
+        <form id="addUserForm">
+            <div id="addUserHeader">
+                <h1> Add a User</h1>
+                <div><p>{addUserReminder}</p></div>
+            </div>
+            <div id="auX">
+                <button onClick={e => onCancel(e)}type="submit">X</button>
+            </div>
             <div id="addUserInputs">
                 <label for="newUsername"></label>
                 <input ref = {newUsername} type="text" id="newUsername" placeholder="Username"></input>
@@ -140,9 +150,9 @@ function AddUser(props){
                 <input ref = {newPassword} type="text" id="newPassword" placeholder="Password"></input>
                 <label for="newInitialBalance"></label>
                 <input ref = {newInitialBalance} type="number" id="newInitialBalance" placeholder="Initial Balance"></input>
-            </div>
-            <div id="addUserButtons">
-                <button onClick={e => onSubmit(e)}type="submit">Submit</button>
+                <div id="addUserButtons">
+                    <button onClick={e => onSubmit(e)}type="submit">Submit</button>
+                </div>
             </div>
         </form>
     )
