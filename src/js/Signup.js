@@ -84,7 +84,8 @@ function Signup(props){
                 wallet: Number(0),
                 transactions: [],
                 linkedAccounts: [],
-                accountNumber: newAccountNumber
+                accountNumber: newAccountNumber,
+                expenses: {}
             }
     
     

@@ -6,6 +6,7 @@ import Popup from '../js/Popup';
 import {useEffect, useState} from "react"
 import Actions from '../js/Actions'
 import RecentActivities from './RecentAcitivities';
+import BudgetTracker from './BudgetTracker';
 
 
 function Dashboard(props) {
@@ -70,12 +71,17 @@ function Dashboard(props) {
                 />
             </main>
 
+            <BudgetTracker
+              setCurrentUser = {setCurrentUser}
+              currentUser = {currentUser}
+            />
+
             <RecentActivities
               currentUser = {currentUser}
               linkedAccounts = {linkedAccounts}
               setLinkedAccounts = {setLinkedAccounts}
             />
-      
+        
             <div className={overlayVisiblity} id="overlay" >
               <Popup
                 popupName = {popupName}
