@@ -6,7 +6,7 @@ import { useState } from "react"
 import EmployeePopup from "./EmployeePopup"
 
 function Employee(props){
-    const {isEmployeePage, setIsEmployeePage, currentUser, setCurrentUser, setUsers, users, setIsLoginPage, usedAccountNumbers, setUsedAccountNumbers} = props
+    const {isEmployeePage, setIsEmployeePage, currentUser, setCurrentUser, setUsers, users, setIsLoginPage, usedAccountNumbers, setUsedAccountNumbers, usedEmails, setUsedEmails} = props
     const [overlayVisiblity, setOverlayVisibility] = useState("hidden")
     const [popupAction, setPopupAction] = useState("")
 
@@ -75,6 +75,8 @@ function Employee(props){
                 setUsers = {setUsers}
                 usedAccountNumbers = {usedAccountNumbers}
                 setUsedAccountNumbers = {setUsedAccountNumbers}
+                usedEmails = {usedEmails}
+                setUsedEmails = {setUsedEmails}
             />
             <div className={overlayVisiblity} id="employeeOverlay" >
                 <EmployeePopup
