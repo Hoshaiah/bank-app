@@ -11,7 +11,7 @@ function EmployeeTransfer(props) {
     const transferToFirstName = useRef("")
     const transferToUsername = useRef("")
     const transferAmount = useRef(0)
-
+    const [transferReminder, setTransferReminder] = useState("")
 
     const onAccountNumberChangeFrom = (accountNumber) => {
         function emptyInputsFrom() {
@@ -63,69 +63,87 @@ function EmployeeTransfer(props) {
         event.preventDefault()
         setOverlayVisibility("hidden")
         setPopupAction("")
+        setTransferReminder("")
     }
 
     const onSubmit = (event) => {
         let amountToTransfer = transferAmount.current.value
-        let newDate = new Date()
-        let dateOfTransaction = `${newDate.getDate()} ${newDate.toLocaleString('default', { month: 'short' })}`
-
         let usernameFrom = transferFromUsername.current.value
-        let userObjectFrom = users[usernameFrom]
-        let currentWalletFrom = userObjectFrom.wallet
-        let accountNumberFrom = userObjectFrom.accountNumber
-        let currentTransactionsFrom = userObjectFrom.transactions
-        let newTransactionFrom = {
-            runningBalance: Number(currentWalletFrom)-Number(amountToTransfer),
-            transactionType: "Send",
-            Amount: amountToTransfer,
-            otherAccount: {
-                bank: "Hwallet (Admin)",
-                accountNumber: accountNumberFrom
-            },
-            dateOfTransaction: dateOfTransaction
-        }
-
         let usernameTo = transferToUsername.current.value
-        let userObjectTo = users[usernameTo]
-        let currentWalletTo = userObjectTo.wallet
-        let accountNumberTo = userObjectTo.accountNumber
-        let currentTransactionsTo = userObjectTo.transactions
-        let newTransactionTo = {
-            runningBalance: Number(currentWalletTo)+Number(amountToTransfer),
-            transactionType: "Received",
-            Amount: amountToTransfer,
-            otherAccount: {
-                bank: "Hwallet (Admin)",
-                accountNumber: accountNumberTo
-            },
-            dateOfTransaction: dateOfTransaction
-        }
-        setUsers(
-            {
-                ...users,
-                [usernameFrom] : {
-                    ...userObjectFrom,
-                    "wallet": Number(currentWalletFrom)-Number(amountToTransfer),
-                    "transactions": [
-                        ...currentTransactionsFrom,
-                        newTransactionFrom
-                    ]
+
+        if ( usernameFrom === ""){
+            event.preventDefault()
+            setTransferReminder("*Account number from is invalid")
+        } else if (usernameTo === ""){
+            event.preventDefault()
+            setTransferReminder("*Account number receiving is invalid")
+        }else if (amountToTransfer === "" || amountToTransfer <=0 ) {
+            event.preventDefault()
+            setTransferReminder("*Amount cannot be 0 or empty")
+        } else if (usernameFrom === usernameTo){
+            event.preventDefault()
+            setTransferReminder("*Account from cannot be the same as account to")
+        } else {
+            let newDate = new Date()
+            let dateOfTransaction = `${newDate.getDate()} ${newDate.toLocaleString('default', { month: 'short' })}`
+
+            let userObjectFrom = users[usernameFrom]
+            let currentWalletFrom = userObjectFrom.wallet
+            let accountNumberFrom = userObjectFrom.accountNumber
+            let currentTransactionsFrom = userObjectFrom.transactions
+            let newTransactionFrom = {
+                runningBalance: Number(currentWalletFrom)-Number(amountToTransfer),
+                transactionType: "Send",
+                Amount: amountToTransfer,
+                otherAccount: {
+                    bank: "Hwallet (Admin)",
+                    accountNumber: accountNumberFrom
                 },
-                [usernameTo] : {
-                    ...userObjectTo,
-                    "wallet": Number(currentWalletTo)+Number(amountToTransfer),
-                    "transactions": [
-                        ...currentTransactionsTo,
-                        newTransactionTo
-                    ]
-                }
+                dateOfTransaction: dateOfTransaction
             }
-        )
+
+            let userObjectTo = users[usernameTo]
+            let currentWalletTo = userObjectTo.wallet
+            let accountNumberTo = userObjectTo.accountNumber
+            let currentTransactionsTo = userObjectTo.transactions
+            let newTransactionTo = {
+                runningBalance: Number(currentWalletTo)+Number(amountToTransfer),
+                transactionType: "Received",
+                Amount: amountToTransfer,
+                otherAccount: {
+                    bank: "Hwallet (Admin)",
+                    accountNumber: accountNumberTo
+                },
+                dateOfTransaction: dateOfTransaction
+            }
+            setUsers(
+                {
+                    ...users,
+                    [usernameFrom] : {
+                        ...userObjectFrom,
+                        "wallet": Number(currentWalletFrom)-Number(amountToTransfer),
+                        "transactions": [
+                            ...currentTransactionsFrom,
+                            newTransactionFrom
+                        ]
+                    },
+                    [usernameTo] : {
+                        ...userObjectTo,
+                        "wallet": Number(currentWalletTo)+Number(amountToTransfer),
+                        "transactions": [
+                            ...currentTransactionsTo,
+                            newTransactionTo
+                        ]
+                    }
+                }
+            )
+            setTransferReminder("")
+        }
     }
     return (
         <form class="popup">
             <h1> Transfer header</h1>
+            <div><p>{transferReminder}</p></div>
             <div id="addUserInputs">
                 <label for="transferFromAccountNumber"></label>
                 <input onChange={event => onAccountNumberChangeFrom(event.target.value)} type="text" id="transferFromAccountNumber" placeholder="Account Number"></input>

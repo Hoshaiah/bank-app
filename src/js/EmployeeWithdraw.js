@@ -7,7 +7,7 @@ function EmployeeWithdraw(props) {
     const withdrawFirstName = useRef("")
     const withdrawUsername = useRef("")
     const withdrawAmount = useRef(0)
-
+    const [withdrawReminder, setWithdrawReminder] = useState("")
 
     const onAccountNumberChange = (accountNumber) => {
 
@@ -38,45 +38,57 @@ function EmployeeWithdraw(props) {
         event.preventDefault()
         setOverlayVisibility("hidden")
         setPopupAction("")
+        setWithdrawReminder("")
     }
 
     const onSubmit = (event) => {
         let username = withdrawUsername.current.value
         let amountToWithdraw = withdrawAmount.current.value
-        let userObject = users[username]
-        let currentWallet = userObject.wallet
-        let currentTransaction = userObject.transactions
-        let newDate = new Date()
-        let dateOfTransaction = `${newDate.getDate()} ${newDate.toLocaleString('default', { month: 'short' })}`
-        let newTransaction = {
-            runningBalance: Number(currentWallet)-Number(amountToWithdraw),
-            transactionType: "Withdrawal",
-            Amount: amountToWithdraw,
-            otherAccount: {
-                bank: "Hwallet",
-                accountNumber: "Admin"
-            },
-            dateOfTransaction: dateOfTransaction
-        }
-        setUsers(
-            {
-                ...users,
-                [username] : {
-                    ...userObject,
-                    // "wallet": Number(1000)
-                    "wallet": Number(currentWallet)-Number(amountToWithdraw),
-                    "transactions":[
-                        ...currentTransaction,
-                        newTransaction
-                    ]
-                }
+        if ( username === ""){
+            event.preventDefault()
+            setWithdrawReminder("*Account number is invalid")
+        } else if (amountToWithdraw === "" || amountToWithdraw <=0 ) {
+            event.preventDefault()
+            setWithdrawReminder("*Amount cannot be 0 or empty")
+        } else {
+            let userObject = users[username]
+            let currentWallet = userObject.wallet
+            let currentTransaction = userObject.transactions
+            let newDate = new Date()
+            let dateOfTransaction = `${newDate.getDate()} ${newDate.toLocaleString('default', { month: 'short' })}`
+            let newTransaction = {
+                runningBalance: Number(currentWallet)-Number(amountToWithdraw),
+                transactionType: "Withdrawal",
+                Amount: amountToWithdraw,
+                otherAccount: {
+                    bank: "Hwallet",
+                    accountNumber: "Admin"
+                },
+                dateOfTransaction: dateOfTransaction
             }
-        )
+            setUsers(
+                {
+                    ...users,
+                    [username] : {
+                        ...userObject,
+                        // "wallet": Number(1000)
+                        "wallet": Number(currentWallet)-Number(amountToWithdraw),
+                        "transactions":[
+                            ...currentTransaction,
+                            newTransaction
+                        ]
+                    }
+                }
+            )
+            setWithdrawReminder("")
+
+        }
     }
 
     return (
         <form class="popup">
             <h1> Withdraw header</h1>
+            <div><p>{withdrawReminder}</p></div>
             <div id="addUserInputs">
                 <label for="withdrawAccountNumber"></label>
                 <input onChange={event => onAccountNumberChange(event.target.value)} type="text" id="withdrawAccountNumber" placeholder="Account Number"></input>

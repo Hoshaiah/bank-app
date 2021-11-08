@@ -8,6 +8,7 @@ function EmployeeDeposit(props) {
     const depositFirstName = useRef("")
     const depositUsername = useRef("")
     const depositAmount = useRef(0)
+    const [depositReminder, setDepositReminder] = useState("")
 
 
     const onAccountNumberChange = (accountNumber) => {
@@ -39,45 +40,58 @@ function EmployeeDeposit(props) {
         event.preventDefault()
         setOverlayVisibility("hidden")
         setPopupAction("")
+        setDepositReminder("")
     }
     
     const onSubmit = (event) => {
         let username = depositUsername.current.value
         let amountTodeposit = depositAmount.current.value
-        let userObject = users[username]
-        let currentWallet = userObject.wallet
-        let currentTransaction = userObject.transactions
-        let newDate = new Date()
-        let dateOfTransaction = `${newDate.getDate()} ${newDate.toLocaleString('default', { month: 'short' })}`
-        let newTransaction = {
-            runningBalance: Number(currentWallet)+Number(amountTodeposit),
-            transactionType: "Received",
-            Amount: amountTodeposit,
-            otherAccount: {
-                bank: "Hwallet",
-                accountNumber: "Admin"
-            },
-            dateOfTransaction: dateOfTransaction
-        }
-        setUsers(
-            {
-                ...users,
-                [username] : {
-                    ...userObject,
-                    // "wallet": Number(1000)
-                    "wallet": Number(currentWallet)+Number(amountTodeposit),
-                    "transactions":[
-                        ...currentTransaction,
-                        newTransaction
-                    ]
-                }
+
+        if ( username === ""){
+            event.preventDefault()
+            setDepositReminder("*Account number is invalid")
+        } else if (amountTodeposit === "" || amountTodeposit <=0 ) {
+            event.preventDefault()
+            setDepositReminder("*Amount cannot be 0 or empty")
+        } else {
+            let userObject = users[username]
+            let currentWallet = userObject.wallet
+            let currentTransaction = userObject.transactions
+            let newDate = new Date()
+            let dateOfTransaction = `${newDate.getDate()} ${newDate.toLocaleString('default', { month: 'short' })}`
+            let newTransaction = {
+                runningBalance: Number(currentWallet)+Number(amountTodeposit),
+                transactionType: "Received",
+                Amount: amountTodeposit,
+                otherAccount: {
+                    bank: "Hwallet",
+                    accountNumber: "Admin"
+                },
+                dateOfTransaction: dateOfTransaction
             }
-        )
+            setUsers(
+                {
+                    ...users,
+                    [username] : {
+                        ...userObject,
+                        // "wallet": Number(1000)
+                        "wallet": Number(currentWallet)+Number(amountTodeposit),
+                        "transactions":[
+                            ...currentTransaction,
+                            newTransaction
+                        ]
+                    }
+                }
+            )
+            setDepositReminder("")
+
+        }
     }
 
     return (
         <form class="popup">
             <h1> Deposit header</h1>
+            <div><p>{depositReminder}</p></div>
             <div id="addUserInputs">
                 <label for="depositAccountNumber"></label>
                 <input onChange={event => onAccountNumberChange(event.target.value)} type="text" id="depositAccountNumber" placeholder="Account Number"></input>
