@@ -42,8 +42,10 @@ function ConfirmWithdaw (props) {
                     <p> ₱ {withdrawAmountData.current.value}</p>
                     <h2>Withdraw Money to</h2>
                     <p> {withdrawalAccount.bank}: {withdrawalAccount.accountNumber}</p>
-                    <button onClick={onWithdrawStepTwoConfirm} type="submit" value="confirm">Confirm</button>
-                    <button onClick={onWithdrawStepTwoCancel} type="submit" value="back">Back</button>
+                    <div className="confirmButtons">
+                        <button className="confirmConfirm" onClick={onWithdrawStepTwoConfirm} type="submit" value="confirm">Confirm</button>
+                        <button className="confirmBack" onClick={onWithdrawStepTwoCancel} type="submit" value="back">Back</button>
+                    </div>
                 </div>
             </div>
         )

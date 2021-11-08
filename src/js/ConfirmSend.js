@@ -73,8 +73,10 @@ function ConfirmSend (props) {
                     <p> ₱ {sendAmountData.current.value}</p>
                     <h2>Send Money to </h2>
                     <p> Hwallet: {sendAccountData.current.value}</p>
-                    <button onClick={onSendStepTwoConfirm} type="submit" value="confirm">Confirm</button>
-                    <button onClick={onSendStepTwoCancel} type="submit" value="back">Back</button>
+                    <div className="confirmButtons">
+                        <button  className="confirmConfirm" onClick={onSendStepTwoConfirm} type="submit" value="confirm">Confirm</button>
+                        <button  className="confirmBack"  onClick={onSendStepTwoCancel} type="submit" value="back">Back</button>
+                    </div>
                 </div>
             </div>
         )

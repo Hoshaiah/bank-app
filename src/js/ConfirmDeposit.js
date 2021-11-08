@@ -41,8 +41,10 @@ function ConfirmDeposit (props) {
                     <p> ₱ {depositAmountData.current.value}</p>
                     <h2>Deposit Money to</h2>
                     <p> {depositAccount.bank}: {depositAccount.accountNumber}</p>
-                    <button onClick={onDepositStepTwoConfirm} type="submit" value="confirm">Confirm</button>
-                    <button onClick={onDepositStepTwoCancel} type="submit" value="back">Back</button>
+                    <div className="confirmButtons">
+                        <button  className="confirmConfirm" onClick={onDepositStepTwoConfirm} type="submit" value="confirm">Confirm</button>
+                        <button  className="confirmBack" onClick={onDepositStepTwoCancel} type="submit" value="back">Back</button>
+                    </div>
                 </div>
             </div>
         )

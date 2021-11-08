@@ -597,6 +597,39 @@ div#linkBankReminder {
   visibility: hidden;
 }
 
+.popupStepTwoInfo .confirmButtons {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+  align-items: center;
+  margin-left: 30px;
+}
+
+.confirmConfirm{
+  height: 50px;
+  width: 154px;
+  border: none;
+  border-radius: 0.2em;
+  color: white;
+  background-color: #1a6b05f8;
+  margin-bottom: 40px;
+  margin-left: 5px;  
+  margin-right: 5px;
+}
+
+.confirmBack{
+  height: 50px;
+  width: 154px;
+  border: none;
+  border-radius: 0.2em;
+  color: white;
+  background-color: rgb(133, 4, 4);
+  margin-bottom: 40px;
+  margin-left: 5px;  
+  margin-right: 5px;
+}
+
+
 /* .popup {
   z-index: 10;
   color: black;
