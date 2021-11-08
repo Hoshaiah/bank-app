@@ -3,7 +3,7 @@ import { Component, useRef } from "react/cjs/react.development"
 
 
 function EmployeeTransfer(props) {
-    const {users, setUsers, usedAccountNumbers, setPopupAction, setOverlayVisibility} = props
+    const {users, setUsers, usedAccountNumbers, setPopupAction, setOverlayVisibility, adminRecords, setAdminRecords} = props
     const transferFromLastName = useRef("")
     const transferFromFirstName = useRef("")
     const transferFromUsername = useRef("")
@@ -138,6 +138,24 @@ function EmployeeTransfer(props) {
                 }
             )
             setTransferReminder("")
+
+            let previousTransactions = []
+            if (adminRecords.transactions) {
+                previousTransactions = adminRecords.transactions
+            }
+            setAdminRecords({
+                ...adminRecords,
+                transactions : [
+                    ...previousTransactions,
+                    {  
+                        from: users[usernameFrom].accountNumber,
+                        to: users[usernameTo].accountNumber,
+                        transactionType: "Transfer",
+                        Amount: amountToTransfer,
+                        dateOfTransaction: dateOfTransaction
+                    }
+                ]
+            })
         }
     }
     return (

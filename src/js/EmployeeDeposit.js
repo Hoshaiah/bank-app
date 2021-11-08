@@ -3,7 +3,7 @@ import { useRef } from "react/cjs/react.development"
 
 
 function EmployeeDeposit(props) {
-    const {users, setUsers, usedAccountNumbers, setPopupAction, setOverlayVisibility} = props
+    const {users, setUsers, usedAccountNumbers, setPopupAction, setOverlayVisibility, adminRecords, setAdminRecords} = props
     const depositLastName = useRef("")
     const depositFirstName = useRef("")
     const depositUsername = useRef("")
@@ -84,6 +84,24 @@ function EmployeeDeposit(props) {
                 }
             )
             setDepositReminder("")
+            
+            let previousTransactions = []
+            if (adminRecords.transactions) {
+                previousTransactions = adminRecords.transactions
+            }
+            setAdminRecords({
+                ...adminRecords,
+                transactions : [
+                    ...previousTransactions,
+                    {  
+                        from: "Hwallet",
+                        to: users[username].accountNumber,
+                        transactionType: "Deposit",
+                        Amount: amountTodeposit,
+                        dateOfTransaction: dateOfTransaction
+                    }
+                ]
+            })
 
         }
     }

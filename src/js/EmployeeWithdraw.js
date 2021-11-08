@@ -2,7 +2,7 @@ import { useState } from "react"
 import { useRef } from "react/cjs/react.development"
 
 function EmployeeWithdraw(props) {
-    const {users, setUsers, usedAccountNumbers, setPopupAction, setOverlayVisibility} = props
+    const {users, setUsers, usedAccountNumbers, setPopupAction, setOverlayVisibility, adminRecords, setAdminRecords} = props
     const withdrawLastName = useRef("")
     const withdrawFirstName = useRef("")
     const withdrawUsername = useRef("")
@@ -81,6 +81,24 @@ function EmployeeWithdraw(props) {
                 }
             )
             setWithdrawReminder("")
+            
+            let previousTransactions = []
+            if (adminRecords.transactions) {
+                previousTransactions = adminRecords.transactions
+            }
+            setAdminRecords({
+                ...adminRecords,
+                transactions : [
+                    ...previousTransactions,
+                    {  
+                        from: users[username].accountNumber,
+                        to: "Hwallet",
+                        transactionType: "Withdrawal",
+                        Amount: amountToWithdraw,
+                        dateOfTransaction: dateOfTransaction
+                    }
+                ]
+            })
 
         }
     }

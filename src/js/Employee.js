@@ -4,9 +4,10 @@ import EmployeeDeposit from "./EmployeeDeposit"
 import EmployeeTransfer from "./EmployeeTransfer"
 import { useState } from "react"
 import EmployeePopup from "./EmployeePopup"
+import EmployeeTransactions from "./EmployeTransactions"
 
 function Employee(props){
-    const {isEmployeePage, setIsEmployeePage, currentUser, setCurrentUser, setUsers, users, setIsLoginPage, usedAccountNumbers, setUsedAccountNumbers, usedEmails, setUsedEmails} = props
+    const {isEmployeePage, setIsEmployeePage, currentUser, setCurrentUser, setUsers, users, setIsLoginPage, usedAccountNumbers, setUsedAccountNumbers, usedEmails, setUsedEmails, adminRecords, setAdminRecords} = props
     const [overlayVisiblity, setOverlayVisibility] = useState("hidden")
     const [popupAction, setPopupAction] = useState("")
 
@@ -79,6 +80,10 @@ function Employee(props){
                 usedEmails = {usedEmails}
                 setUsedEmails = {setUsedEmails}
             />
+            <EmployeeTransactions
+                adminRecords = {adminRecords}
+                setAdminRecords = {setAdminRecords}
+            />
             <div className={overlayVisiblity} id="employeeOverlay" >
                 <EmployeePopup
                     setUsers = {setUsers}
@@ -87,6 +92,8 @@ function Employee(props){
                     setPopupAction = {setPopupAction}
                     setOverlayVisibility = {setOverlayVisibility}
                     usedAccountNumbers = {usedAccountNumbers}
+                    adminRecords = {adminRecords}
+                    setAdminRecords = {setAdminRecords}
                 />
             </div>
             </>

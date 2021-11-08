@@ -33,6 +33,12 @@ function App() {
     usedEmailsData = JSON.parse(localStorageUsedEmails)
   }
 
+  const localStorageAdminRecords = localStorage.getItem("adminRecords")
+  let adminRecordsData = {}
+  if(localStorageAdminRecords) {
+    adminRecordsData = JSON.parse(localStorageAdminRecords)
+  }
+
 
   const isPageData = sessionStorage.getItem("isPageData")
   let pagesStatus = {
@@ -58,6 +64,7 @@ function App() {
   const [linkedAccounts, setLinkedAccounts] = useState(currentUserData?.["linkedAccounts"] || [])
   const [usedAccountNumbers, setUsedAccountNumbers] = useState(usedAccountNumbersData)
   const [usedEmails, setUsedEmails] = useState(usedEmailsData)
+  const [adminRecords, setAdminRecords] = useState(adminRecordsData)
 
 
   const [isLoginPage, setIsLoginPage] = useState(pagesStatus.isLoginPage)
@@ -82,6 +89,10 @@ function App() {
   useEffect(()=>{
     localStorage.setItem("usedEmails",JSON.stringify(usedEmails))
   },[usedEmails])
+
+  useEffect(()=>{
+    localStorage.setItem("adminRecords",JSON.stringify(adminRecords))
+  },[adminRecords])
 
   useEffect(()=>{
     setCurrentUser({
@@ -138,6 +149,8 @@ function App() {
         setUsedAccountNumbers = {setUsedAccountNumbers}
         usedEmails = {usedEmails}
         setUsedEmails = {setUsedEmails}
+        adminRecords = {adminRecords}
+        setAdminRecords = {setAdminRecords}
       />
 
       <Dashboard
