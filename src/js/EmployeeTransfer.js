@@ -74,7 +74,10 @@ function EmployeeTransfer(props) {
         if ( usernameFrom === ""){
             event.preventDefault()
             setTransferReminder("*Account number from is invalid")
-        } else if (usernameTo === ""){
+        } else if ( usernameTo === ""){
+            event.preventDefault()
+            setTransferReminder("*Account number to is invalid")
+        }else if (usernameTo === ""){
             event.preventDefault()
             setTransferReminder("*Account number receiving is invalid")
         }else if (amountToTransfer === "" || amountToTransfer <=0 ) {
@@ -83,6 +86,9 @@ function EmployeeTransfer(props) {
         } else if (usernameFrom === usernameTo){
             event.preventDefault()
             setTransferReminder("*Account from cannot be the same as account to")
+        } else if (users[usernameFrom].wallet < amountToTransfer){
+            event.preventDefault()
+            setTransferReminder("*Insufficient Balance")
         } else {
             let newDate = new Date()
             let dateOfTransaction = `${newDate.getDate()} ${newDate.toLocaleString('default', { month: 'short' })}`

@@ -44,15 +44,19 @@ function EmployeeWithdraw(props) {
     const onSubmit = (event) => {
         let username = withdrawUsername.current.value
         let amountToWithdraw = withdrawAmount.current.value
-        if ( username === ""){
+        if ( username.length === 0){
             event.preventDefault()
             setWithdrawReminder("*Account number is invalid")
         } else if (amountToWithdraw === "" || amountToWithdraw <=0 ) {
             event.preventDefault()
             setWithdrawReminder("*Amount cannot be 0 or empty")
+        } else if (users[username].wallet <amountToWithdraw){
+            event.preventDefault()
+            setWithdrawReminder("*Insufficient Balance")
         } else {
             let userObject = users[username]
             let currentWallet = userObject.wallet
+            event.preventDefault()
             let currentTransaction = userObject.transactions
             let newDate = new Date()
             let dateOfTransaction = `${newDate.getDate()} ${newDate.toLocaleString('default', { month: 'short' })}`
@@ -82,23 +86,23 @@ function EmployeeWithdraw(props) {
             )
             setWithdrawReminder("")
             
-            let previousTransactions = []
-            if (adminRecords.transactions) {
-                previousTransactions = adminRecords.transactions
-            }
-            setAdminRecords({
-                ...adminRecords,
-                transactions : [
-                    ...previousTransactions,
-                    {  
-                        from: users[username].accountNumber,
-                        to: "Hwallet",
-                        transactionType: "Withdrawal",
-                        Amount: amountToWithdraw,
-                        dateOfTransaction: dateOfTransaction
-                    }
-                ]
-            })
+            // let previousTransactions = []
+            // if (adminRecords.transactions) {
+            //     previousTransactions = adminRecords.transactions
+            // }
+            // setAdminRecords({
+            //     ...adminRecords,
+            //     transactions : [
+            //         ...previousTransactions,
+            //         {  
+            //             from: users[username].accountNumber,
+            //             to: "Hwallet",
+            //             transactionType: "Withdrawal",
+            //             Amount: amountToWithdraw,
+            //             dateOfTransaction: dateOfTransaction
+            //         }
+            //     ]
+            // })
 
         }
     }
