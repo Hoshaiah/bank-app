@@ -165,34 +165,38 @@ function EmployeeTransfer(props) {
         }
     }
     return (
-        <form class="popup">
-            <h1> Transfer header</h1>
-            <div><p>{transferReminder}</p></div>
-            <div id="addUserInputs">
+        <form id="employeePopupTransfer">
+            <div id="transferHeader">
+                <h1>Transfer</h1>
+                <div><p>{transferReminder}</p></div>
+            </div>
+            <div id="transferX">
+                <button onClick={e => onCancel(e)}type="submit">X</button>
+            </div>
+            <div id="transferInputs">
                 <label for="transferFromAccountNumber"></label>
-                <input onChange={event => onAccountNumberChangeFrom(event.target.value)} type="text" id="transferFromAccountNumber" placeholder="Account Number"></input>
-                <label for="transferFromUsername"></label>
-                <input ref = {transferFromUsername} type="text" id="transferFromUsername" placeholder="Username"></input>
-                <label for="transferFromFirstName"></label>
-                <input ref = {transferFromFirstName} type="text" id="transferFromFirstName" placeholder="First Name"></input>
-                <label for="transferFromAmount"></label>
-                <input ref = {transferFromLastName} type="text" id="transferFromAmount" placeholder="Last Name"></input>
-            </div>
-            <div id="addUserInputs">
+                <input onChange={event => onAccountNumberChangeFrom(event.target.value)} type="text" id="transferFromAccountNumber" placeholder="Account Number From"></input>
                 <label for="transferToAccountNumber"></label>
-                <input onChange={event => onAccountNumberChangeTo(event.target.value)} type="text" id="transferToAccountNumber" placeholder="Account Number"></input>
-                <label for="transferToUsername"></label>
-                <input ref = {transferToUsername} type="text" id="transferToUsername" placeholder="Username"></input>
-                <label for="transferToFirstName"></label>
-                <input ref = {transferToFirstName} type="text" id="transferToFirstName" placeholder="First Name"></input>
-                <label for="transferToAmount"></label>
-                <input ref = {transferToLastName} type="text" id="transferToAmount" placeholder="Last Name"></input>
-            </div>
-            <label for="transferFromAmount"></label>
-            <input ref = {transferAmount} type="text" id="transferAmount" placeholder="Amount"></input>
-            <div id="addUserButtons">
+                <input onChange={event => onAccountNumberChangeTo(event.target.value)} type="text" id="transferToAccountNumber" placeholder="Account Number To"></input>
+                <label for="transferFromAmount"></label>
+                <input ref = {transferAmount} type="text" id="transferAmount" placeholder="Amount"></input>
                 <button onClick={e => onSubmit(e)}type="submit">Submit</button>
-                <button onClick={e => onCancel(e)}type="submit">Cancel</button>
+            </div>
+            <div id="transferInfoFrom">
+                <label for="transferFromUsername"></label>
+                <input ref = {transferFromUsername} type="text" id="transferFromUsername" placeholder="Username from" readOnly></input>
+                <label for="transferFromFirstName"></label>
+                <input ref = {transferFromFirstName} type="text" id="transferFromFirstName" placeholder="First Name from" readOnly></input>
+                <label for="transferFromLastName"></label>
+                <input ref = {transferFromLastName} type="text" id="transferFromLastName" placeholder="Last Name from" readOnly></input>
+            </div>
+            <div id="transferInfoTo">
+                <label for="transferToUsername"></label>
+                <input ref = {transferToUsername} type="text" id="transferToUsername" placeholder="Username to" readOnly></input>
+                <label for="transferToFirstName"></label>
+                <input ref = {transferToFirstName} type="text" id="transferToFirstName" placeholder="First Name to" readOnly></input>
+                <label for="transferToAmount"></label>
+                <input ref = {transferToLastName} type="text" id="transferToAmount" placeholder="Last Name to" readOnly></input>
             </div>
         </form>
     )
