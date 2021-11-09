@@ -53,11 +53,32 @@ function DeleteUser(props) {
             event.preventDefault()
             setDeleteUserReminder("*Account Number is invalid")
         } else {
+            let previousLog = []
+            let newDate = new Date()
+            if (adminRecords.managementLog) {
+                previousLog = adminRecords.managementLog
+            }
+            setAdminRecords({
+                ...adminRecords,
+                managementLog : [
+                    ...previousLog,
+                    {  
+                        action: "Delete",
+                        username: username,
+                        accountNumber: users[username].accountNumber,
+                        date: `${newDate.getDate()} ${newDate.toLocaleString('default', { month: 'short' })} ${newDate.getFullYear()} ${newDate.getHours()}:${newDate.getMinutes()}:${newDate.getSeconds()}`,
+                        editFrom: "NA",
+                        editTo:"NA"
+                    }
+                ]
+            })
+
             let usersCopy = users
             delete usersCopy[username]
             setUsers(users)
             setPopupAction("")
         }
+
     }
 
     return (
