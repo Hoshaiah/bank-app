@@ -3,9 +3,9 @@ html {
 }
 
 body {
-  background-color: #f8f3e4 ;
+  background-color: #ced7e0 ;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   min-height: 100%;
 }
@@ -18,9 +18,14 @@ body {
   text-align: center;
   /* padding-left: 20px;
   padding-right: 20px; */
-  background-color: #f8f3e4;
+  background-color: #ced7e0;
   height: 1500px;
   color: #122620;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;  height: 100%;
+
 }
 
 .App-logo {
@@ -59,13 +64,23 @@ body {
 }
 
 /* Dashboard */
+
+#visibleNav{
+  display: flex;
+  width: 120vmin;
+  max-width: 1500px;
+  justify-content: space-between;
+  
+}
 #dashboardNav {
   margin: 0;
   padding: 0;
   display: flex;
-  justify-content: space-between;
-  background-color: rgb(192, 119, 23);
+  justify-content: center;
+  background-color: #04246c;
   color: whitesmoke;
+  width: 100%;
+
 }
 
 #dashboardNav ul {
@@ -97,10 +112,22 @@ header caption {
 
 main {
   display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  /* max-width: 1800px; */
+  min-width: 1400px;
+}
+
+#mainTop {
+  display: flex;
   justify-content: center;
   margin-left: 50px;
   margin-right: 50px;
-
+  background-color: white;
+  max-width: 1000px;
 }
 
 #balance {
@@ -629,84 +656,16 @@ div#linkBankReminder {
   margin-right: 5px;
 }
 
-
-/* .popup {
-  z-index: 10;
-  color: black;
-  height: 650px;
-  width: 500px;
-  background-color: white;
-  border-radius:1em ;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: stretch;
-}
-
-#popupButtons button {
-  height: 50px;
-  width: 120px;
-  border: none;
-  border-radius: 0.2em;
-  color: white;
-  margin-bottom: 40px;
-  margin-left: 10px;
-  margin-right: 10px;
-}
-
-#cancelButton {
-  background-color: rgb(184, 29, 29);
-
-}
-
-#submitButton {
-  background-color: rgb(24, 92, 18);
-}
-
-#popupInputs {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-}
-
-#popupInputs input {
-  width: 380px;
-  height: 50px;
-  padding-left: 10px;
-}
-
-#popupInputs label {
-  position: relative;
-  right: 20px;
-  font-weight: bold;
-  font-size: 15px;
-  margin-bottom: 10px;
-}
-
-#popupInputs div {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  margin-bottom: 30px;
-} */
-
 /* Employee */
 
 #EmployeePage {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr ;
-  grid-template-rows: 1fr 1fr 1fr;
-  grid-template-areas: 
-  "nav main main"
-  "nav main main"
-  "nav main main";
-  height: 1500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vmin;
 }
 
 #employeeNavigationPane {
-  grid-area: nav;
   margin-top: 200px;
 
 }
@@ -721,34 +680,27 @@ div#linkBankReminder {
 }
 
 #employeeMain {
-  width: 100%;
+  width: 70vmin;
   display: flex;
   flex-direction: column;
-  grid-area: main;
   justify-content: flex-start;
+  align-items: center;
 }
 
 #employeeMainTop {
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-#moneyActions {
+#employeeActions {
   width: 100%;
   display: flex;
+  justify-content: center;
 }
 
-#moneyActions button {
-  width: 200px;
-  height: 50px;
-  margin: 25px;
-  color:rgb(7, 7, 77);
-  background-color: white;
-  border: 1px solid rgb(7, 7, 77);
-  border-radius: 0.5em;
-  font-weight: bolder;
-}
-
-#addUserButton {
+#employeeActions button {
   width: 200px;
   height: 50px;
   color:rgb(7, 7, 77);
@@ -756,12 +708,18 @@ div#linkBankReminder {
   border: 1px solid rgb(7, 7, 77);
   border-radius: 0.5em;
   font-weight: bolder;
-  font-size: 20px;
+  border-bottom: transparent;
+  border-left: transparent;
+
 }
 
 #employeePopupPane {
   width: 100%;
-  height: fit-content;
+  height: 50vmin;
+  background-color: gray;
+  bottom: 10px;
+  display: flex;
+  justify-content: center;
 }
 
 #employeePopupWithdraw, #employeePopupDeposit{
@@ -955,6 +913,7 @@ div#linkBankReminder {
 
 .userRow {
   width: 100%;
+  display: flex;
 }
 
 .userRowData {

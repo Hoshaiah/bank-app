@@ -3,6 +3,9 @@ import { useState } from "react"
 import EmployeePopup from "./EmployeePopup"
 import EmployeeTransactions from "./EmployeTransactions"
 import EmployeeManagementLog from "./EmployeeManagementLog"
+import settings from '../img/settings.png';
+import logo from '../logo.svg';
+
 
 function Employee(props){
     const {isEmployeePage, setIsEmployeePage, currentUser, setCurrentUser, setUsers, users, setIsLoginPage, usedAccountNumbers, setUsedAccountNumbers, usedEmails, setUsedEmails, adminRecords, setAdminRecords} = props
@@ -57,24 +60,45 @@ function Employee(props){
         setPopupAction("addUser")
     }
 
+    const onDeleteUserClick = () => {
+        setPopupAction("deleteUser")
+    }
+
     if (isEmployeePage){
         return (
             <div id="EmployeePage">
-                <nav id="employeeNavigationPane">
+                <nav id="dashboardNav"> 
+                <div id="visibleNav">
+                    <ul id="gennav">
+                    <img src={logo} className="App-logo" alt="logo" />
+                    <li id="dashboard">Dashboard</li>
+                    <li>Wallet</li>
+                    <li>Activity</li>
+                    <li>Help</li>
+                    </ul>
+                    <ul id="lognav">
+                        <li><img id="settings" src={settings} alt="" ></img></li>
+                        <li id="logout">Log Out</li>
+                    </ul>
+                </div>
+                </nav>
+                {/* <nav id="employeeNavigationPane">
                     <ul>
                         <li>Main</li>
                         <li>Transactions Log</li>
                         <li>User Management Log</li>
                     </ul>
-                </nav>
+                </nav> */}
                 <main id="employeeMain">
                     <div id="employeeMainTop">
                         <h1 onClick={onExit}>DashBoard</h1>
-                        <button onClick={onAddUserClick} id="addUserButton">+ Add User</button>
-                        <div id="moneyActions">
-                                <button onClick={onWithdrawClick}>Withdraw</button>
-                                <button onClick={onTransferClick}>Transfer</button>
-                                <button onClick={onDepositClick}>Deposit</button>
+                        <div id="employeeActions">
+                                <button onClick={onWithdrawClick}>{"<"} Withdraw</button>
+                                <button onClick={onDepositClick}>{">"} Deposit</button>
+                                <button onClick={onTransferClick}>{"><"} Transfer</button>
+                                <button onClick={onAddUserClick} id="addUserButton">+ Add User</button>
+                                <button onClick={onDeleteUserClick} id="addUserButton">+ Delete User</button>
+                                <button onClick={onAddUserClick} id="addUserButton"> \ Edit User</button>
                         </div>
                         <div id="employeePopupPane" >
                             <EmployeePopup
@@ -91,16 +115,6 @@ function Employee(props){
                                 setUsedEmails = {setUsedEmails}
                             />
                         </div>
-                        {/* <AddUser
-                            users = {users}
-                            setUsers = {setUsers}
-                            usedAccountNumbers = {usedAccountNumbers}
-                            setUsedAccountNumbers = {setUsedAccountNumbers}
-                            usedEmails = {usedEmails}
-                            setUsedEmails = {setUsedEmails}
-                            adminRecords = {adminRecords}
-                            setAdminRecords = {setAdminRecords}
-                        /> */}
                     </div>
                     <div id ="allUserAccounts">
                         <h1>Users</h1>

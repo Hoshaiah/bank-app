@@ -39,66 +39,71 @@ function Dashboard(props) {
     if (isDashboardPage){
         return (
           <div className="App">
+
             <nav id="dashboardNav"> 
-            
-              <ul id="gennav">
-                <img src={logo} className="App-logo" alt="logo" />
-                <li id="dashboard">Dashboard</li>
-                <li>Wallet</li>
-                <li>Activity</li>
-                <li>Help</li>
-              </ul>
-              <ul id="lognav">
-                <li onClick={onNotif}><img id="notification" src={notification} alt=""></img></li>
-                <li onClick={onSettings}><img id="settings" src= {settings} alt="" ></img></li>
-                <li onClick={onLogout} id="logout">Log Out</li>
-              </ul>
-            </nav>
-            <header>
-                <caption>Good Evening, {user}</caption>
-            </header>
-      
-            <main>
-              <div id="balance">
-                <h1>Balance</h1>
-                <p>₱ {Number(balance).toLocaleString()}</p>
+              <div id="visibleNav">
+                <ul id="gennav">
+                  <img src={logo} className="App-logo" alt="logo" />
+                  <li id="dashboard">Dashboard</li>
+                  <li>Wallet</li>
+                  <li>Activity</li>
+                  <li>Help</li>
+                </ul>
+                <ul id="lognav">
+                  <li onClick={onNotif}><img id="notification" src={notification} alt=""></img></li>
+                  <li onClick={onSettings}><img id="settings" src= {settings} alt="" ></img></li>
+                  <li onClick={onLogout} id="logout">Log Out</li>
+                </ul>
               </div>
-      
-              <Actions
-                setOverlayVisibility = {setOverlayVisibility}
-                setPopupName = {setPopupName}
-                setPopupAction = {setPopupAction}
-                />
-            </main>
-
-            <BudgetTracker
-              setCurrentUser = {setCurrentUser}
-              currentUser = {currentUser}
-            />
-
-            <RecentActivities
-              currentUser = {currentUser}
-              linkedAccounts = {linkedAccounts}
-              setLinkedAccounts = {setLinkedAccounts}
-            />
+            </nav>
+            
+            <main>
+                <header>
+                    <caption>Good Evening, {user}</caption>
+                </header>
         
-            <div className={overlayVisiblity} id="overlay" >
-              <Popup
-                popupName = {popupName}
-                popupAction = {popupAction}
-                setOverlayVisibility = {setOverlayVisibility}
-                setCurrentUser = {setCurrentUser}
-                currentUser = {currentUser}
-                transaction = {transaction}
-                setTransaction = {setTransaction}
-                linkedAccounts = {linkedAccounts}
-                setLinkedAccounts = {setLinkedAccounts}
-                usedAccountNumbers = {usedAccountNumbers}
-                setUsedAccountNumbers = {setUsedAccountNumbers}
-                users = {users}
-                setUsers = {setUsers}
-              />
-            </div>
+                <div id="mainTop">
+                  <div id="balance">
+                    <h1>Balance</h1>
+                    <p>₱ {Number(balance).toLocaleString()}</p>
+                  </div>
+          
+                  <Actions
+                    setOverlayVisibility = {setOverlayVisibility}
+                    setPopupName = {setPopupName}
+                    setPopupAction = {setPopupAction}
+                    />
+                </div>
+
+                <BudgetTracker
+                  setCurrentUser = {setCurrentUser}
+                  currentUser = {currentUser}
+                />
+
+                <RecentActivities
+                  currentUser = {currentUser}
+                  linkedAccounts = {linkedAccounts}
+                  setLinkedAccounts = {setLinkedAccounts}
+                />
+            
+                <div className={overlayVisiblity} id="overlay" >
+                  <Popup
+                    popupName = {popupName}
+                    popupAction = {popupAction}
+                    setOverlayVisibility = {setOverlayVisibility}
+                    setCurrentUser = {setCurrentUser}
+                    currentUser = {currentUser}
+                    transaction = {transaction}
+                    setTransaction = {setTransaction}
+                    linkedAccounts = {linkedAccounts}
+                    setLinkedAccounts = {setLinkedAccounts}
+                    usedAccountNumbers = {usedAccountNumbers}
+                    setUsedAccountNumbers = {setUsedAccountNumbers}
+                    users = {users}
+                    setUsers = {setUsers}
+                  />
+                </div>
+              </main>
           </div>
         );
     } else {
