@@ -3,6 +3,7 @@ import EmployeeTransfer from "./EmployeeTransfer"
 import EmployeeWithdraw from "./EmployeeWithdraw"
 import AddUser from "./AddUser"
 import DeleteUser from "./DeleteUser"
+import EditUser from "./EditUser"
 
 function EmployeePopup (props){
     const {setUsers, users, popupAction, setPopupAction, setOverlayVisibility, usedAccountNumbers, adminRecords, setAdminRecords, setUsedAccountNumbers,usedEmails, setUsedEmails} = props
@@ -59,6 +60,19 @@ function EmployeePopup (props){
         )
     } else if(popupAction ==="deleteUser"){
         return(<DeleteUser
+            users = {users}
+            setUsers = {setUsers}
+            usedAccountNumbers = {usedAccountNumbers}
+            setUsedAccountNumbers = {setUsedAccountNumbers}
+            usedEmails = {usedEmails}
+            setUsedEmails = {setUsedEmails}
+            adminRecords = {adminRecords}
+            setAdminRecords = {setAdminRecords}
+            setPopupAction = {setPopupAction}
+        />
+        )
+    } else if(popupAction ==="editUser"){
+        return(<EditUser
             users = {users}
             setUsers = {setUsers}
             usedAccountNumbers = {usedAccountNumbers}

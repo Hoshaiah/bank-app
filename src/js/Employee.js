@@ -64,6 +64,10 @@ function Employee(props){
         setPopupAction("deleteUser")
     }
 
+    const onEditUserClick = () => {
+        setPopupAction("editUser")
+    }
+
     if (isEmployeePage){
         return (
             <div id="EmployeePage">
@@ -98,7 +102,7 @@ function Employee(props){
                                 <button onClick={onTransferClick}>{"><"} Transfer</button>
                                 <button onClick={onAddUserClick} id="addUserButton">+ Add User</button>
                                 <button onClick={onDeleteUserClick} id="addUserButton">+ Delete User</button>
-                                <button onClick={onAddUserClick} id="addUserButton"> \ Edit User</button>
+                                <button onClick={onEditUserClick} id="addUserButton"> \ Edit User</button>
                         </div>
                         <div id="employeePopupPane" >
                             <EmployeePopup
