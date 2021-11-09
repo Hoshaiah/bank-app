@@ -138,7 +138,7 @@ function Employee(props){
                 </nav> */}
                 <main id="employeeMain">
                     <div id="employeeMainTop">
-                        <h1>DashBoard</h1>
+                        <h1 id="employeeDashboardCaption">DashBoard</h1>
                         <div id="employeeActions">
                                 <button className={tabState.addUser} onClick={onAddUserClick} id="addUserButton">+ Add User</button>
                                 <button className={tabState.deleteUser} onClick={onDeleteUserClick} id="addUserButton">+ Delete User</button>

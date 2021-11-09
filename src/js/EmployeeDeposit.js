@@ -8,6 +8,7 @@ function EmployeeDeposit(props) {
     const depositFirstName = useRef("")
     const depositUsername = useRef("")
     const depositAmount = useRef(0)
+    const depositAccountNumber = useRef("")
     const [depositReminder, setDepositReminder] = useState("")
 
 
@@ -103,6 +104,11 @@ function EmployeeDeposit(props) {
                     }
                 ]
             })
+            depositLastName.current.value = ""
+            depositFirstName.current.value = ""
+            depositUsername.current.value = ""
+            depositAccountNumber.current.value = ""
+            depositAmount.current.value = ""
 
         }
     }
@@ -119,7 +125,7 @@ function EmployeeDeposit(props) {
             <div id="depositMain">
                 <div id="depositInputs">
                     <label for="depositAccountNumber"></label>
-                    <input onChange={event => onAccountNumberChange(event.target.value)} type="text" id="depositAccountNumber" placeholder="Account Number"></input>
+                    <input ref={depositAccountNumber} onChange={event => onAccountNumberChange(event.target.value)} type="text" id="depositAccountNumber" placeholder="Account Number"></input>
                     <label for="depositAmount"></label>
                     <input ref = {depositAmount} type="number" id="depositAmount" placeholder="Amount"></input>
                     <button onClick={e => onSubmit(e)}type="submit">Submit</button>

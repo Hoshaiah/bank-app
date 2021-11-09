@@ -160,6 +160,15 @@ main {
   height: 500px;
 }
 
+#addExpense {
+  margin-top: 10px;
+  color: white;
+  background-color: #04246c;
+  font-weight: bold;
+  height: 40px;
+  width: 120px;
+}
+
 /* recentActivity */
 #recentActivity {
   margin: 30px;
@@ -699,6 +708,12 @@ div#linkBankReminder {
   min-height: 1600px;
 }
 
+#employeeDashboardCaption{
+  text-align: left;
+  align-self: flex-start;
+  margin-left: 40px;
+  color: #04246c;
+}
 #employeeMainTop {
   width: 100%;
   display: flex;
