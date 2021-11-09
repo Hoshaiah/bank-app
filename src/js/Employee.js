@@ -1,8 +1,6 @@
-import AddUser from "./AddUser"
+
 import { useState } from "react"
 import EmployeePopup from "./EmployeePopup"
-import EmployeeTransactions from "./EmployeTransactions"
-import EmployeeManagementLog from "./EmployeeManagementLog"
 import settings from '../img/settings.png';
 import logo from '../logo.svg';
 import EmployeeMainPopup from "./EmployeeMainPopup"
@@ -151,22 +149,6 @@ function Employee(props){
                         </div>
 
                     </div>
-
-
-
-                    {/* <EmployeeTransactions
-                        adminRecords = {adminRecords}
-                        setAdminRecords = {setAdminRecords}
-                    />
-
-                    <div>
-                        <h1>User Management Log</h1>
-                        <EmployeeManagementLog
-                            adminRecords = {adminRecords}
-                            setAdminRecords = {setAdminRecords}
-                        />
-
-                    </div> */}
                 </main>
             </div>
         ) 

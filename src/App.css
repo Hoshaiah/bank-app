@@ -906,21 +906,25 @@ div#linkBankReminder {
 }
 
 
-#allUserAccounts, #employeeTransactionLog {
+#allUserAccounts, #employeeTransactionLog, #employeeUserManagementLog {
   display: flex;
   min-width: 700px;
   flex-direction: column;
   align-items: center;
 }
 
-#userDataHeader, #employeeTransactionHeader {
+#userDataHeader,
+#employeeTransactionHeader,
+#employeeManagementLogHeader {
   width: 100%;
   display: flex;
   justify-content: center;
 
 }
 
-#userDataHeader div, #employeeTransactionHeader div{
+#userDataHeader div, 
+#employeeTransactionHeader div, 
+#employeeManagementLogHeader div{
   display: flex;
   padding: 3px;
   border: 1px solid;
@@ -932,13 +936,17 @@ div#linkBankReminder {
   text-align: center;
 }
 
-.userRow, .employeeTransaction {
+.userRow,
+.employeeTransaction,
+.employeeLogs {
   width: 100%;
   display: flex;
   justify-content: center;
 }
 
-.userRowData, .employeeTransactionRow {
+.userRowData,
+.employeeTransactionRow,
+.employeeLog {
   display: flex;
   justify-content: center;
   padding: 5px;
