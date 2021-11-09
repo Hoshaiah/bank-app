@@ -112,10 +112,12 @@ function AddUser(props){
                 managementLog : [
                     ...previousLog,
                     {  
-                        action: "Created User",
+                        action: "Create",
                         username: username,
                         accountNumber: newAccountNumber,
-                        date: `${newDate.getDate()} ${newDate.toLocaleString('default', { month: 'short' })}`
+                        date: `${newDate.getDate()} ${newDate.toLocaleString('default', { month: 'short' })} ${newDate.getFullYear()} ${newDate.getHours()}:${newDate.getMinutes()}:${newDate.getSeconds()}`,
+                        editFrom: "NA",
+                        editTo:"NA"
                     }
                 ]
             })
