@@ -22,9 +22,7 @@ function DeleteUser(props) {
 
         if(accountNumber.length ===6){
             if(accountNumber in usedAccountNumbers) {
-                console.log(usedAccountNumbers)
                 let username = usedAccountNumbers[accountNumber]
-                console.log(users[username])
                 deleteLastName.current.value = users[username].lastName
                 deleteFirstName.current.value = users[username].firstName
                 deleteUsername.current.value = users[username].username
@@ -49,13 +47,13 @@ function DeleteUser(props) {
         event.preventDefault()
         let username = deleteUsername.current.value
         let email = deleteEmail.current.value
-        let accountNumber = users[username].accountNumber
         if (username.length === 0){
             event.preventDefault()
             setDeleteUserReminder("*Account Number is invalid")
         } else {
             let previousLog = []
             let newDate = new Date()
+            let accountNumber = users[username].accountNumber
             if (adminRecords.managementLog) {
                 previousLog = adminRecords.managementLog
             }
@@ -98,20 +96,18 @@ function DeleteUser(props) {
 
     return (
         <div>
-        <form id="deleteUser">
             <div id="deleteUserHeader">
+                <button id="deleteUserX" onClick={e => onCancel(e)}type="submit">X</button>
                 <h1>Delete User</h1>
-                <div><p>{deleteUserReminder}</p></div>
+                <p id="deleteUserReminder">{deleteUserReminder}</p>
             </div>
-            <div id="deleteUserX">
-                <button onClick={e => onCancel(e)}type="submit">X</button>
-            </div>
+        <form id="deleteUser">
             <div id="deleteUserInputs">
                 <label for="depositAccountNumber"></label>
                 <input onChange={event => onAccountNumberChange(event.target.value)} type="text" id="depositAccountNumber" placeholder="Account Number"></input>
-                <button onClick={e => onSubmit(e)}type="submit">Submit</button>
+                <button onClick={e => onSubmit(e)}type="submit">Delete</button>
             </div>
-            <div id="depositInfo">
+            <div id="deleteUserInfo">
                 <label for="deleteUsername"></label>
                 <input ref = {deleteUsername} type="text" id="deleteUsername" placeholder="Username" readOnly></input>
                 <label for="deleteFirstName"></label>

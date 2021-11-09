@@ -127,42 +127,30 @@ function EditUser(props) {
 
     return (
         <div>
-        <form id="editUser">
             <div id="editUserHeader">
+                <button id="editUserX" onClick={e => onCancel(e)}type="submit">X</button>
                 <h1>Edit User</h1>
-                <div><p>{editUserReminder}</p></div>
+                <p id="editUserReminder">{editUserReminder}</p>
             </div>
-            <div id="editUserX">
-                <button onClick={e => onCancel(e)}type="submit">X</button>
-            </div>
-            <div id="editUserInputs">
-                <label for="depositAccountNumber"></label>
-                <input onChange={event => onAccountNumberChange(event.target.value)} type="text" id="depositAccountNumber" placeholder="Account Number"></input>
-                <button onClick={e => onSubmit(e)}type="submit">Submit</button>
-            </div>
-            <div id="editUserInfo">
-                <label for="editUsername"></label>
-                <input ref = {editUsername} type="text" id="editUsername" placeholder="Username" readOnly></input>
-                <label for="editEmail"></label>
-                <input ref = {editEmail} type="text" id="editEmail" placeholder="Email" ></input>
-                <label for="editFirstName"></label>
-                <input ref = {editFirstName} type="text" id="editFirstName" placeholder="First Name" ></input>
-                <label for="editLastName"></label>
-                <input ref = {editLastName} type="text" id="editLastName" placeholder="Last Name" ></input>
-                <label for="editPassword"></label>
-                <input ref = {editPassword} type="text" id="editPassword" placeholder="Password" ></input>
-            </div>
-            {/* <div id="depositNewInfo">
-                <h2>New</h2>
-                <label for="newEditEmail"></label>
-                <input ref = {newEditEmail} type="text" id="newEditEmail" placeholder="New Email" ></input>
-                <label for="editFirstName"></label>
-                <input ref = {newEditFirstName} type="text" id="newEditFirstName" placeholder="New First Name" ></input>
-                <label for="editLastName"></label>
-                <input ref = {newEditLastName} type="text" id="newEditLastName" placeholder="New Last Name" ></input>
-                <input ref = {newEditPassword} type="text" id="newEditPassword" placeholder="New Password" ></input>
-            </div> */}
-        </form>
+            <form id="editUser">
+                <div id="editUserInputs">
+                    <label for="depositAccountNumber"></label>
+                    <input id="editAccountNumber" onChange={event => onAccountNumberChange(event.target.value)} type="text" placeholder="Account Number"></input>
+                    <label for="editUsername"></label>
+                    <input ref = {editUsername} type="text" id="editUsername" placeholder="Username" readOnly></input>
+                    <button onClick={e => onSubmit(e)}type="submit">Edit</button>
+                </div>
+                <div id="editUserInfo">
+                    <label for="editEmail"></label>
+                    <input ref = {editEmail} type="text" id="editEmail" placeholder="Email" ></input>
+                    <label for="editFirstName"></label>
+                    <input ref = {editFirstName} type="text" id="editFirstName" placeholder="First Name" ></input>
+                    <label for="editLastName"></label>
+                    <input ref = {editLastName} type="text" id="editLastName" placeholder="Last Name" ></input>
+                    <label for="editPassword"></label>
+                    <input ref = {editPassword} type="text" id="editPassword" placeholder="Password" ></input>
+                </div>
+            </form>
         </div>
     )
 }

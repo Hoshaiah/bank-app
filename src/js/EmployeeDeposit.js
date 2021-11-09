@@ -119,7 +119,7 @@ function EmployeeDeposit(props) {
                 <label for="depositAccountNumber"></label>
                 <input onChange={event => onAccountNumberChange(event.target.value)} type="text" id="depositAccountNumber" placeholder="Account Number"></input>
                 <label for="depositAmount"></label>
-                <input ref = {depositAmount} type="text" id="depositAmount" placeholder="Amount"></input>
+                <input ref = {depositAmount} type="number" id="depositAmount" placeholder="Amount"></input>
                 <button onClick={e => onSubmit(e)}type="submit">Submit</button>
             </div>
             <div id="depositInfo">

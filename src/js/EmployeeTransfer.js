@@ -179,7 +179,7 @@ function EmployeeTransfer(props) {
                 <label for="transferToAccountNumber"></label>
                 <input onChange={event => onAccountNumberChangeTo(event.target.value)} type="text" id="transferToAccountNumber" placeholder="Account Number To"></input>
                 <label for="transferFromAmount"></label>
-                <input ref = {transferAmount} type="text" id="transferAmount" placeholder="Amount"></input>
+                <input ref = {transferAmount} type="number" id="transferAmount" placeholder="Amount"></input>
                 <button onClick={e => onSubmit(e)}type="submit">Submit</button>
             </div>
             <div id="transferInfoFrom">

@@ -119,7 +119,7 @@ function EmployeeWithdraw(props) {
             <div id="withdrawInputDiv">
                 <label for="withdrawAccountNumber"></label>
                 <input onChange={event => onAccountNumberChange(event.target.value)} type="text" id="withdrawAccountNumber" placeholder="Account Number"></input>
-                <input ref = {withdrawAmount} type="text" id="withdrawAmount" placeholder="Amount"></input>
+                <input ref = {withdrawAmount} type="number" id="withdrawAmount" placeholder="Amount"></input>
                 <button onClick={e => onSubmit(e)}type="submit">Submit</button>
             </div>
             <div id="withdrawUserInfo">

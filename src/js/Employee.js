@@ -9,8 +9,8 @@ import EmployeeMainPopup from "./EmployeeMainPopup"
 function Employee(props){
     const {isEmployeePage, setIsEmployeePage, currentUser, setCurrentUser, setUsers, users, setIsLoginPage, usedAccountNumbers, setUsedAccountNumbers, usedEmails, setUsedEmails, adminRecords, setAdminRecords} = props
     const [overlayVisiblity, setOverlayVisibility] = useState("hidden")
-    const [popupAction, setPopupAction] = useState("")
-    const [infoPopupAction, setInfoPopupAction] = useState("")
+    const [popupAction, setPopupAction] = useState("withdraw")
+    const [infoPopupAction, setInfoPopupAction] = useState("allUsers")
 
     const onExit = () => {
         setIsEmployeePage(false)
