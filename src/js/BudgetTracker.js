@@ -3,7 +3,7 @@ import ConfirmDeposit from "./ConfirmDeposit"
 
 function BudgetTracker(props) {
     const {setCurrentUser, currentUser} = props
-    const [counter, setCounter ] = useState(0)
+    const [counter, setCounter ] = useState(currentUser.username)
     const [expectedCash, setExpectedCash] = useState(currentUser.wallet)
 
 
@@ -44,7 +44,7 @@ function BudgetTracker(props) {
             ...currentUser,
             expenses: {
                 ...previousExpenses,
-                [counter]: {
+                [counter + 1]: {
                     expense: "",
                     amount: "",
                 }
