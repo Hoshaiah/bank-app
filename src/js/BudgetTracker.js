@@ -7,25 +7,6 @@ function BudgetTracker(props) {
     const [expectedCash, setExpectedCash] = useState(currentUser.wallet)
 
 
-    // function getRandomInt(min, max) {
-    //     min = Math.ceil(min);
-    //     max = Math.floor(max);
-    //     return Math.floor(Math.random() * (max - min + 1)) + min;
-    // }
-    // function generateExpenseKey() {
-    //     let key = 0
-    //     let cont = true
-    //     let keys = Object.keys(currentUser.expenses)
-    //     let highest = keys[keys.length-1]
-    //     for (let i=0; cont; i++){
-    //         key = getRandomInt(1,10000)
-    //         if (!(key in currentUser.expenses)){
-    //             cont= false
-    //         }
-    //     }
-    //     return highest +1
-    // }
-
     function updateExpectedCash(){
         let expensesTotal = 0
         Object.keys(currentUser.expenses).forEach(key=>(
