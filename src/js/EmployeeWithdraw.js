@@ -7,6 +7,7 @@ function EmployeeWithdraw(props) {
     const withdrawFirstName = useRef("")
     const withdrawUsername = useRef("")
     const withdrawAmount = useRef(0)
+    const withdrawAccountNumber = useRef("")
     const [withdrawReminder, setWithdrawReminder] = useState("")
 
     const onAccountNumberChange = (accountNumber) => {
@@ -54,9 +55,9 @@ function EmployeeWithdraw(props) {
             event.preventDefault()
             setWithdrawReminder("*Insufficient Balance")
         } else {
+            event.preventDefault()
             let userObject = users[username]
             let currentWallet = userObject.wallet
-            event.preventDefault()
             let currentTransaction = userObject.transactions
             let newDate = new Date()
             let dateOfTransaction = `${newDate.getDate()} ${newDate.toLocaleString('default', { month: 'short' })}`
@@ -84,7 +85,7 @@ function EmployeeWithdraw(props) {
                     }
                 }
             )
-            setWithdrawReminder("")
+            setWithdrawReminder("Withdraw Confirmed")
             
             let previousTransactions = []
             if (adminRecords.transactions) {
@@ -103,7 +104,11 @@ function EmployeeWithdraw(props) {
                     }
                 ]
             })
-
+            withdrawAmount.current.value = ""
+            withdrawAccountNumber.current.value =""
+            withdrawLastName.current.value = ""
+            withdrawFirstName.current.value = ""
+            withdrawUsername.current.value = ""
         }
     }
 
@@ -111,25 +116,27 @@ function EmployeeWithdraw(props) {
         <form id="employeePopupWithdraw">
             <div id="withdrawHeader">
                 <h1> Withdraw</h1>
-                <div><p>{withdrawReminder}</p></div>
+                <div id="withdrawReminder"><p>{withdrawReminder}</p></div>
             </div>
-            <div id="withdrawX">
+            {/* <div id="withdrawX">
                 <button onClick={e => onCancel(e)}type="submit">X</button>
-            </div>
-            <div id="withdrawInputDiv">
-                <label for="withdrawAccountNumber"></label>
-                <input onChange={event => onAccountNumberChange(event.target.value)} type="text" id="withdrawAccountNumber" placeholder="Account Number"></input>
-                <input ref = {withdrawAmount} type="number" id="withdrawAmount" placeholder="Amount"></input>
-                <button onClick={e => onSubmit(e)}type="submit">Submit</button>
-            </div>
-            <div id="withdrawUserInfo">
-                <label for="withdrawUsername"></label>
-                <input ref = {withdrawUsername} type="text" id="withdrawUsername" placeholder="Username" readOnly></input>
-                <label for="withdrawFirstName"></label>
-                <input ref = {withdrawFirstName} type="text" id="withdrawFirstName" placeholder="First Name" readOnly></input>
-                <label for="withdrawAmount"></label>
-                <input ref = {withdrawLastName} type="text" id="withdrawAmount" placeholder="Last Name" readOnly></input>
-                <label for="withdrawAmount"></label>
+            </div> */}
+            <div id="withdrawMain">
+                <div id="withdrawInputDiv">
+                    <label for="withdrawAccountNumber"></label>
+                    <input ref={withdrawAccountNumber} onChange={event => onAccountNumberChange(event.target.value)} type="text" id="withdrawAccountNumber" placeholder="Account Number"></input>
+                    <input ref = {withdrawAmount} type="number" id="withdrawAmount" placeholder="Amount"></input>
+                    <button onClick={e => onSubmit(e)}type="submit">Submit</button>
+                </div>
+                <div id="withdrawUserInfo">
+                    <label for="withdrawUsername"></label>
+                    <input ref = {withdrawUsername} type="text" id="withdrawUsername" placeholder="Username" readOnly></input>
+                    <label for="withdrawFirstName"></label>
+                    <input ref = {withdrawFirstName} type="text" id="withdrawFirstName" placeholder="First Name" readOnly></input>
+                    <label for="withdrawAmount"></label>
+                    <input ref = {withdrawLastName} type="text" id="withdrawAmount" placeholder="Last Name" readOnly></input>
+                    <label for="withdrawAmount"></label>
+                </div>
             </div>
         </form>
     )

@@ -20,7 +20,7 @@ function AllUsers (props) {
                     <div class="userRowData">{users[key].firstName}</div>
                     <div class="userRowData">{users[key].lastName}</div>
                     <div class="userRowData">{users[key].email}</div>
-                    <div class="userRowData">{users[key].wallet}</div>
+                    <div class="userRowData">₱ {users[key].wallet.toLocaleString()}</div>
                 </div>
             ))}
         </div>

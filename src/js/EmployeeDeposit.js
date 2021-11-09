@@ -54,6 +54,7 @@ function EmployeeDeposit(props) {
             event.preventDefault()
             setDepositReminder("*Amount cannot be 0 or empty")
         } else {
+            event.preventDefault()
             let userObject = users[username]
             let currentWallet = userObject.wallet
             let currentTransaction = userObject.transactions
@@ -83,7 +84,7 @@ function EmployeeDeposit(props) {
                     }
                 }
             )
-            setDepositReminder("")
+            setDepositReminder("Deposit Confirmed")
             
             let previousTransactions = []
             if (adminRecords.transactions) {
@@ -110,25 +111,27 @@ function EmployeeDeposit(props) {
         <form id="employeePopupDeposit">
             <div id="depositHeader">
                 <h1>Deposit</h1>
-                <div><p>{depositReminder}</p></div>
+                <div><p id="depositReminder">{depositReminder}</p></div>
             </div>
-            <div id="depositX">
+            {/* <div id="depositX">
                 <button onClick={e => onCancel(e)}type="submit">X</button>
-            </div>
-            <div id="depositInputs">
-                <label for="depositAccountNumber"></label>
-                <input onChange={event => onAccountNumberChange(event.target.value)} type="text" id="depositAccountNumber" placeholder="Account Number"></input>
-                <label for="depositAmount"></label>
-                <input ref = {depositAmount} type="number" id="depositAmount" placeholder="Amount"></input>
-                <button onClick={e => onSubmit(e)}type="submit">Submit</button>
-            </div>
-            <div id="depositInfo">
-                <label for="depositUsername"></label>
-                <input ref = {depositUsername} type="text" id="depositUsername" placeholder="Username"></input>
-                <label for="depositFirstName"></label>
-                <input ref = {depositFirstName} type="text" id="depositFirstName" placeholder="First Name"></input>
-                <label for="depositAmount"></label>
-                <input ref = {depositLastName} type="text" id="depositAmount" placeholder="Last Name"></input>
+            </div> */}
+            <div id="depositMain">
+                <div id="depositInputs">
+                    <label for="depositAccountNumber"></label>
+                    <input onChange={event => onAccountNumberChange(event.target.value)} type="text" id="depositAccountNumber" placeholder="Account Number"></input>
+                    <label for="depositAmount"></label>
+                    <input ref = {depositAmount} type="number" id="depositAmount" placeholder="Amount"></input>
+                    <button onClick={e => onSubmit(e)}type="submit">Submit</button>
+                </div>
+                <div id="depositInfo">
+                    <label for="depositUsername"></label>
+                    <input ref = {depositUsername} type="text" id="depositUsername" placeholder="Username"></input>
+                    <label for="depositFirstName"></label>
+                    <input ref = {depositFirstName} type="text" id="depositFirstName" placeholder="First Name"></input>
+                    <label for="depositAmount"></label>
+                    <input ref = {depositLastName} type="text" id="depositAmount" placeholder="Last Name"></input>
+                </div>
             </div>
         </form>
     )

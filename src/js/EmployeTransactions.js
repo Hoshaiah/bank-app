@@ -18,7 +18,7 @@
                         <div class="employeeTransactionRow">{element.from}</div>
                         <div class="employeeTransactionRow">{element.to}</div>
                         <div class="employeeTransactionRow">{element.dateOfTransaction}</div>
-                        <div class="employeeTransactionRow">₱ {element.Amount}</div>
+                        <div class="employeeTransactionRow">₱ {Number(element.Amount).toLocaleString()}</div>
                     </div>
                 ))}
             </div>

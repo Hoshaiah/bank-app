@@ -68,6 +68,7 @@ function AddUser(props){
             e.preventDefault()
             setAddUserReminder("*Email address is already taken")
         } else {
+            e.preventDefault()
             let newAccountNumber = createAccountNumber()
             setUsedAccountNumbers({
                 ...usedAccountNumbers,
@@ -94,7 +95,7 @@ function AddUser(props){
                 ...users,
                 [username]: newUser
             })
-            setAddUserReminder("")
+            setAddUserReminder("Add User Confirmed")
             newUsername.current.value = ""
             newFirstName.current.value = ""
             newLastName.current.value = ""
