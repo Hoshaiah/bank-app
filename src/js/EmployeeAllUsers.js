@@ -1,6 +1,5 @@
 function AllUsers (props) {
     const {users} = props
-    console.log(users)
     return (
 
         <div id ="allUserAccounts">

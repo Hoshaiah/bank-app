@@ -98,7 +98,6 @@ function Employee(props){
         setInfoTabState({
             "allUsers": "active"
         })
-        console.log(tabState)
     }
 
     const onTransactionsLogClick = () => {
