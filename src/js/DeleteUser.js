@@ -48,7 +48,8 @@ function DeleteUser(props) {
     const onSubmit = (event) => {
         event.preventDefault()
         let username = deleteUsername.current.value
-
+        let email = deleteEmail.current.value
+        let accountNumber = users[username].accountNumber
         if (username.length === 0){
             event.preventDefault()
             setDeleteUserReminder("*Account Number is invalid")
@@ -65,7 +66,7 @@ function DeleteUser(props) {
                     {  
                         action: "Delete",
                         username: username,
-                        accountNumber: users[username].accountNumber,
+                        accountNumber: accountNumber,
                         date: `${newDate.getDate()} ${newDate.toLocaleString('default', { month: 'short' })} ${newDate.getFullYear()} ${newDate.getHours()}:${newDate.getMinutes()}:${newDate.getSeconds()}`,
                         editFrom: "NA",
                         editTo:"NA"
@@ -75,8 +76,22 @@ function DeleteUser(props) {
 
             let usersCopy = users
             delete usersCopy[username]
-            setUsers(users)
+            setUsers({
+                ...usersCopy
+            })
             setPopupAction("")
+
+            let usedAccountNumbersCopy = usedAccountNumbers
+            delete usedAccountNumbersCopy[accountNumber]
+            setUsedAccountNumbers({
+                ...usedAccountNumbersCopy
+            })
+
+            let usedEmailsCopy = usedEmails
+            delete usedEmailsCopy[email]
+            setUsedEmails({
+                ...usedEmailsCopy
+            })
         }
 
     }
