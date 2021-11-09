@@ -11,6 +11,38 @@ function Employee(props){
     const [overlayVisiblity, setOverlayVisibility] = useState("hidden")
     const [popupAction, setPopupAction] = useState("withdraw")
     const [infoPopupAction, setInfoPopupAction] = useState("allUsers")
+    const [tabState, setTabState] = useState({
+        withdraw: "active",
+        deposit: "inactive",
+        transfer: "inactive",
+        addUser: "inactive",
+        deleteUser: "inactive",
+        editUser: "inactive"
+    })
+    const [infoTabState, setInfoTabState] = useState({
+        allUsers: "active",
+        transactionsLog: "inactive",
+        userManagementLog: "inactive"
+    })
+
+    function inactivateTabs(){
+        return {
+            withdraw: "inactive",
+            deposit: "inactive",
+            transfer: "inactive",
+            addUser: "inactive",
+            deleteUser: "inactive",
+            editUser: "inactive"
+        }
+    }
+
+    function inactivateInfoTabs(){
+        return {
+            allUsers: "inactive",
+            transactionsLog: "inactive",
+            userManagementLog: "inactive"
+        }
+    }
 
     const onExit = () => {
         setIsEmployeePage(false)
@@ -47,37 +79,65 @@ function Employee(props){
 
     const onWithdrawClick = () =>{
         setPopupAction("withdraw")
+        setTabState({
+            "withdraw": "active"
+        })
     }
 
     const onDepositClick = () => {
         setPopupAction("deposit")
+        setTabState({
+            "deposit": "active"
+        })
     }
 
     const onTransferClick = () => {
         setPopupAction("transfer")
+        setTabState({
+            "transfer": "active"
+        })
     }
     const onAddUserClick = () => {
         setPopupAction("addUser")
+        setTabState({
+            "addUser": "active"
+        })
     }
 
     const onDeleteUserClick = () => {
         setPopupAction("deleteUser")
+        setTabState({
+            "deleteUser": "active"
+        })
     }
 
     const onEditUserClick = () => {
         setPopupAction("editUser")
+        setInfoTabState({
+            "editUser": "active"
+        })
     }
 
     const onAllUsersClick = () => {
         setInfoPopupAction("allUsers")
+        setInfoTabState({
+            "allUsers": "active"
+        })
+        console.log(tabState)
     }
 
     const onTransactionsLogClick = () => {
         setInfoPopupAction("transactionsLog")
+        setInfoTabState({
+            "transactionsLog": "active"
+        })
     }
 
     const onUserManagementLogClick = () => {
         setInfoPopupAction("userManagementLog")
+        setInfoTabState({
+            "userManagementLog": "active"
+        })
     }
 
     if (isEmployeePage){
@@ -106,12 +166,12 @@ function Employee(props){
                     <div id="employeeMainTop">
                         <h1>DashBoard</h1>
                         <div id="employeeActions">
-                                <button onClick={onWithdrawClick}>{"<"} Withdraw</button>
-                                <button onClick={onDepositClick}>{">"} Deposit</button>
-                                <button onClick={onTransferClick}>{"><"} Transfer</button>
-                                <button onClick={onAddUserClick} id="addUserButton">+ Add User</button>
-                                <button onClick={onDeleteUserClick} id="addUserButton">+ Delete User</button>
-                                <button onClick={onEditUserClick} id="addUserButton"> \ Edit User</button>
+                                <button className={tabState.withdraw} onClick={onWithdrawClick}>{"<"} Withdraw</button>
+                                <button className={tabState.deposit} onClick={onDepositClick}>{">"} Deposit</button>
+                                <button className={tabState.transfer} onClick={onTransferClick}>{"><"} Transfer</button>
+                                <button className={tabState.addUser} onClick={onAddUserClick} id="addUserButton">+ Add User</button>
+                                <button className={tabState.deleteUser} onClick={onDeleteUserClick} id="addUserButton">+ Delete User</button>
+                                <button className={tabState.editUser} onClick={onEditUserClick} id="addUserButton"> \ Edit User</button>
                         </div>
                         <div id="employeePopupPane" >
                             <EmployeePopup
@@ -131,9 +191,9 @@ function Employee(props){
                     </div>
                     <div id="employeeMainBottom">
                         <div id="employeeTabs">
-                            <button onClick={onAllUsersClick}>All Users</button>
-                            <button onClick={onTransactionsLogClick}>Transactions Log </button>
-                            <button onClick={onUserManagementLogClick}>User Management Log</button>
+                            <button className={infoTabState.allUsers} onClick={onAllUsersClick}>All Users</button>
+                            <button className={infoTabState.transactionsLog} onClick={onTransactionsLogClick}>Transactions Log </button>
+                            <button className={infoTabState.userManagementLog} onClick={onUserManagementLogClick}>User Management Log</button>
                         </div>
                         <div id="employeeMainPopup">
                             <EmployeeMainPopup

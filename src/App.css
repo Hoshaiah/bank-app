@@ -715,15 +715,17 @@ div#linkBankReminder {
 #employeeActions button {
   width: 200px;
   height: 50px;
-  color:rgb(7, 7, 77);
-  background-color: white;
   border: 1px solid rgb(7, 7, 77);
   border-radius: 0.5em;
   font-weight: bolder;
   border-bottom: transparent;
   border-left: transparent;
   box-shadow: -2px 0px 5px rgb(7, 7, 77);;
+}
 
+.active {
+  color: white;
+  background-color: #04246c;
 }
 
 #employeePopupPane {
@@ -1075,12 +1077,16 @@ div#linkBankReminder {
 #employeeTabs button {
   width: 200px;
   height: 50px;
-  color:rgb(7, 7, 77);
-  background-color: white;
   border: 1px solid rgb(7, 7, 77);
   border-radius: 0.5em;
   font-weight: bolder;
   border-bottom: transparent;
   border-left: transparent;
+  box-shadow: -2px 0px 5px rgb(7, 7, 77);;
+}
 
+#employeeMainPopup{
+  border: 1px solid;
+  border-radius: 0.6em;
+  padding: 10px;
 }
