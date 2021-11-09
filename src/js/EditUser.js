@@ -54,8 +54,12 @@ function EditUser(props) {
     const onSubmit = (event) => {
         event.preventDefault()
         let username = editUsername.current.value
-        let oldEmail = users[username].email
         let userdata = users[username]
+        let oldEmail = userdata.email
+        let oldPassword = userdata.password
+        let oldFirstName = userdata.firstName
+        let oldLastName = userdata.lastName
+
         let email = editEmail.current.value
         let lastName = editLastName.current.value
         let firstName = editFirstName.current.value
@@ -67,6 +71,39 @@ function EditUser(props) {
         } else if(oldEmail !== email && email in usedEmails){
             setEditUserReminder("*Email is already taken")
         } else {
+            let previousLog = []
+            let newDate = new Date()
+            if (adminRecords.managementLog) {
+                previousLog = adminRecords.managementLog
+            }
+
+            let emailUpdateFrom = oldEmail ===  email ? "" : ", email: " + oldEmail
+            let emailUpdateTo = oldEmail ===  email ? "" : ", email: " + email
+            let firstNameUpdateFrom = oldFirstName ===  firstName ? "" : ", firstname: " + oldFirstName
+            let firstNameUpdateTo = oldFirstName ===  firstName ? "" :  ", firstname: " + firstName
+            let lastNameUpdateFrom = oldLastName ===  lastName ? "" :  ", lastname: " + oldLastName 
+            let lastNameUpdateTo = oldLastName ===  lastName ? "" : ", lastname: " + lastName
+            let passwordUpdateFrom = oldPassword ===  password ? "" : ", password: " + password
+            let passwordUpdateTo = oldPassword ===  password ? "" : ", password: " + oldPassword
+
+
+            setAdminRecords({
+                ...adminRecords,
+                managementLog : [
+                    ...previousLog,
+                    {  
+                        action: "Edit",
+                        username: username,
+                        accountNumber: userdata.accountNumber,
+                        date: `${newDate.getDate()} ${newDate.toLocaleString('default', { month: 'short' })} ${newDate.getFullYear()} ${newDate.getHours()}:${newDate.getMinutes()}:${newDate.getSeconds()}`,
+                        editFrom: `${emailUpdateFrom}${firstNameUpdateFrom}${lastNameUpdateFrom}${passwordUpdateFrom}`.substring(2),
+                        editTo:`${emailUpdateTo}${firstNameUpdateTo}${lastNameUpdateTo}${passwordUpdateTo}`.substring(2)
+                    }
+                ]
+            })
+
+
+
             setUsers({
                 ...users,
                 [username]: {
