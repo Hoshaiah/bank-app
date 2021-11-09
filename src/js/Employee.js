@@ -88,7 +88,7 @@ function Employee(props){
 
     const onEditUserClick = () => {
         setPopupAction("editUser")
-        setInfoTabState({
+        setTabState({
             "editUser": "active"
         })
     }
