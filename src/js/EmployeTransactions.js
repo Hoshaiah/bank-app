@@ -1,17 +1,24 @@
  
  function EmployeeTransactions(props){
     const {adminRecords, setAdminRecords} = props
-
     if (adminRecords.transactions){
         return(
-            <div>
+            <div id = "employeeTransactionLog">
+                <h1>Transactions</h1>
+                <div id="employeeTransactionHeader">
+                    <div>Transaction Type</div>
+                    <div>From</div>
+                    <div>To</div>
+                    <div>Date</div>
+                    <div>Amount</div>
+                </div>
                 {adminRecords.transactions.map(element => (
-                    <div>
-                        <div>{element.from}</div>
-                        <div>{element.to}</div>
-                        <div>{element.transactionType}</div>
-                        <div>{element.Amount}</div>
-                        <div>{element.dateOfTransaction}</div>
+                    <div class="employeeTransaction">
+                        <div class="employeeTransactionRow">{element.transactionType}</div>
+                        <div class="employeeTransactionRow">{element.from}</div>
+                        <div class="employeeTransactionRow">{element.to}</div>
+                        <div class="employeeTransactionRow">{element.dateOfTransaction}</div>
+                        <div class="employeeTransactionRow">₱ {element.Amount}</div>
                     </div>
                 ))}
             </div>

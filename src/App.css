@@ -888,39 +888,81 @@ div#linkBankReminder {
 }
 
 
-#allUserAccounts{
-  min-width: 700px;
-  overflow-x: scroll;
+
+/* MainBottom */
+
+#employeeMainBottom {
+  margin-top: 40px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-#userDataHeader {
+#employeeMainPopup {
+  height: 100%;
+}
+
+
+#allUserAccounts, #employeeTransactionLog {
+  display: flex;
+  min-width: 700px;
+  flex-direction: column;
+  align-items: center;
+}
+
+#userDataHeader, #employeeTransactionHeader {
   width: 100%;
   display: flex;
+  justify-content: center;
 
 }
 
-#userDataHeader div{
+#userDataHeader div, #employeeTransactionHeader div{
   display: flex;
   padding: 3px;
   border: 1px solid;
   padding: 5px;
-  width: 180px;
+  width: 200px;
   font-weight: bolder;
   justify-content: center;
   align-items: center;
   text-align: center;
 }
 
-.userRow {
+.userRow, .employeeTransaction {
   width: 100%;
   display: flex;
+  justify-content: center;
 }
 
-.userRowData {
-  display: block;
+.userRowData, .employeeTransactionRow {
+  display: flex;
+  justify-content: center;
   padding: 5px;
   border: 1px solid;
-  width: 180px;
+  width: 200px;
   text-align: center;
   overflow: hidden;
+}
+
+#emmployeeTabs {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+#employeeTabs button {
+  width: 200px;
+  height: 50px;
+  color:rgb(7, 7, 77);
+  background-color: white;
+  border: 1px solid rgb(7, 7, 77);
+  border-radius: 0.5em;
+  font-weight: bolder;
+  border-bottom: transparent;
+  border-left: transparent;
+
 }
