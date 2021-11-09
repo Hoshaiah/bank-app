@@ -13,10 +13,8 @@ function EditUser(props) {
     const editLastName = useRef("")
     const editEmail = useRef("")
     const editPassword = useRef("")
-    const newEditFirstName = useRef("")
-    const newEditLastName = useRef("")
-    const newEditEmail = useRef("")
-    const newEditPassword = useRef("")
+    const editAccountNumber = useRef("")
+
     const onAccountNumberChange = (accountNumber) => {
         function emptyInputs() {
             editLastName.current.value = ""
@@ -54,12 +52,6 @@ function EditUser(props) {
     const onSubmit = (event) => {
         event.preventDefault()
         let username = editUsername.current.value
-        let userdata = users[username]
-        let oldEmail = userdata.email
-        let oldPassword = userdata.password
-        let oldFirstName = userdata.firstName
-        let oldLastName = userdata.lastName
-
         let email = editEmail.current.value
         let lastName = editLastName.current.value
         let firstName = editFirstName.current.value
@@ -68,9 +60,16 @@ function EditUser(props) {
         if (username.length === 0){
             event.preventDefault()
             setEditUserReminder("*Account Number is invalid")
-        } else if(oldEmail !== email && email in usedEmails){
+        } else if(users[username].email !== email && email in usedEmails){
+            event.preventDefault()
             setEditUserReminder("*Email is already taken")
         } else {
+            event.preventDefault()
+            let userdata = users[username]
+            let oldEmail = userdata.email
+            let oldPassword = userdata.password
+            let oldFirstName = userdata.firstName
+            let oldLastName = userdata.lastName    
             let previousLog = []
             let newDate = new Date()
             if (adminRecords.managementLog) {
@@ -114,7 +113,7 @@ function EditUser(props) {
                     password: password
                 }
             })
-            setPopupAction("")
+            setEditUserReminder("Edit Confirmed")
 
             let usedEmailsCopy = usedEmails
             delete usedEmailsCopy[oldEmail]
@@ -122,20 +121,27 @@ function EditUser(props) {
             setUsedEmails({
                 ...usedEmailsCopy
             })
+
+            editLastName.current.value = ""
+            editFirstName.current.value = ""
+            editUsername.current.value = ""
+            editEmail.current.value = ""
+            editPassword.current.value = ""
+            editAccountNumber.current.value = ""
         }
     }
 
     return (
         <div>
             <div id="editUserHeader">
-                <button id="editUserX" onClick={e => onCancel(e)}type="submit">X</button>
+                {/* <button id="editUserX" onClick={e => onCancel(e)}type="submit">X</button> */}
                 <h1>Edit User</h1>
                 <p id="editUserReminder">{editUserReminder}</p>
             </div>
             <form id="editUser">
                 <div id="editUserInputs">
                     <label for="depositAccountNumber"></label>
-                    <input id="editAccountNumber" onChange={event => onAccountNumberChange(event.target.value)} type="text" placeholder="Account Number"></input>
+                    <input ref={editAccountNumber} id="editAccountNumber" onChange={event => onAccountNumberChange(event.target.value)} type="text" placeholder="Account Number"></input>
                     <label for="editUsername"></label>
                     <input ref = {editUsername} type="text" id="editUsername" placeholder="Username" readOnly></input>
                     <button onClick={e => onSubmit(e)}type="submit">Edit</button>

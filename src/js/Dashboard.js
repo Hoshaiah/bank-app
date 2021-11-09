@@ -44,6 +44,7 @@ function Dashboard(props) {
               <div id="visibleNav">
                 <ul id="gennav">
                   <img src={logo} className="App-logo" alt="logo" />
+                  <li className="hwalletName">Hwallet</li>
                   <li id="dashboard">Dashboard</li>
                   <li>Wallet</li>
                   <li>Activity</li>

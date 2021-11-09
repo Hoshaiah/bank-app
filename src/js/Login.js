@@ -47,7 +47,6 @@ function Login(props){
     if (isLoginPage){
         return (
             <form id="logindiv">
-                <h1 onClick={onEmployeePage}>Employee's</h1>
                 <div id="loginCaption">
                     <img src={logo} className="App-logo" alt="logo" />
                     <h1>Hwallet</h1>
@@ -72,6 +71,7 @@ function Login(props){
                     <button onClick={onSignupClick} id="signupButton" type="submit">Sign up</button>
                     <button onClick={onLoginClick} id="loginButton" type="submit">Log In</button>
                 </div>
+                <p id="adminButton" onClick={onEmployeePage}>Admin</p>
             </form>
             
         )

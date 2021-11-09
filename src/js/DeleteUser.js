@@ -51,6 +51,7 @@ function DeleteUser(props) {
             event.preventDefault()
             setDeleteUserReminder("*Account Number is invalid")
         } else {
+            event.preventDefault()
             let previousLog = []
             let newDate = new Date()
             let accountNumber = users[username].accountNumber
@@ -77,8 +78,8 @@ function DeleteUser(props) {
             setUsers({
                 ...usersCopy
             })
-            setPopupAction("")
 
+            setDeleteUserReminder("Delete Confirmed")
             let usedAccountNumbersCopy = usedAccountNumbers
             delete usedAccountNumbersCopy[accountNumber]
             setUsedAccountNumbers({
@@ -97,7 +98,7 @@ function DeleteUser(props) {
     return (
         <div>
             <div id="deleteUserHeader">
-                <button id="deleteUserX" onClick={e => onCancel(e)}type="submit">X</button>
+                {/* <button id="deleteUserX" onClick={e => onCancel(e)}type="submit">X</button> */}
                 <h1>Delete User</h1>
                 <p id="deleteUserReminder">{deleteUserReminder}</p>
             </div>

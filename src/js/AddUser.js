@@ -134,11 +134,11 @@ function AddUser(props){
         <form id="addUserForm">
             <div id="addUserHeader">
                 <h1> Add a User</h1>
-                <div><p>{addUserReminder}</p></div>
+                <div id="addUserReminder"><p>{addUserReminder}</p></div>
             </div>
-            <div id="auX">
+            {/* <div id="auX">
                 <button onClick={e => onCancel(e)}type="submit">X</button>
-            </div>
+            </div> */}
             <div id="addUserInputs">
                 <label for="newUsername"></label>
                 <input ref = {newUsername} type="text" id="newUsername" placeholder="Username"></input>
@@ -152,8 +152,8 @@ function AddUser(props){
                 <input ref = {newPassword} type="text" id="newPassword" placeholder="Password"></input>
                 <label for="newInitialBalance"></label>
                 <input ref = {newInitialBalance} type="number" id="newInitialBalance" placeholder="Initial Balance"></input>
-                <div id="addUserButtons">
-                    <button onClick={e => onSubmit(e)}type="submit">Submit</button>
+                <div id="addUserButton">
+                    <button onClick={e => onSubmit(e)}type="submit">Add</button>
                 </div>
             </div>
         </form>

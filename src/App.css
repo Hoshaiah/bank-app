@@ -504,7 +504,14 @@ div#linkBankReminder {
 
 #signupButton{
   background-color: #2ca80df8;
+}
 
+#adminButton  {
+  font-size: 10px;
+  color:gray;
+  height: 10px;
+  position: absolute;
+  bottom: 0;
 }
 
 /* Signup */
@@ -657,6 +664,10 @@ div#linkBankReminder {
 }
 
 /* Employee */
+.hwalletName {
+  font-size: 30px;
+  font-weight: bolder;
+}
 
 #EmployeePage {
   display: flex;
@@ -784,22 +795,32 @@ div#linkBankReminder {
 }
 
 #employeePopupTransfer{
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
-  grid-template-areas: 
-  "theader theader theader tx"
-  "tleft tleft ttop ttop"
-  "tleft tleft tbottom tbottom";
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#transferHeader {
+  display: flex;
+  flex-direction: column;
+}
+
+
+#transferReminder {
+  height: 50px;
+}
+
+#transferMain {
+  display: flex;
 }
 
 #transferInputs {
-  grid-area: tleft;
   display: flex;
   flex-direction: column;
   align-items: center;
   width: fit-content;
-  margin: 0;
+  margin-right: 20px;
 }
 
 #transferInputs input  {
@@ -810,7 +831,6 @@ div#linkBankReminder {
 }
 
 #transferInfoFrom{
-  grid-area: ttop;
   width: fit-content;
   display: flex;
   flex-direction: column;
@@ -827,7 +847,6 @@ div#linkBankReminder {
 }
 
 #transferInfoTo{
-  grid-area: tbottom;
   width: fit-content;
   display: flex;
   flex-direction: column;
@@ -843,29 +862,39 @@ div#linkBankReminder {
 }
 
 #transferHeader{
-  grid-area: theader;
   display: flex;
   align-items: center;
   justify-content: center;}
 
 #transferX {
-  grid-area: tx;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
+#transferInputs button {
+  width: 313px;
+  height: 40px;
+  background-color: #04246c;
+  color: white;
+}
+
 /* adduser */
 
 #addUserForm{
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
-  grid-template-areas: 
-  ". auheader auheader auheader aux"
-  "aumain aumain aumain aumain aumain"
-  "aumain aumain aumain aumain aumain";
+  display: flex;
+  flex-direction: column;
 }
+
+#addUserHeader {
+  display: flex;
+  flex-direction: column;
+}
+
+#addUserReminder{
+  height: 10px;
+}
+
 #addUserInputs {
   grid-area: aumain;
   display: flex;
@@ -890,6 +919,15 @@ div#linkBankReminder {
   grid-area: aux;
 }
 
+#addUserButton button {
+  width: 313px;
+  height: 40px;
+  background-color:#04246c ;
+  margin-top: 10px;
+  margin-bottom: 30px;
+  color: white;
+}
+
 #deleteUser, #editUser {
   display: flex;
   flex-direction: row;
@@ -908,7 +946,6 @@ div#linkBankReminder {
 
 #deleteUserReminder, #editUserReminder{
   height: 20px;
-  color: rgb(133, 4, 4);
 }
 
 #deleteUserInputs, #editUserInputs {
@@ -928,6 +965,8 @@ div#linkBankReminder {
 #deleteUserInputs button, #editUserInputs button {
   width: 313px;
   height: 40px;
+  background-color:#04246c ;
+  color: white;
 }
 
 #deleteUserInfo, #editUserInfo {
@@ -949,12 +988,6 @@ div#linkBankReminder {
 #editUsername {
   background-color: rgb(223, 223, 223);
 }
-
-
-
-
-
-
 
 
 /* MainBottom */

@@ -87,14 +87,11 @@ function Employee(props){
                 <div id="visibleNav">
                     <ul id="gennav">
                     <img src={logo} className="App-logo" alt="logo" />
-                    <li id="dashboard">Dashboard</li>
-                    <li>Wallet</li>
-                    <li>Activity</li>
-                    <li>Help</li>
+                    <li className="hwalletName">Hwallet</li>
                     </ul>
                     <ul id="lognav">
                         <li><img id="settings" src={settings} alt="" ></img></li>
-                        <li id="logout">Log Out</li>
+                        <li onClick={onExit} id="logout">Log Out</li>
                     </ul>
                 </div>
                 </nav>
@@ -107,7 +104,7 @@ function Employee(props){
                 </nav> */}
                 <main id="employeeMain">
                     <div id="employeeMainTop">
-                        <h1 onClick={onExit}>DashBoard</h1>
+                        <h1>DashBoard</h1>
                         <div id="employeeActions">
                                 <button onClick={onWithdrawClick}>{"<"} Withdraw</button>
                                 <button onClick={onDepositClick}>{">"} Deposit</button>
