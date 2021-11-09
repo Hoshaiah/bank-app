@@ -115,6 +115,13 @@ function EditUser(props) {
                 }
             })
             setPopupAction("")
+
+            let usedEmailsCopy = usedEmails
+            delete usedEmailsCopy[oldEmail]
+            usedEmailsCopy[email] = username
+            setUsedEmails({
+                ...usedEmailsCopy
+            })
         }
     }
 
