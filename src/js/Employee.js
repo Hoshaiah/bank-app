@@ -9,40 +9,15 @@ import EmployeeMainPopup from "./EmployeeMainPopup"
 function Employee(props){
     const {isEmployeePage, setIsEmployeePage, currentUser, setCurrentUser, setUsers, users, setIsLoginPage, usedAccountNumbers, setUsedAccountNumbers, usedEmails, setUsedEmails, adminRecords, setAdminRecords} = props
     const [overlayVisiblity, setOverlayVisibility] = useState("hidden")
-    const [popupAction, setPopupAction] = useState("withdraw")
+    const [popupAction, setPopupAction] = useState("addUser")
     const [infoPopupAction, setInfoPopupAction] = useState("allUsers")
     const [tabState, setTabState] = useState({
-        withdraw: "active",
-        deposit: "inactive",
-        transfer: "inactive",
-        addUser: "inactive",
-        deleteUser: "inactive",
-        editUser: "inactive"
+        addUser: "active",
     })
     const [infoTabState, setInfoTabState] = useState({
-        allUsers: "active",
-        transactionsLog: "inactive",
-        userManagementLog: "inactive"
+        allUsers: "active"
     })
 
-    function inactivateTabs(){
-        return {
-            withdraw: "inactive",
-            deposit: "inactive",
-            transfer: "inactive",
-            addUser: "inactive",
-            deleteUser: "inactive",
-            editUser: "inactive"
-        }
-    }
-
-    function inactivateInfoTabs(){
-        return {
-            allUsers: "inactive",
-            transactionsLog: "inactive",
-            userManagementLog: "inactive"
-        }
-    }
 
     const onExit = () => {
         setIsEmployeePage(false)
@@ -166,12 +141,12 @@ function Employee(props){
                     <div id="employeeMainTop">
                         <h1>DashBoard</h1>
                         <div id="employeeActions">
-                                <button className={tabState.withdraw} onClick={onWithdrawClick}>{"<"} Withdraw</button>
-                                <button className={tabState.deposit} onClick={onDepositClick}>{">"} Deposit</button>
-                                <button className={tabState.transfer} onClick={onTransferClick}>{"><"} Transfer</button>
                                 <button className={tabState.addUser} onClick={onAddUserClick} id="addUserButton">+ Add User</button>
                                 <button className={tabState.deleteUser} onClick={onDeleteUserClick} id="addUserButton">+ Delete User</button>
                                 <button className={tabState.editUser} onClick={onEditUserClick} id="addUserButton"> \ Edit User</button>
+                                <button className={tabState.withdraw} onClick={onWithdrawClick}>{"<"} Withdraw</button>
+                                <button className={tabState.deposit} onClick={onDepositClick}>{">"} Deposit</button>
+                                <button className={tabState.transfer} onClick={onTransferClick}>{"><"} Transfer</button>
                         </div>
                         <div id="employeePopupPane" >
                             <EmployeePopup

@@ -12,6 +12,7 @@ function DeleteUser(props) {
     const deleteFirstName = useRef("")
     const deleteLastName = useRef("")
     const deleteEmail = useRef("")
+    const deleteAccountNumber = useRef("")
     const onAccountNumberChange = (accountNumber) => {
         function emptyInputs() {
             deleteLastName.current.value = ""
@@ -91,6 +92,12 @@ function DeleteUser(props) {
             setUsedEmails({
                 ...usedEmailsCopy
             })
+
+            deleteLastName.current.value = ""
+            deleteFirstName.current.value = ""
+            deleteUsername.current.value = ""
+            deleteEmail.current.value = ""
+            deleteAccountNumber.current.value = ""
         }
 
     }
@@ -105,7 +112,7 @@ function DeleteUser(props) {
         <form id="deleteUser">
             <div id="deleteUserInputs">
                 <label for="depositAccountNumber"></label>
-                <input onChange={event => onAccountNumberChange(event.target.value)} type="text" id="depositAccountNumber" placeholder="Account Number"></input>
+                <input ref={deleteAccountNumber}onChange={event => onAccountNumberChange(event.target.value)} type="text" id="depositAccountNumber" placeholder="Account Number"></input>
                 <button onClick={e => onSubmit(e)}type="submit">Delete</button>
             </div>
             <div id="deleteUserInfo">
