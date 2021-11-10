@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from "react/cjs/react.development"
+import { useRef, useState, useEffect } from "react"
 import ConfirmDeposit from "./ConfirmDeposit"
 
 function Deposit(props){

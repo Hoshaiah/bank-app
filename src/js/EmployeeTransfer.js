@@ -1,5 +1,4 @@
-import { useState } from "react"
-import { Component, useRef } from "react/cjs/react.development"
+import { useState, useRef } from "react"
 
 
 function EmployeeTransfer(props) {

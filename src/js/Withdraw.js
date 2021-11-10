@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from "react/cjs/react.development"
+import { useRef, useState, useEffect } from "react"
 import ConfirmWithdaw from "./ConfirmWithdraw"
 
 function Withdraw(props){

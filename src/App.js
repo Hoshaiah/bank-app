@@ -1,5 +1,4 @@
-import { useEffect } from 'react';
-import { useState } from 'react/cjs/react.development';
+import { useEffect, useState } from 'react';
 import './App.css';
 import Dashboard from './js/Dashboard'
 import Login from './js/Login';

@@ -1,4 +1,4 @@
-import { useRef, useState } from "react/cjs/react.development"
+import { useRef, useState } from "react"
 import ConfirmSend from "./ConfirmSend"
 
 function Send(props){

@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react/cjs/react.development"
-import ConfirmDeposit from "./ConfirmDeposit"
+import { useEffect, useState } from "react"
 
 function BudgetTracker(props) {
     const {setCurrentUser, currentUser} = props

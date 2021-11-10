@@ -3,7 +3,7 @@ import '../App.css';
 import settings from '../img/settings.png';
 import notification from '../img/notification.png';
 import Popup from '../js/Popup';
-import {useEffect, useState} from "react"
+import { useState} from "react"
 import Actions from '../js/Actions'
 import RecentActivities from './RecentAcitivities';
 import BudgetTracker from './BudgetTracker';
