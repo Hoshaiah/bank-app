@@ -1,5 +1,6 @@
 import { useRef , useState} from 'react';
 import logo from '../logo.svg';
+import Footer from './Footer';
 
 function Signup(props){
 
@@ -149,6 +150,7 @@ function Signup(props){
                     <div id="createAccount">
                         <button onClick={onCreateAccount} id="createButton" type="submit">Create Account</button>
                         <button onClick={onBacktoLogin} id="backlogin" type="submit"> Back to Log In</button>
+                        <Footer/>
                     </div>
                 </form>
             

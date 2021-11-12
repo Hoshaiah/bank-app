@@ -4,6 +4,7 @@ import EmployeePopup from "./EmployeePopup"
 import settings from '../img/settings.png';
 import logo from '../logo.svg';
 import EmployeeMainPopup from "./EmployeeMainPopup"
+import Footer from "./Footer";
 
 
 function Employee(props){
@@ -181,6 +182,7 @@ function Employee(props){
 
                     </div>
                 </main>
+                <Footer/>
             </div>
         ) 
     } else {

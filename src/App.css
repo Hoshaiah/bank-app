@@ -530,7 +530,7 @@ div#linkBankReminder {
   display: flex;
   flex-direction: column;
   color: black;
-  height:580px;
+  height: 680px;
   width: 480px;
   background-color: white;
   border-radius: 1em ;
@@ -606,10 +606,10 @@ div#linkBankReminder {
   border: none;
   border-radius: 0.2em;
   color: white;
-  margin-bottom: 40px;
   margin-left: 5px;  
   margin-right: 5px;
   background-color: #0d3ea8f8;
+  margin-bottom: 10px;
 }
 
 #backlogin {
@@ -618,6 +618,7 @@ div#linkBankReminder {
   height: 30px;
   border: none;
   background-color: transparent;
+  margin-bottom: 35px;
 }
 
 /* employee */
@@ -1104,4 +1105,12 @@ div#linkBankReminder {
   border: 1px solid;
   border-radius: 0.6em;
   padding: 10px;
+}
+
+
+footer {
+  text-align: center;
+  font-size: 12px;
+  margin-top: 20px;
+  padding-bottom: 20px;
 }

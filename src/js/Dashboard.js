@@ -7,6 +7,7 @@ import { useState} from "react"
 import Actions from '../js/Actions'
 import RecentActivities from './RecentAcitivities';
 import BudgetTracker from './BudgetTracker';
+import Footer from './Footer';
 
 
 function Dashboard(props) {
@@ -86,6 +87,9 @@ function Dashboard(props) {
                   linkedAccounts = {linkedAccounts}
                   setLinkedAccounts = {setLinkedAccounts}
                 />
+                <Footer/>
+
+               
             
                 <div className={overlayVisiblity} id="overlay" >
                   <Popup
@@ -106,6 +110,7 @@ function Dashboard(props) {
                 </div>
               </main>
           </div>
+
         );
     } else {
         return null;

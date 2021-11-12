@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import logo from '../logo.svg';
-
+import Footer from './Footer';
 function Login(props){
     const {isLoginPage, users, setCurrentUser, setIsLoginPage, setIsDashboardPage, setIsSignupPage, setIsEmployeePage} = props
     const usernameObject = useState("")
@@ -72,6 +72,8 @@ function Login(props){
                     <button onClick={onLoginClick} id="loginButton" type="submit">Log In</button>
                 </div>
                 <p id="adminButton" onClick={onEmployeePage}>Admin</p>
+                <Footer/>
+
             </form>
             
         )

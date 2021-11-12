@@ -4,7 +4,7 @@ import Dashboard from './js/Dashboard'
 import Login from './js/Login';
 import Signup from './js/Signup';
 import Employee from './js/Employee';
-
+import Footer from './js/Footer';
 
 function App() {
 
