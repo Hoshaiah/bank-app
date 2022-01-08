@@ -1115,7 +1115,6 @@ footer {
   padding-bottom: 20px;
 }
 
-<<<<<<< HEAD
 .threeDotsButton {
   background-color: transparent;
   background-image: url("./img/threedots.png");
@@ -1126,18 +1125,3 @@ footer {
   width: 20px;
   height: 20px;
 }
-=======
-.budgetItem {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.deleteButton {
-  background-image: url("img/trash.png");
-  background-position: center;
-  background-repeat: no-repeat;
-  height: 25px;
-  width: 20px;
-}
->>>>>>> a94f7a14389ba4705cbddf5373e3c83fc7ad1f18

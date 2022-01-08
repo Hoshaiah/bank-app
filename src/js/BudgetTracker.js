@@ -80,7 +80,7 @@ function BudgetTracker(props) {
                     <div className="budgetItem" key={index}>
                         <input data-index={element} data-type="expense" value={currentUser.expenses[element]["expense"]} onChange={e => onInputChange(e)} type="text" placeholder="Expense Name"></input>
                         <input data-index={element} data-type="amount" value={currentUser.expenses[element]["amount"]} onChange={e => onInputChange(e)} type="number" placeholder="Expense Amount"></input>
-                        <button className="deleteButton" data-index={element} onClick={e => onDeleteButton(e)}>
+                        <button className="threeDotsButton" data-index={element} onClick={e => onDeleteButton(e)}>
                         </button>
                     </div>
                     ))}
