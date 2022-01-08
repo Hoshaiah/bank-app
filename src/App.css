@@ -1114,3 +1114,14 @@ footer {
   margin-top: 20px;
   padding-bottom: 20px;
 }
+
+.threeDotsButton {
+  background-color: transparent;
+  background-image: url("./img/threedots.png");
+  background-repeat: no-repeat;
+  background-size: 25px 25px;
+  border: transparent;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+}
