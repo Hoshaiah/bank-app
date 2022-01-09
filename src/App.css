@@ -1125,3 +1125,7 @@ footer {
   width: 20px;
   height: 20px;
 }
+
+.budgetItem {
+  display: flex;
+}

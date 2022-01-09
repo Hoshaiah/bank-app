@@ -82,6 +82,9 @@ function BudgetTracker(props) {
                         <input data-index={element} data-type="amount" value={currentUser.expenses[element]["amount"]} onChange={e => onInputChange(e)} type="number" placeholder="Expense Amount"></input>
                         <button className="threeDotsButton" data-index={element} onClick={e => onDeleteButton(e)}>
                         </button>
+                        <div className="budgetOptions" data-index={element}>
+                            delete    
+                        </div> 
                     </div>
                     ))}
                 <button id="addExpense" onClick={onAddExpense} id="addExpense"> Add Expense</button>
