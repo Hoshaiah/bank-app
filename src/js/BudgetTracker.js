@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react"
 import threeDots from "../img/threedots.png"
-
+import BudgetTrackerDelete from './BudgetTrackerDelete';
 
 function BudgetTracker(props) {
     const {setCurrentUser, currentUser} = props
     const [counter, setCounter ] = useState(currentUser.username)
     const [expectedCash, setExpectedCash] = useState(currentUser.wallet)
-
+    const [currentDeleteOption, setCurrentDeleteOption] = useState("")
 
     function updateExpectedCash(){
         let expensesTotal = 0
@@ -68,6 +68,10 @@ function BudgetTracker(props) {
     const onShowExpenses = () => {
         console.log(currentUser.expenses)
     }
+
+    const onShowOptions = (e) => {
+        setCurrentDeleteOption(e.target.attributes["data-index"].value)
+    }
     return (
         <div id="budgetTrackerPane">
             <h1 onClick={onShowExpenses}>Budget Tracker</h1>
@@ -80,11 +84,16 @@ function BudgetTracker(props) {
                     <div className="budgetItem" key={index}>
                         <input data-index={element} data-type="expense" value={currentUser.expenses[element]["expense"]} onChange={e => onInputChange(e)} type="text" placeholder="Expense Name"></input>
                         <input data-index={element} data-type="amount" value={currentUser.expenses[element]["amount"]} onChange={e => onInputChange(e)} type="number" placeholder="Expense Amount"></input>
-                        <button className="threeDotsButton" data-index={element} onClick={e => onDeleteButton(e)}>
+                        <button className="threeDotsButton" data-index={element} 
+                        // onClick={e => onDeleteButton(e)}
+                        onClick={e=> onShowOptions(e)}
+                        >
                         </button>
-                        <div className="budgetOptions" data-index={element}>
-                            delete    
-                        </div> 
+                        <BudgetTrackerDelete
+                            currentDeleteOption = {currentDeleteOption}
+                            dataIndex = {element}
+                            onDeleteButton = {onDeleteButton}
+                        />
                     </div>
                     ))}
                 <button id="addExpense" onClick={onAddExpense} id="addExpense"> Add Expense</button>
